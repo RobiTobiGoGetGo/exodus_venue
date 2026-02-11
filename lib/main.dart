@@ -10,6 +10,8 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 // Import from the local directory as configured in l10n.yaml
 import 'l10n/app_localizations.dart';
 
@@ -296,14 +298,6 @@ class _MainScreenState extends State<MainScreen> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.language, color: Colors.orange),
-            title: const Text('Language / Sprache / Langue / Lingua'),
-            onTap: () {
-              Navigator.pop(context);
-              _showLanguageMenu();
-            },
-          ),
-          ListTile(
             leading: const Icon(Icons.help_outline),
             title: Text(l10n.helpAndInfo),
             onTap: () {
@@ -342,35 +336,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  void _showLanguageMenu() {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildLanguageTile('English', 'en'),
-          _buildLanguageTile('Deutsch', 'de'),
-          _buildLanguageTile('Français', 'fr'),
-          _buildLanguageTile('Italiano', 'it'),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLanguageTile(String label, String code) {
-    return ListTile(
-      title: Text(label),
-      onTap: () async {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('language_code', code);
-        if (mounted) {
-          ExodusApp.setLocale(context, Locale(code));
-          Navigator.pop(context);
-        }
-      },
     );
   }
 
@@ -718,11 +683,43 @@ class _MainScreenState extends State<MainScreen> {
                       child: Text(l10n.swipeToCount, style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.black54)),
                     ),
                   const Spacer(flex: 1),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildLanguageFlag('🇺🇸', 'en'),
+                        const SizedBox(width: 20),
+                        _buildLanguageFlag('🇩🇪', 'de'),
+                        const SizedBox(width: 20),
+                        _buildLanguageFlag('🇫🇷', 'fr'),
+                        const SizedBox(width: 20),
+                        _buildLanguageFlag('🇮🇹', 'it'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildLanguageFlag(String flag, String code) {
+    return GestureDetector(
+      onLongPress: () async {
+        HapticFeedback.mediumImpact();
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('language_code', code);
+        if (mounted) {
+          ExodusApp.setLocale(context, Locale(code));
+        }
+      },
+      child: Text(
+        flag,
+        style: const TextStyle(fontSize: 32),
       ),
     );
   }
