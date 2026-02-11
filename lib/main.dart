@@ -256,7 +256,7 @@ class _MainScreenState extends State<MainScreen> {
         await Share.shareXFiles([XFile.fromData(pdfBytes, name: 'Exodus_Report_${DateTime.now().millisecondsSinceEpoch}.pdf', mimeType: 'application/pdf')], text: 'Exodus Venue Report');
       } else {
         final directory = await getTemporaryDirectory();
-        final file = io.File('${directory.path}/Exodus_Report_${DateTime.now().millisecondsSinceEpoch}.pdf');
+        final file = io.File('${directory.path}/exodus_report_${DateTime.now().millisecondsSinceEpoch}.pdf');
         await file.writeAsBytes(pdfBytes);
         await Share.shareXFiles([XFile(file.path)], text: 'Exodus Venue Report');
       }
@@ -1282,7 +1282,7 @@ class HelpScreen extends StatelessWidget {
               tooltip: 'Export Manual as PDF',
               onPressed: () async {
                 await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
-                  locationName: "User Manual",
+                  locationName: l10n.userGuideTitle,
                   docBuilder: () => _generateManualPDF(l10n),
                 )));
               },
@@ -1292,7 +1292,7 @@ class HelpScreen extends StatelessWidget {
               tooltip: 'Export Installation Guide',
               onPressed: () async {
                 await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
-                  locationName: "Installation Guide",
+                  locationName: l10n.installGuideTitle,
                   docBuilder: () => _generateInstallationGuidePDF(l10n),
                 )));
               },
