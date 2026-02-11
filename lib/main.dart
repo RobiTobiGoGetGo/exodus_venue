@@ -516,11 +516,11 @@ class _MainScreenState extends State<MainScreen> {
 
     Color insideColor;
     if (_inside <= startAt) {
-      insideColor = Colors.white.withOpacity(0.9);
+      insideColor = Colors.white.withValues(alpha: 0.9);
     } else {
       double weight = (_inside - startAt) / threshold;
       if (weight > 1.0) weight = 1.0;
-      insideColor = Color.lerp(Colors.white, Colors.red.shade300, weight)!.withOpacity(0.9);
+      insideColor = Color.lerp(Colors.white, Colors.red.shade300, weight)!.withValues(alpha: 0.9);
     }
 
     return Container(
@@ -623,7 +623,7 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                   ),
                   const Spacer(flex: 1),
-                  Expanded(flex: 6, child: _buildCounterCard("Entered", _entered, const Color(0xFF2196F3), 1, 1, Colors.white.withOpacity(0.9))),
+                  Expanded(flex: 6, child: _buildCounterCard("Entered", _entered, const Color(0xFF2196F3), 1, 1, Colors.white.withValues(alpha: 0.9))),
                   const SizedBox(height: 8),
                   Expanded(flex: 6, child: _buildCounterCard("Still Inside", _inside, const Color(0xFF4CAF50), 0, -1, insideColor)),
                   if (_countingMode == 'gestures')
@@ -789,6 +789,122 @@ class _LogScreenState extends State<LogScreen> {
     await prefs.setStringList('entries', []);
   }
 
+  Future<void> _exportCSV() async {
+    if (_entries.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("No logs to export")));
+      return;
+    }
+    try {
+      final csvContent = StringBuffer();
+      csvContent.writeln("Timestamp,Date_Time,Tag,Entered,Inside");
+      for (var entry in _entries) {
+        csvContent.writeln(entry.replaceAll(" | ", ","));
+      }
+
+      if (kIsWeb) {
+        final bytes = Uint8List.fromList(csvContent.toString().codeUnits);
+        await Share.shareXFiles([XFile.fromData(bytes, name: 'exodus_logs_${DateTime.now().millisecondsSinceEpoch}.csv', mimeType: 'text/csv')], text: 'Exodus Logs - ${widget.locationName}');
+      } else {
+        final directory = await getTemporaryDirectory();
+        final file = io.File('${directory.path}/exodus_logs_${DateTime.now().millisecondsSinceEpoch}.csv');
+        await file.writeAsString(csvContent.toString());
+        await Share.shareXFiles([XFile(file.path)], text: 'Exodus Logs - ${widget.locationName}');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("CSV Export failed: $e")));
+    }
+  }
+
+  Future<pw.Document> _generateDocument() async {
+    final pdf = pw.Document();
+    pdf.addPage(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        build: (context) => [
+          pw.Header(level: 0, child: pw.Text("EXODUS: VENUE REPORT")),
+          pw.Container(
+            padding: const pw.EdgeInsets.all(10),
+            decoration: const pw.BoxDecoration(color: PdfColors.grey100),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text("SUMMARY", style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 14)),
+                pw.SizedBox(height: 5),
+                pw.Text("Location: ${widget.locationName}"),
+                pw.Text("Report Date: ${DateFormat('dd.MM.yyyy HH:mm').format(DateTime.now())}"),
+              ],
+            ),
+          ),
+          pw.SizedBox(height: 20),
+          pw.TableHelper.fromTextArray(
+            headers: ["Date/Time", "Event", "Entered", "Inside"],
+            headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+            data: _entries.map((e) {
+              final p = e.split(" | ");
+              if (p.length < 5) return ["", "", "", ""];
+              return [p[1], p[2], p[3], p[4]];
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+    return pdf;
+  }
+
+  Future<void> _exportPDF() async {
+    if (_entries.isEmpty) return;
+    try {
+      final pdf = await _generateDocument();
+      final pdfBytes = await pdf.save();
+
+      if (kIsWeb) {
+        await Share.shareXFiles([XFile.fromData(pdfBytes, name: 'Exodus_Report_${DateTime.now().millisecondsSinceEpoch}.pdf', mimeType: 'application/pdf')], text: 'Exodus Venue Report');
+      } else {
+        final directory = await getTemporaryDirectory();
+        final file = io.File('${directory.path}/Exodus_Report_${DateTime.now().millisecondsSinceEpoch}.pdf');
+        await file.writeAsBytes(pdfBytes);
+        await Share.shareXFiles([XFile(file.path)], text: 'Exodus Venue Report');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("PDF Export failed: $e")));
+    }
+  }
+
+  void _showExportMenu() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.grid_on),
+            title: const Text("Export as CSV"),
+            onTap: () {
+              Navigator.pop(context);
+              _exportCSV();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.picture_as_pdf),
+            title: const Text("Export as PDF"),
+            onTap: () {
+              Navigator.pop(context);
+              _exportPDF();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.remove_red_eye),
+            title: const Text("Preview Report"),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: widget.locationName, docBuilder: _generateDocument)));
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -812,6 +928,10 @@ class _LogScreenState extends State<LogScreen> {
               },
             ),
             IconButton(
+              icon: const Icon(Icons.share, color: Color(0xFF1976D2)),
+              onPressed: () => _showExportMenu(),
+            ),
+            IconButton(
               icon: const Icon(Icons.delete_forever, color: Colors.red),
               onPressed: () => _confirmDeleteAll(),
             ),
@@ -828,7 +948,7 @@ class _LogScreenState extends State<LogScreen> {
                   hintText: 'Search logs...',
                   prefixIcon: const Icon(Icons.search),
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.8),
+                  fillColor: Colors.white.withValues(alpha: 0.8),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
                 ),
               ),
@@ -844,7 +964,7 @@ class _LogScreenState extends State<LogScreen> {
             if (parts.length < 5) return const SizedBox.shrink();
             return Card(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              color: Colors.white.withOpacity(0.9),
+              color: Colors.white.withValues(alpha: 0.9),
               child: ListTile(
                 title: Text(parts[2], style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1976D2))),
                 subtitle: Text(parts[1], style: const TextStyle(fontSize: 12)),
@@ -1147,7 +1267,7 @@ class HelpScreen extends StatelessWidget {
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),
           child: Card(
-            color: Colors.white.withOpacity(0.9),
+            color: Colors.white.withValues(alpha: 0.9),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
