@@ -688,7 +688,7 @@ class _MainScreenState extends State<MainScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildLanguageFlag('🇺🇸', 'en'),
+                        _buildLanguageFlag('🇬🇧', 'en'),
                         const SizedBox(width: 20),
                         _buildLanguageFlag('🇩🇪', 'de'),
                         const SizedBox(width: 20),
