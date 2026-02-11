@@ -320,9 +320,10 @@ class _MainScreenState extends State<MainScreen> {
           ListTile(
             leading: const Icon(Icons.remove_red_eye),
             title: const Text("Preview Report"),
-            onTap: () {
+            onTap: () async {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: _locationName, docBuilder: _generateDocument)));
+              await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: _locationName, docBuilder: _generateDocument)));
+              if (mounted) _showExportMenu();
             },
           ),
         ],
@@ -526,7 +527,7 @@ class _MainScreenState extends State<MainScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/background.png"),
+          image: AssetImage("assets/assets/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -547,7 +548,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Center(
                 child: SafeArea(
                   child: Image.asset(
-                    "assets/exodus_logo_header.png",
+                    "assets/assets/exodus_logo_header.png",
                     height: 120,
                     fit: BoxFit.contain,
                   ),
@@ -895,9 +896,10 @@ class _LogScreenState extends State<LogScreen> {
           ListTile(
             leading: const Icon(Icons.remove_red_eye),
             title: const Text("Preview Report"),
-            onTap: () {
+            onTap: () async {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: widget.locationName, docBuilder: _generateDocument)));
+              await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: widget.locationName, docBuilder: _generateDocument)));
+              if (mounted) _showExportMenu();
             },
           ),
         ],
@@ -910,7 +912,7 @@ class _LogScreenState extends State<LogScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/background.png"),
+          image: AssetImage("assets/assets/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -1232,7 +1234,7 @@ class HelpScreen extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/background.png"),
+          image: AssetImage("assets/assets/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -1245,8 +1247,8 @@ class HelpScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.picture_as_pdf, color: Colors.blue),
               tooltip: 'Export Manual as PDF',
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
+              onPressed: () async {
+                await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
                   locationName: "User Manual",
                   docBuilder: _generateManualPDF,
                 )));
@@ -1255,8 +1257,8 @@ class HelpScreen extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.install_mobile, color: Colors.green),
               tooltip: 'Export Installation Guide',
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
+              onPressed: () async {
+                await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
                   locationName: "Installation Guide",
                   docBuilder: _generateInstallationGuidePDF,
                 )));
