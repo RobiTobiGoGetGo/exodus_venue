@@ -1059,8 +1059,7 @@ class _LogScreenState extends State<LogScreen> {
                 title: Text(parts[2], style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1976D2))),
                 subtitle: Text(parts[1], style: const TextStyle(fontSize: 12)),
                 trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text("E: ${parts[3]}", style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
                     Text("I: ${parts[4]}", style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
