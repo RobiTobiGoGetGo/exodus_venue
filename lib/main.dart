@@ -10,13 +10,49 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+// Import from the local directory as configured in l10n.yaml
+import 'l10n/app_localizations.dart';
 
 void main() {
   runApp(const ExodusApp());
 }
 
-class ExodusApp extends StatelessWidget {
+class ExodusApp extends StatefulWidget {
   const ExodusApp({super.key});
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _ExodusAppState? state = context.findAncestorStateOfType<_ExodusAppState>();
+    state?.setLocale(newLocale);
+  }
+
+  @override
+  State<ExodusApp> createState() => _ExodusAppState();
+}
+
+class _ExodusAppState extends State<ExodusApp> {
+  Locale? _locale;
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _loadLocale();
+  }
+
+  Future<void> _loadLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? languageCode = prefs.getString('language_code');
+    if (languageCode != null) {
+      setState(() {
+        _locale = Locale(languageCode);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +63,9 @@ class ExodusApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1976D2)),
         useMaterial3: true,
       ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: _locale,
       home: const MainScreen(),
     );
   }
@@ -112,6 +151,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _undo() {
+    final l10n = AppLocalizations.of(context)!;
     if (_history.isNotEmpty) {
       HapticFeedback.mediumImpact();
       final lastState = _history.removeLast();
@@ -122,7 +162,7 @@ class _MainScreenState extends State<MainScreen> {
       _saveState();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Nothing to undo')),
+        SnackBar(content: Text(l10n.nothingToUndo)),
       );
     }
   }
@@ -140,8 +180,9 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> _exportCSV() async {
     final existing = _prefs.getStringList('entries') ?? [];
+    final l10n = AppLocalizations.of(context)!;
     if (existing.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("No logs to export")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.noMatches)));
       return;
     }
     try {
@@ -223,6 +264,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _showMenu() {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       builder: (context) => Column(
@@ -230,16 +272,16 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           ListTile(
             leading: const Icon(Icons.save),
-            title: const Text('Log NOW'),
+            title: Text(l10n.logNow),
             onTap: () {
               _logEntry("LOG NOW");
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Logged current totals')));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.loggedCurrentTotals)));
             },
           ),
           ListTile(
             leading: const Icon(Icons.history),
-            title: const Text('View Log'),
+            title: Text(l10n.viewLog),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context) => LogScreen(locationName: _locationName)));
@@ -247,15 +289,23 @@ class _MainScreenState extends State<MainScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.share, color: Color(0xFF1976D2)),
-            title: const Text('Export Logs'),
+            title: Text(l10n.exportLogs),
             onTap: () {
               Navigator.pop(context);
               _showExportMenu();
             },
           ),
           ListTile(
+            leading: const Icon(Icons.language, color: Colors.orange),
+            title: const Text('Language / Sprache / Langue / Lingua'),
+            onTap: () {
+              Navigator.pop(context);
+              _showLanguageMenu();
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.help_outline),
-            title: const Text('Help & Info'),
+            title: Text(l10n.helpAndInfo),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpScreen()));
@@ -263,7 +313,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.refresh),
-            title: const Text('Reset Session'),
+            title: Text(l10n.resetSession),
             onTap: () {
               Navigator.pop(context);
               _handleResetFlow();
@@ -271,7 +321,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.location_on_outlined),
-            title: const Text('Set Location'),
+            title: Text(l10n.setLocation),
             onTap: () {
               Navigator.pop(context);
               _showNameDialog();
@@ -279,14 +329,14 @@ class _MainScreenState extends State<MainScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.power_settings_new, color: Colors.red),
-            title: Text(!kIsWeb && io.Platform.isAndroid ? 'Shutdown' : 'Close Session'),
+            title: Text(!kIsWeb && io.Platform.isAndroid ? l10n.shutdown : l10n.closeSession),
             onTap: () async {
               if (!kIsWeb && io.Platform.isAndroid) {
                 _shutdown();
               } else {
                 await _logEntry("CLOSE SESSION");
                 Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Session closed')));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.sessionClosed)));
               }
             },
           ),
@@ -295,7 +345,37 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  void _showLanguageMenu() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildLanguageTile('English', 'en'),
+          _buildLanguageTile('Deutsch', 'de'),
+          _buildLanguageTile('Français', 'fr'),
+          _buildLanguageTile('Italiano', 'it'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLanguageTile(String label, String code) {
+    return ListTile(
+      title: Text(label),
+      onTap: () async {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('language_code', code);
+        if (mounted) {
+          ExodusApp.setLocale(context, Locale(code));
+          Navigator.pop(context);
+        }
+      },
+    );
+  }
+
   void _showExportMenu() {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       builder: (context) => Column(
@@ -303,7 +383,7 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           ListTile(
             leading: const Icon(Icons.grid_on),
-            title: const Text("Export as CSV"),
+            title: Text(l10n.exportAsCSV),
             onTap: () {
               Navigator.pop(context);
               _exportCSV();
@@ -311,7 +391,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.picture_as_pdf),
-            title: const Text("Export as PDF"),
+            title: Text(l10n.exportAsPDF),
             onTap: () {
               Navigator.pop(context);
               _exportPDF();
@@ -319,7 +399,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.remove_red_eye),
-            title: const Text("Preview Report"),
+            title: Text(l10n.previewReport),
             onTap: () async {
               Navigator.pop(context);
               await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: _locationName, docBuilder: _generateDocument)));
@@ -332,25 +412,26 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _handleResetFlow() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Reset Session?'),
-        content: const Text('Would you like to export the current log before resetting?'),
+        title: Text(l10n.resetSessionQuestion),
+        content: Text(l10n.resetSessionContent),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               _confirmReset();
             },
-            child: const Text('Just Reset'),
+            child: Text(l10n.justReset),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
               _showExportMenu();
             },
-            child: const Text('Export First'),
+            child: Text(l10n.exportFirst),
           ),
         ],
       ),
@@ -358,13 +439,14 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _confirmReset() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Confirm Full Reset'),
-        content: const Text('This will delete ALL logs and reset counters to zero. This cannot be undone.'),
+        title: Text(l10n.confirmFullReset),
+        content: Text(l10n.confirmResetContent),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
           TextButton(
             onPressed: () {
               HapticFeedback.vibrate();
@@ -377,9 +459,9 @@ class _MainScreenState extends State<MainScreen> {
               _saveState();
               _logEntry("RESET"); // New log entry for the new session
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Session reset successfully')));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.sessionResetSuccess)));
             },
-            child: const Text('Reset Everything', style: TextStyle(color: Colors.red)),
+            child: Text(l10n.resetEverything, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -387,18 +469,19 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _showNameDialog() {
+    final l10n = AppLocalizations.of(context)!;
     final controller = TextEditingController(text: _locationName);
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Set Location Name'),
+        title: Text(l10n.setLocationName),
         content: TextField(
           controller: controller,
-          decoration: const InputDecoration(hintText: "e.g. Main Entrance"),
+          decoration: InputDecoration(hintText: l10n.locationNameHint),
           autofocus: true,
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
           TextButton(
             onPressed: () {
               if (controller.text.isNotEmpty) {
@@ -408,7 +491,7 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.pop(context);
               }
             },
-            child: const Text('Save'),
+            child: Text(l10n.save),
           ),
         ],
       ),
@@ -416,13 +499,14 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _showEditDialog(String label, int currentValue, Function(int) onSave) {
+    final l10n = AppLocalizations.of(context)!;
     String localValue = '$currentValue';
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setDialogState) {
           return AlertDialog(
-            title: Text('Set $label'),
+            title: Text('${l10n.save} $label'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -444,28 +528,28 @@ class _MainScreenState extends State<MainScreen> {
                     itemBuilder: (context, index) {
                       String key = "";
                       if (index < 9) key = "${index + 1}";
-                      if (index == 9) key = "CLR";
+                      if (index == 9) key = l10n.clear;
                       if (index == 10) key = "0";
-                      if (index == 11) key = "OK";
+                      if (index == 11) key = l10n.ok;
 
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
-                          backgroundColor: key == "OK" ? Colors.green : (key == "CLR" ? Colors.red : Colors.blue.shade50),
-                          foregroundColor: (key == "OK" || key == "CLR") ? Colors.white : Colors.black,
+                          backgroundColor: key == l10n.ok ? Colors.green : (key == l10n.clear ? Colors.red : Colors.blue.shade50),
+                          foregroundColor: (key == l10n.ok || key == l10n.clear) ? Colors.white : Colors.black,
                         ),
                         onPressed: () {
                           HapticFeedback.selectionClick();
                           setDialogState(() {
-                            if (key == "CLR") {
+                            if (key == l10n.clear) {
                               localValue = "0";
-                            } else if (key == "OK") {
+                            } else if (key == l10n.ok) {
                               int? finalVal = int.tryParse(localValue);
                               if (finalVal != null) {
-                                if (label == 'Still Inside' && finalVal > _entered) {
-                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Cannot exceed 'Entered'")));
-                                } else if (label == 'Entered' && finalVal < _inside) {
-                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Cannot be less than 'Still Inside'")));
+                                if (label == l10n.stillInside && finalVal > _entered) {
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.validationExceedEntered)));
+                                } else if (label == l10n.entered && finalVal < _inside) {
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.validationLessInside)));
                                 } else {
                                   onSave(finalVal);
                                   Navigator.pop(context);
@@ -488,7 +572,7 @@ class _MainScreenState extends State<MainScreen> {
               ],
             ),
             actions: [
-              TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+              TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
             ],
           );
         },
@@ -511,6 +595,7 @@ class _MainScreenState extends State<MainScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
+    final l10n = AppLocalizations.of(context)!;
     int threshold = (_capacity * 0.02).round();
     if (threshold < 10) threshold = 10;
     int startAt = _capacity - threshold;
@@ -611,26 +696,26 @@ class _MainScreenState extends State<MainScreen> {
                       GestureDetector(
                         onLongPress: () {
                           HapticFeedback.mediumImpact();
-                          _showEditDialog('Capacity', _capacity, (val) {
+                          _showEditDialog(l10n.capacity, _capacity, (val) {
                             setState(() => _capacity = val);
                             _saveState();
                           });
                         },
                         child: Text(
-                          "Max: $_capacity",
+                          "${l10n.capacity}: $_capacity",
                           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87),
                         ),
                       ),
                     ],
                   ),
                   const Spacer(flex: 1),
-                  Expanded(flex: 6, child: _buildCounterCard("Entered", _entered, const Color(0xFF2196F3), 1, 1, Colors.white.withValues(alpha: 0.9))),
+                  Expanded(flex: 6, child: _buildCounterCard(l10n.entered, _entered, const Color(0xFF2196F3), 1, 1, Colors.white.withValues(alpha: 0.9))),
                   const SizedBox(height: 8),
-                  Expanded(flex: 6, child: _buildCounterCard("Still Inside", _inside, const Color(0xFF4CAF50), 0, -1, insideColor)),
+                  Expanded(flex: 6, child: _buildCounterCard(l10n.stillInside, _inside, const Color(0xFF4CAF50), 0, -1, insideColor)),
                   if (_countingMode == 'gestures')
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8),
-                      child: Text("Swipe Up/Down to Count", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black54)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Text(l10n.swipeToCount, style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.black54)),
                     ),
                   const Spacer(flex: 1),
                 ],
@@ -650,9 +735,10 @@ class _MainScreenState extends State<MainScreen> {
           final oldEnt = _entered;
           final oldIns = _inside;
           setState(() {
-            if (label == 'Entered') {
+            final l10n = AppLocalizations.of(context)!;
+            if (label == l10n.entered) {
               _entered = newValue;
-            } else if (label == 'Still Inside') {
+            } else if (label == l10n.stillInside) {
               _inside = newValue;
             }
           });
@@ -791,8 +877,9 @@ class _LogScreenState extends State<LogScreen> {
   }
 
   Future<void> _exportCSV() async {
+    final l10n = AppLocalizations.of(context)!;
     if (_entries.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("No logs to export")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.noMatches)));
       return;
     }
     try {
@@ -817,6 +904,8 @@ class _LogScreenState extends State<LogScreen> {
   }
 
   Future<pw.Document> _generateDocument() async {
+    final prefs = await SharedPreferences.getInstance();
+    final entries = prefs.getStringList('entries') ?? [];
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
@@ -840,7 +929,7 @@ class _LogScreenState extends State<LogScreen> {
           pw.TableHelper.fromTextArray(
             headers: ["Date/Time", "Event", "Entered", "Inside"],
             headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-            data: _entries.map((e) {
+            data: entries.map((e) {
               final p = e.split(" | ");
               if (p.length < 5) return ["", "", "", ""];
               return [p[1], p[2], p[3], p[4]];
@@ -862,7 +951,7 @@ class _LogScreenState extends State<LogScreen> {
         await Share.shareXFiles([XFile.fromData(pdfBytes, name: 'Exodus_Report_${DateTime.now().millisecondsSinceEpoch}.pdf', mimeType: 'application/pdf')], text: 'Exodus Venue Report');
       } else {
         final directory = await getTemporaryDirectory();
-        final file = io.File('${directory.path}/Exodus_Report_${DateTime.now().millisecondsSinceEpoch}.pdf');
+        final file = io.File('${directory.path}/exodus_report_${DateTime.now().millisecondsSinceEpoch}.pdf');
         await file.writeAsBytes(pdfBytes);
         await Share.shareXFiles([XFile(file.path)], text: 'Exodus Venue Report');
       }
@@ -872,6 +961,7 @@ class _LogScreenState extends State<LogScreen> {
   }
 
   void _showExportMenu() {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       builder: (context) => Column(
@@ -879,7 +969,7 @@ class _LogScreenState extends State<LogScreen> {
         children: [
           ListTile(
             leading: const Icon(Icons.grid_on),
-            title: const Text("Export as CSV"),
+            title: Text(l10n.exportAsCSV),
             onTap: () {
               Navigator.pop(context);
               _exportCSV();
@@ -887,7 +977,7 @@ class _LogScreenState extends State<LogScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.picture_as_pdf),
-            title: const Text("Export as PDF"),
+            title: Text(l10n.exportAsPDF),
             onTap: () {
               Navigator.pop(context);
               _exportPDF();
@@ -895,7 +985,7 @@ class _LogScreenState extends State<LogScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.remove_red_eye),
-            title: const Text("Preview Report"),
+            title: Text(l10n.previewReport),
             onTap: () async {
               Navigator.pop(context);
               await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: widget.locationName, docBuilder: _generateDocument)));
@@ -909,6 +999,7 @@ class _LogScreenState extends State<LogScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -919,7 +1010,7 @@ class _LogScreenState extends State<LogScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text('Log History'),
+          title: Text(l10n.viewLog),
           backgroundColor: Colors.transparent,
           actions: [
             IconButton(
@@ -947,7 +1038,7 @@ class _LogScreenState extends State<LogScreen> {
                 focusNode: _searchFocusNode,
                 onChanged: _applyFilter,
                 decoration: InputDecoration(
-                  hintText: 'Search logs...',
+                  hintText: '${l10n.search}...',
                   prefixIcon: const Icon(Icons.search),
                   filled: true,
                   fillColor: Colors.white.withValues(alpha: 0.8),
@@ -958,7 +1049,7 @@ class _LogScreenState extends State<LogScreen> {
           ),
         ),
         body: _filteredEntries.isEmpty
-            ? const Center(child: Text("No matches", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)))
+            ? Center(child: Text(l10n.noMatches, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)))
             : ListView.builder(
           itemCount: _filteredEntries.length,
           itemBuilder: (context, index) {
@@ -988,27 +1079,29 @@ class _LogScreenState extends State<LogScreen> {
   }
 
   void _confirmDelete(int index) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete entry?'),
+        title: Text(l10n.deleteEntryQuestion),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          TextButton(onPressed: () { _deleteEntry(index); Navigator.pop(context); }, child: const Text('Delete')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          TextButton(onPressed: () { _deleteEntry(index); Navigator.pop(context); }, child: Text(l10n.delete)),
         ],
       ),
     );
   }
 
   void _confirmDeleteAll() {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete all entries?'),
-        content: const Text('This cannot be undone.'),
+        title: Text(l10n.deleteAllEntriesQuestion),
+        content: Text(l10n.thisCannotBeUndone),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          TextButton(onPressed: () { _deleteAll(); Navigator.pop(context); }, child: const Text('Delete All', style: TextStyle(color: Colors.red))),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          TextButton(onPressed: () { _deleteAll(); Navigator.pop(context); }, child: Text(l10n.deleteAll, style: const TextStyle(color: Colors.red))),
         ],
       ),
     );
@@ -1022,8 +1115,9 @@ class PreviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: Text('Report Preview: $locationName')),
+      appBar: AppBar(title: Text('${l10n.previewReport}: $locationName')),
       body: PdfPreview(
         build: (format) async {
           final doc = await docBuilder();
@@ -1041,58 +1135,56 @@ class PreviewScreen extends StatelessWidget {
 class HelpScreen extends StatelessWidget {
   const HelpScreen({super.key});
 
-  Future<pw.Document> _generateManualPDF() async {
+  Future<pw.Document> _generateManualPDF(AppLocalizations l10n) async {
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (context) => [
-          pw.Header(level: 0, child: pw.Text("EXODUS VENUE DASHBOARD: USER GUIDE")),
-          pw.Header(level: 1, text: "1. OVERVIEW"),
-          pw.Paragraph(
-            text: "Exodus is a professional attendance monitoring tool. Its purpose is to track the flow of visitors through a specific entrance or exit. Unlike a standard 'clicker,' it manages two values simultaneously to provide a real-time view of venue safety and capacity.",
-          ),
-          pw.Bullet(text: "Entered: The cumulative total of all people who have passed through the gate. This number only goes up and represents the 'Total Flow.'"),
-          pw.Bullet(text: "Still Inside: The current headcount remaining within the venue. This number goes up when people enter and down when they leave."),
-          pw.Header(level: 1, text: "2. THE MAIN DASHBOARD (HOME SCREEN)"),
-          pw.Paragraph(text: "This is the primary screen where the supervisor will spend 99% of their time."),
-          pw.Bullet(text: "Branded Header: Features the Exodus logo. Long-pressing this logo provides a quick shortcut to the Help screen."),
-          pw.Bullet(text: "Location Row: Displays the name of the current gate (e.g., 'North Entrance'). This ensures that if multiple phones are in use, the logs are correctly attributed."),
-          pw.Bullet(text: "Capacity Row: Displays the 'Max Capacity' or safety limit for the area."),
-          pw.Bullet(text: "Entered Card (Blue): Large display of the total entries."),
-          pw.Bullet(text: "Still Inside Card (Green/White): Large display of the current headcount."),
-          pw.Header(level: 1, text: "Visual Safety Indicators"),
-          pw.Paragraph(text: "The Still Inside card uses a 'heat-map' logic to warn the supervisor of potential overcrowding without them having to read the numbers:"),
-          pw.Bullet(text: "As the headcount approaches the Max Capacity, the card will smoothly transition from a neutral white to a graduated red."),
-          pw.Bullet(text: "This warning begins when the remaining space is either 10 people or 2% of the total capacity (whichever is greater)."),
-          pw.Bullet(text: "A deep red card is a signal to the supervisor to slow down or stop entries."),
-          pw.Header(level: 1, text: "3. INPUT MODES (HOW TO COUNT)"),
-          pw.Paragraph(text: "At the top of the dashboard, there are two icons to switch the input method based on the situation."),
-          pw.Header(level: 2, text: "A. Button Mode (Icon: Tapping Finger)"),
-          pw.Bullet(text: "Tap [+] on the blue card for an entry."),
-          pw.Bullet(text: "Tap [-] on the green card for an exit."),
-          pw.Bullet(text: "Best for: Steady, manageable traffic where high precision is required."),
-          pw.Header(level: 2, text: "B. Swipe Mode (Icon: Swiping Hand)"),
-          pw.Bullet(text: "Swipe UP anywhere on the screen to record an entry."),
-          pw.Bullet(text: "Swipe DOWN anywhere on the screen to record an exit."),
-          pw.Bullet(text: "Best for: Fast-moving crowds or 'rushes' where the supervisor needs to keep their eyes on the visitors rather than the screen."),
-          pw.Header(level: 1, text: "4. CORRECTION AND NAVIGATION"),
-          pw.Paragraph(text: "Mistakes happen, especially during busy shifts. Exodus provides two layers of correction:"),
-          pw.Bullet(text: "Undo (Top-Left Icon): Tapping the curved arrow instantly reverts the very last action taken (count or edit)."),
-          pw.Bullet(text: "Manual Edit (Keypad): Long-pressing either the Entered or Still Inside card opens a numeric keypad. This allows the supervisor to type in a confirmed headcount (e.g., after a manual floor check)."),
-          pw.Header(level: 1, text: "5. LOG HISTORY AND REPORTING"),
-          pw.Paragraph(text: "Every action is recorded with a timestamp. To access the log, tap the Gear Icon and select View Log, or use the Long-press shortcut on the Gear icon."),
-          pw.Bullet(text: "Search: Use the bar at the top to filter for specific events like 'RESET' or 'MANUAL EDIT.'"),
-          pw.Bullet(text: "Delete: Individual entries can be removed by long-pressing them (requires confirmation)."),
-          pw.Bullet(text: "Exporting: You can share the logs as a CSV (for Excel) or a Formatted PDF."),
-          pw.Bullet(text: "Preview: The 'Preview Report' option allows you to see the professional PDF layout before you send it via WhatsApp or Email."),
-          pw.Header(level: 1, text: "6. SESSION MANAGEMENT"),
-          pw.Header(level: 2, text: "Resetting the Day"),
-          pw.Bullet(text: "To clear the counters for a new shift or event, select Reset Session from the Gear menu."),
-          pw.Bullet(text: "The app will first ask if you want to Export the data so you don't lose the previous session's records."),
-          pw.Bullet(text: "A final confirmation is required before the app wipes the counters to 0 and clears the log history."),
-          pw.Header(level: 2, text: "Shutdown"),
-          pw.Bullet(text: "Selecting Shutdown creates a final log entry to close the digital paper trail and exits the app cleanly."),
+          pw.Header(level: 0, child: pw.Text(l10n.userGuideTitle)),
+          pw.Header(level: 1, text: l10n.guideOverviewTitle),
+          pw.Paragraph(text: l10n.guideOverviewContent),
+          pw.Bullet(text: l10n.guideOverviewEntered),
+          pw.Bullet(text: l10n.guideOverviewInside),
+          pw.Header(level: 1, text: l10n.guideDashboardTitle),
+          pw.Paragraph(text: l10n.guideDashboardContent),
+          pw.Bullet(text: l10n.guideDashboardHeader),
+          pw.Bullet(text: l10n.guideDashboardLocation),
+          pw.Bullet(text: l10n.guideDashboardCapacity),
+          pw.Bullet(text: l10n.guideDashboardEnteredCard),
+          pw.Bullet(text: l10n.guideDashboardInsideCard),
+          pw.Header(level: 1, text: l10n.guideSafetyTitle),
+          pw.Paragraph(text: l10n.guideSafetyContent),
+          pw.Bullet(text: l10n.guideSafetyTransition),
+          pw.Bullet(text: l10n.guideSafetyThreshold),
+          pw.Bullet(text: l10n.guideSafetySignal),
+          pw.Header(level: 1, text: l10n.guideInputTitle),
+          pw.Paragraph(text: l10n.guideInputContent),
+          pw.Header(level: 2, text: l10n.guideInputButtonTitle),
+          pw.Bullet(text: l10n.guideInputButtonTapEntered),
+          pw.Bullet(text: l10n.guideInputButtonTapInside),
+          pw.Bullet(text: l10n.guideInputButtonBestFor),
+          pw.Header(level: 2, text: l10n.guideInputSwipeTitle),
+          pw.Bullet(text: l10n.guideInputSwipeUp),
+          pw.Bullet(text: l10n.guideInputSwipeDown),
+          pw.Bullet(text: l10n.guideInputSwipeBestFor),
+          pw.Header(level: 1, text: l10n.guideCorrectionTitle),
+          pw.Paragraph(text: l10n.guideCorrectionContent),
+          pw.Bullet(text: l10n.guideCorrectionUndo),
+          pw.Bullet(text: l10n.guideCorrectionManual),
+          pw.Header(level: 1, text: l10n.guideLogTitle),
+          pw.Paragraph(text: l10n.guideLogContent),
+          pw.Bullet(text: l10n.guideLogSearch),
+          pw.Bullet(text: l10n.guideLogDelete),
+          pw.Bullet(text: l10n.guideLogExport),
+          pw.Bullet(text: l10n.guideLogPreview),
+          pw.Header(level: 1, text: l10n.guideSessionTitle),
+          pw.Header(level: 2, text: l10n.guideSessionResetTitle),
+          pw.Bullet(text: l10n.guideSessionResetContent),
+          pw.Bullet(text: l10n.guideSessionResetExport),
+          pw.Bullet(text: l10n.guideSessionResetConfirm),
+          pw.Header(level: 2, text: l10n.guideSessionShutdownTitle),
+          pw.Bullet(text: l10n.guideSessionShutdownContent),
           pw.SizedBox(height: 20),
           pw.Footer(
             leading: pw.Text("© 2024 GoGetGo Exodus", style: const pw.TextStyle(fontSize: 10)),
@@ -1103,126 +1195,69 @@ class HelpScreen extends StatelessWidget {
     return pdf;
   }
 
-  Future<pw.Document> _generateInstallationGuidePDF() async {
+  Future<pw.Document> _generateInstallationGuidePDF(AppLocalizations l10n) async {
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         margin: const pw.EdgeInsets.all(32),
         build: (context) => [
-          pw.Header(level: 0, child: pw.Text("EXODUS VENUE: INSTALLATION GUIDE")),
+          pw.Header(level: 0, child: pw.Text(l10n.installGuideTitle)),
           pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Installation on mobile phones"),
-          pw.Header(level: 2, text: "Edge Mobile"),
-          pw.Bullet(text: "Open the website in Edge: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tap the three horizontal lines or three dots in the bottom right corner."),
-          pw.Bullet(text: "Swipe up (or sideways) on the menu that appears to see more options."),
-          pw.Bullet(text: "Look for and tap Add to phone (it might also say Install app or Add to Home screen)."),
-          pw.Bullet(text: "Follow the prompts to confirm the name \"Exodus Venue\" and tap Add."),
+          pw.Header(level: 1, text: l10n.installMobileTitle),
+          pw.Header(level: 2, text: l10n.installEdgeTitle),
+          pw.Bullet(text: l10n.installEdgeStep1),
+          pw.Bullet(text: l10n.installEdgeStep2),
+          pw.Bullet(text: l10n.installEdgeStep3),
+          pw.Bullet(text: l10n.installEdgeStep4),
+          pw.Bullet(text: l10n.installEdgeStep5),
           pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Firefox Mobile"),
-          pw.Text("Android:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Bullet(text: "Open the website in Firefox: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tap the three dots (menu) next to the address bar (usually at the bottom or top)."),
-          pw.Bullet(text: "Tap Install."),
-          pw.Bullet(text: "Confirm by tapping Add or Install again."),
+          pw.Header(level: 1, text: l10n.installFirefoxTitle),
+          pw.Text(l10n.installAndroid, style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+          pw.Bullet(text: l10n.installFirefoxStep1),
+          pw.Bullet(text: l10n.installFirefoxStep2),
+          pw.Bullet(text: l10n.installFirefoxStep3),
+          pw.Bullet(text: l10n.installFirefoxStep4),
           pw.SizedBox(height: 5),
-          pw.Text("iPhone/iOS:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Paragraph(text: "Firefox on iOS does not have a direct \"Install\" button due to Apple's restrictions. You have to use the system menu:"),
-          pw.Bullet(text: "Open the website in Firefox."),
-          pw.Bullet(text: "Tap the Share icon (the square with an arrow pointing up) in the address bar."),
-          pw.Bullet(text: "Scroll down the list of options and tap Add to Home Screen."),
-          pw.Bullet(text: "Tap Add in the top right corner."),
+          pw.Text(l10n.installIos, style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+          pw.Paragraph(text: l10n.installFirefoxIosContent),
+          pw.Bullet(text: l10n.installFirefoxIosStep1),
+          pw.Bullet(text: l10n.installFirefoxIosStep2),
+          pw.Bullet(text: l10n.installFirefoxIosStep3),
+          pw.Bullet(text: l10n.installFirefoxIosStep4),
           pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Chrome Mobile"),
-          pw.Text("Android:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Bullet(text: "Open the website in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tap the three dots in the top-right corner."),
-          pw.Bullet(text: "Tap Add to Home screen (on some versions, it may say Install app)."),
-          pw.Bullet(text: "Tap Add or Install to confirm."),
+          pw.Header(level: 1, text: l10n.installChromeTitle),
+          pw.Text(l10n.installAndroid, style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+          pw.Bullet(text: l10n.installChromeAndroidStep1),
+          pw.Bullet(text: l10n.installChromeAndroidStep2),
+          pw.Bullet(text: l10n.installChromeAndroidStep3),
+          pw.Bullet(text: l10n.installChromeAndroidStep4),
           pw.SizedBox(height: 5),
-          pw.Text("iPhone/iOS:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Bullet(text: "Open the website in Chrome."),
-          pw.Bullet(text: "Tap the Share icon (the square with an arrow pointing up) next to the address bar."),
-          pw.Bullet(text: "Scroll down and tap Add to Home Screen."),
-          pw.Bullet(text: "Tap Add in the top right."),
+          pw.Text(l10n.installIos, style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+          pw.Bullet(text: l10n.installChromeIosStep1),
+          pw.Bullet(text: l10n.installChromeIosStep2),
+          pw.Bullet(text: l10n.installChromeIosStep3),
+          pw.Bullet(text: l10n.installChromeIosStep4),
           pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Desktop (Windows/Mac)"),
-          pw.Bullet(text: "Open the website in Chrome."),
-          pw.Bullet(text: "Click the three dots in the top-right corner."),
-          pw.Bullet(text: "Select Save and Share."),
-          pw.Bullet(text: "Click Install page as app..."),
-          pw.Bullet(text: "Click Install"),
+          pw.Header(level: 1, text: l10n.installDesktopTitle),
+          pw.Bullet(text: l10n.installDesktopStep1),
+          pw.Bullet(text: l10n.installDesktopStep2),
+          pw.Bullet(text: l10n.installDesktopStep3),
+          pw.Bullet(text: l10n.installDesktopStep4),
+          pw.Bullet(text: l10n.installDesktopStep5),
           pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "For Safari on iPhone & iPad (iOS)"),
-          pw.Bullet(text: "Open the website in Safari: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tap the Share button at the bottom (the square with an arrow pointing up)."),
-          pw.Bullet(text: "Scroll down the menu and tap Add to Home Screen."),
-          pw.Bullet(text: "Tap Add in the top-right corner."),
+          pw.Header(level: 1, text: l10n.installSafariIosTitle),
+          pw.Bullet(text: l10n.installSafariIosStep1),
+          pw.Bullet(text: l10n.installSafariIosStep2),
+          pw.Bullet(text: l10n.installSafariIosStep3),
+          pw.Bullet(text: l10n.installSafariIosStep4),
           pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "For Safari on Mac (macOS)"),
-          pw.Text("Note: This requires macOS Sonoma or later.", style: pw.TextStyle(fontStyle: pw.FontStyle.italic)),
-          pw.Bullet(text: "Open the website in Safari."),
-          pw.Bullet(text: "Go to the File menu in the top menu bar."),
-          pw.Bullet(text: "Select Add to Dock..."),
-          pw.Bullet(text: "Click Add."),
-          pw.NewPage(),
-          pw.Header(level: 0, child: pw.Text("EXODUS VENUE: INSTALLATIONSANLEITUNG")),
-          pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Installation auf Handys"),
-          pw.Header(level: 2, text: "Edge Mobile"),
-          pw.Bullet(text: "Öffnen Sie die Website in Edge: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tippen Sie auf die drei horizontalen Linien (das Menü-Symbol) oder die drei Punkte in der unteren rechten Ecke."),
-          pw.Bullet(text: "Wischen Sie im Menü nach oben (oder zur Seite), um weitere Optionen anzuzeigen."),
-          pw.Bullet(text: "Suchen Sie nach Zum Telefon hinzufügen (manchmal steht dort auch App installieren oder Zum Startbildschirm hinzufügen) und tippen Sie darauf."),
-          pw.Bullet(text: "Bestätigen Sie den Namen „Exodus Venue“ und tippen Sie auf Hinzufügen."),
-          pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Firefox Mobile"),
-          pw.Text("Android:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Bullet(text: "Öffnen Sie die Website in Firefox: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tippen Sie auf die drei Punkte (Menü) neben der Adressleiste (normalerweise oben oder unten)."),
-          pw.Bullet(text: "Tippen Sie auf Installieren."),
-          pw.Bullet(text: "Bestätigen Sie, indem Sie erneut auf Hinzufügen oder Installieren tippen."),
-          pw.SizedBox(height: 5),
-          pw.Text("iPhone/iOS:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Paragraph(text: "Firefox unter iOS bietet aufgrund von Einschränkungen seitens Apple keine direkte Schaltfläche „Installieren“. Sie müssen das Systemmenü verwenden:"),
-          pw.Bullet(text: "Öffnen Sie die Website in Firefox."),
-          pw.Bullet(text: "Tippen Sie auf das Teilen-Symbol (das Quadrat mit dem Pfeil nach oben) in der Adressleiste."),
-          pw.Bullet(text: "Scrollen Sie in der Liste nach unten und tippen Sie auf Zum Home-Bildschirm."),
-          pw.Bullet(text: "Tippen Sie oben rechts auf Hinzufügen."),
-          pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Chrome Mobile"),
-          pw.Text("Android:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Bullet(text: "Öffnen Sie die Website in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tippen Sie auf die drei Punkte in der oberen rechten Ecke."),
-          pw.Bullet(text: "Tippen Sie auf Zum Startbildschirm hinzufügen (in einigen Versionen heißt es App installieren)."),
-          pw.Bullet(text: "Tippen Sie zur Bestätigung auf Hinzufügen oder Installieren."),
-          pw.SizedBox(height: 5),
-          pw.Text("iPhone/iOS:", style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-          pw.Bullet(text: "Öffnen Sie die Website in Chrome."),
-          pw.Bullet(text: "Tippen Sie auf das Teilen-Symbol (das Quadrat mit dem Pfeil nach oben) neben der Adressleiste."),
-          pw.Bullet(text: "Scrollen Sie nach unten und tippen Sie auf Zum Home-Bildschirm."),
-          pw.Bullet(text: "Tippen Sie oben rechts auf Hinzufügen."),
-          pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Desktop (Windows/Mac)"),
-          pw.Bullet(text: "Öffnen Sie die Website in Chrome."),
-          pw.Bullet(text: "Klicken Sie auf die drei Punkte in der oberen rechten Ecke."),
-          pw.Bullet(text: "Wählen Sie Speichern und teilen."),
-          pw.Bullet(text: "Klicken Sie auf Seite als App installieren...."),
-          pw.Bullet(text: "Klicken Sie auf Installieren."),
-          pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Safari auf dem iPhone & iPad (iOS)"),
-          pw.Bullet(text: "Öffnen Sie die Website in Safari: https://RobiTobiGoGetGo.github.io/exodus_venue/"),
-          pw.Bullet(text: "Tippen Sie auf die Teilen-Taste am unteren Bildschirmrand (das Quadrat mit dem Pfeil nach oben)."),
-          pw.Bullet(text: "Scrollen Sie im Menü nach unten und tippen Sie auf Zum Home-Bildschirm."),
-          pw.Bullet(text: "Tippen Sie oben rechts auf Hinzufügen."),
-          pw.SizedBox(height: 10),
-          pw.Header(level: 1, text: "Safari auf dem Mac (macOS)"),
-          pw.Text("Hinweis: Erfordert macOS Sonoma oder neuer.", style: pw.TextStyle(fontStyle: pw.FontStyle.italic)),
-          pw.Bullet(text: "Öffnen Sie die Website in Safari."),
-          pw.Bullet(text: "Klicken Sie in der Menüleiste am oberen Bildschirmrand auf Ablage."),
-          pw.Bullet(text: "Wählen Sie Zum Dock hinzufügen...."),
-          pw.Bullet(text: "Klicken Sie zur Bestätigung auf Hinzufügen."),
+          pw.Header(level: 1, text: l10n.installSafariMacTitle),
+          pw.Text(l10n.installSafariMacNote, style: pw.TextStyle(fontStyle: pw.FontStyle.italic)),
+          pw.Bullet(text: l10n.installSafariMacStep1),
+          pw.Bullet(text: l10n.installSafariMacStep2),
+          pw.Bullet(text: l10n.installSafariMacStep3),
+          pw.Bullet(text: l10n.installSafariMacStep4),
         ],
       ),
     );
@@ -1231,6 +1266,7 @@ class HelpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -1241,7 +1277,7 @@ class HelpScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: const Text('Help & Info'),
+          title: Text(l10n.helpAndInfo),
           backgroundColor: Colors.transparent,
           actions: [
             IconButton(
@@ -1250,7 +1286,7 @@ class HelpScreen extends StatelessWidget {
               onPressed: () async {
                 await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
                   locationName: "User Manual",
-                  docBuilder: _generateManualPDF,
+                  docBuilder: () => _generateManualPDF(l10n),
                 )));
               },
             ),
@@ -1260,7 +1296,7 @@ class HelpScreen extends StatelessWidget {
               onPressed: () async {
                 await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(
                   locationName: "Installation Guide",
-                  docBuilder: _generateInstallationGuidePDF,
+                  docBuilder: () => _generateInstallationGuidePDF(l10n),
                 )));
               },
             )
@@ -1275,21 +1311,21 @@ class HelpScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "EXODUS VENUE DASHBOARD: USER GUIDE",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
+                  Text(
+                    l10n.userGuideTitle,
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
                     "Version 1.0.0+1",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
-                  _buildHelpSection("1. OVERVIEW", "Exodus is a professional attendance monitoring tool. Its purpose is to track the flow of visitors through a specific entrance or exit. Unlike a standard 'clicker,' it manages two values simultaneously to provide a real-time view of venue safety and capacity.\n\n- Entered: The cumulative total of all people who have come through the gate. This number only goes up and represents the 'Total Flow.'\n- Still Inside: The current headcount remaining within the venue. This number goes up when people enter and down when they leave."),
-                  _buildHelpSection("2. THE MAIN DASHBOARD (HOME SCREEN)", "This is the primary screen where the supervisor will spend 99% of their time.\n\n- Branded Header: Features the Exodus logo. Long-pressing this logo provides a quick shortcut to the Help screen.\n- Location Row: Displays the name of the current gate (e.g., 'North Entrance').\n- Capacity Row: Displays the 'Max Capacity' or safety limit for the area.\n- Entered Card (Blue): Large display of the total entries.\n- Still Inside Card (Green/White): Large display of the current headcount.\n\nVisual Safety Indicators:\nThe Still Inside card uses a 'heat-map' logic to warn of potential overcrowding:\n- As headcount approaches Max Capacity, the card smoothly transitions from white to a graduated red.\n- This warning begins when remaining space is either 10 people or 2% of total capacity (whichever is greater).\n- A deep red card signal to stop entries."),
-                  _buildHelpSection("3. INPUT MODES (HOW TO COUNT)", "At the top of the dashboard, use the icons to switch methods:\n\nA. Button Mode (Icon: Tapping Finger)\n- Tap [+] on the blue card for an entry.\n- Tap [-] on the green card for an exit.\n- Best for: Steady, manageable traffic.\n\nB. Swipe Mode (Icon: Swiping Hand)\n- Swipe UP anywhere on the screen to record an entry.\n- Swipe DOWN anywhere on the screen to record an exit.\n- Best for: Fast-moving crowds or 'rushes.'"),
-                  _buildHelpSection("4. CORRECTION AND NAVIGATION", "Exodus provides two layers of correction:\n\n- Undo (Top-Left Icon): Instantly reverts the very last action taken.\n- Manual Edit (Keypad): Long-pressing either counter card to open the numeric keypad to type in a confirmed headcount."),
-                  _buildHelpSection("5. LOG HISTORY AND REPORTING", "Every action is recorded with a timestamp. Access via Gear Icon > View Log (or Long-press Gear).\n\n- Search: Filter for specific events like 'RESET' or 'MANUAL EDIT.'\n- Delete: Remove individual entries (requires confirmation).\n- Exporting: Share logs as a CSV or Formatted PDF.\n- Preview: Check the PDF layout before sending via WhatsApp or Email."),
-                  _buildHelpSection("6. SESSION MANAGEMENT", "Resetting the Day:\n- Select 'Reset Session' from the Gear menu. The app will prompt to export data first so you don't lose it.\n- Final confirmation wipes counters to 0 and clears logs.\n\nShutdown:\n- Select 'Shutdown' to log the end of the session and exit the app cleanly."),
+                  _buildHelpSection(l10n.guideOverviewTitle, "${l10n.guideOverviewContent}\n\n- ${l10n.guideOverviewEntered}\n- ${l10n.guideOverviewInside}"),
+                  _buildHelpSection(l10n.guideDashboardTitle, "${l10n.guideDashboardContent}\n\n- ${l10n.guideDashboardHeader}\n- ${l10n.guideDashboardLocation}\n- ${l10n.guideDashboardCapacity}\n- ${l10n.guideDashboardEnteredCard}\n- ${l10n.guideDashboardInsideCard}\n\n${l10n.guideSafetyTitle}:\n${l10n.guideSafetyContent}\n- ${l10n.guideSafetyTransition}\n- ${l10n.guideSafetyThreshold}\n- ${l10n.guideSafetySignal}"),
+                  _buildHelpSection(l10n.guideInputTitle, "${l10n.guideInputContent}\n\nA. ${l10n.guideInputButtonTitle}\n- ${l10n.guideInputButtonTapEntered}\n- ${l10n.guideInputButtonTapInside}\n- ${l10n.guideInputButtonBestFor}\n\nB. ${l10n.guideInputSwipeTitle}\n- ${l10n.guideInputSwipeUp}\n- ${l10n.guideInputSwipeDown}\n- ${l10n.guideInputSwipeBestFor}"),
+                  _buildHelpSection(l10n.guideCorrectionTitle, "${l10n.guideCorrectionContent}\n\n- ${l10n.guideCorrectionUndo}\n- ${l10n.guideCorrectionManual}"),
+                  _buildHelpSection(l10n.guideLogTitle, "${l10n.guideLogContent}\n\n- ${l10n.guideLogSearch}\n- ${l10n.guideLogDelete}\n- ${l10n.guideLogExport}\n- ${l10n.guideLogPreview}"),
+                  _buildHelpSection(l10n.guideSessionTitle, "${l10n.guideSessionResetTitle}:\n- ${l10n.guideSessionResetContent} ${l10n.guideSessionResetExport}\n- ${l10n.guideSessionResetConfirm}\n\n${l10n.guideSessionShutdownTitle}:\n- ${l10n.guideSessionShutdownContent}"),
                   const SizedBox(height: 30),
                   const Center(child: Text("© 2024 GoGetGo Exodus", style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic))),
                 ],
