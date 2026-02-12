@@ -22,7 +22,6 @@
 /build/
 
 # Web
-/lib/generated_plugin_registrant.dart
 /lib/main.dart.js
 /lib/main.dart.js.map
 
