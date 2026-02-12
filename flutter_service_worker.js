@@ -3,8 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "4159e79ca91bb3ea2d7354d550b46d7f",
-"assets/AssetManifest.bin.json": "d0b3f24c5e4a8853a49cf3c5311368fa",
+const RESOURCES = {"assets/AssetManifest.bin": "00ac493d7f0f8cb4d78cc2254b07297b",
+"assets/AssetManifest.bin.json": "26a405ddc32574bfdbb46aa436c8b296",
+"assets/assets/assets/assets/background.png": "31ffc6cb2c333d45f19c359d1c76452e",
+"assets/assets/assets/assets/exodus_logo.png": "670789fdc8466df422bdb208746629d7",
+"assets/assets/assets/assets/exodus_logo_header.png": "670789fdc8466df422bdb208746629d7",
 "assets/assets/assets/background.png": "31ffc6cb2c333d45f19c359d1c76452e",
 "assets/assets/assets/exodus_logo.png": "670789fdc8466df422bdb208746629d7",
 "assets/assets/assets/exodus_logo_header.png": "670789fdc8466df422bdb208746629d7",
@@ -28,13 +31,13 @@ const RESOURCES = {"assets/AssetManifest.bin": "4159e79ca91bb3ea2d7354d550b46d7f
 "canvaskit/skwasm_heavy.wasm": "b0be7910760d205ea4e011458df6ee01",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "24bc71911b75b5f8135c949e27a2984e",
-"flutter_bootstrap.js": "5b42f85426237effd6a2957fa94b2fce",
+"flutter_bootstrap.js": "34f15d612e9d290bbcf195aed7a96128",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "96b63303cb7868044f2beefcac94ccc2",
-"/": "96b63303cb7868044f2beefcac94ccc2",
+"index.html": "25fc13cba442a2558507d4c51e199d19",
+"/": "25fc13cba442a2558507d4c51e199d19",
 "main.dart.js": "a69b0ce0f78e14fab37997a737b440cd",
 "manifest.json": "de996a8cd1905334db8f77effb9d2fa4",
 "version.json": "0bc67de9d09e2304c6e3b0df165315af"};
