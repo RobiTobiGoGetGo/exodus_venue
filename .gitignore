@@ -21,10 +21,6 @@
 .pub/
 /build/
 
-# Web
-/lib/main.dart.js
-/lib/main.dart.js.map
-
 # Android
 /android/app/src/main/assets/flutter_assets/
 /android/key.properties
@@ -65,15 +61,3 @@
 
 # Build artifacts
 .dart_tool/
-
-# Web related
-main.dart.js
-flutter_bootstrap.js
-flutter.js
-manifest.json
-favicon.png
-version.json
-index.html
-
-# Canvaskit
-canvaskit/
