@@ -61,3 +61,16 @@
 
 # Build artifacts
 .dart_tool/
+
+# Explicitly do NOT ignore web build files in the root
+!index.html
+!main.dart.js
+!flutter.js
+!flutter_bootstrap.js
+!flutter_service_worker.js
+!manifest.json
+!favicon.png
+!version.json
+!assets/
+!canvaskit/
+!icons/
