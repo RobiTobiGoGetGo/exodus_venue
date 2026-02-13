@@ -12,7 +12,7 @@ import 'package:printing/printing.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-// Import from the local directory as configured in l10n.yaml
+// Import correctly from the local directory
 import 'l10n/app_localizations.dart';
 
 void main() {
@@ -577,7 +577,7 @@ class _MainScreenState extends State<MainScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/assets/background.png"),
+          image: AssetImage("assets/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -598,7 +598,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Center(
                 child: SafeArea(
                   child: Image.asset(
-                    "assets/assets/exodus_logo_header.png",
+                    "assets/exodus_logo_header.png",
                     height: 120,
                     fit: BoxFit.contain,
                   ),
@@ -1000,7 +1000,7 @@ class _LogScreenState extends State<LogScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/assets/background.png"),
+          image: AssetImage("assets/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -1266,7 +1266,7 @@ class HelpScreen extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/assets/background.png"),
+          image: AssetImage("assets/background.png"),
           fit: BoxFit.cover,
         ),
       ),

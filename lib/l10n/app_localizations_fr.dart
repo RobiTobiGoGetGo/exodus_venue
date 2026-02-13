@@ -9,28 +9,31 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Exodus';
+  String get nothingToUndo => 'Rien à annuler !';
 
   @override
-  String get entered => 'Entré';
+  String get noMatches => 'Aucun résultat trouvé.';
 
   @override
-  String get stillInside => 'Encore à l\'intérieur';
+  String get logNow => 'Enregistrer maintenant';
 
   @override
-  String get capacity => 'Capacité';
+  String get loggedCurrentTotals => 'Totaux actuels enregistrés.';
 
   @override
-  String get resetSession => 'Réinitialiser la session';
+  String get viewLog => 'Voir le journal';
 
   @override
   String get exportLogs => 'Exporter les journaux';
 
   @override
-  String get helpAndInfo => 'Aide et infos';
+  String get helpAndInfo => 'Aide & Infos';
 
   @override
-  String get setLocation => 'Définir l\'emplacement';
+  String get resetSession => 'Réinitialiser la session';
+
+  @override
+  String get setLocation => 'Définir le lieu';
 
   @override
   String get shutdown => 'Éteindre';
@@ -39,10 +42,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get closeSession => 'Fermer la session';
 
   @override
-  String get logNow => 'Enregistrer MAINTENANT';
-
-  @override
-  String get viewLog => 'Voir le journal';
+  String get sessionClosed => 'Session fermée et enregistrée.';
 
   @override
   String get exportAsCSV => 'Exporter en CSV';
@@ -54,41 +54,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get previewReport => 'Aperçu du rapport';
 
   @override
-  String get cancel => 'Annuler';
-
-  @override
-  String get save => 'Enregistrer';
-
-  @override
-  String get ok => 'OK';
-
-  @override
-  String get clear => 'CLR';
-
-  @override
-  String get nothingToUndo => 'Rien à annuler';
-
-  @override
-  String get loggedCurrentTotals => 'Totaux actuels enregistrés';
-
-  @override
-  String get sessionClosed => 'Session fermée';
-
-  @override
-  String get resetEverything => 'Tout réinitialiser';
-
-  @override
-  String get sessionResetSuccess => 'Session réinitialisée avec succès';
-
-  @override
   String get resetSessionQuestion => 'Réinitialiser la session ?';
 
   @override
   String get resetSessionContent =>
-      'Souhaitez-vous exporter le journal actuel avant de réinitialiser ?';
+      'Voulez-vous réinitialiser les compteurs et le journal, ou exporter d\'abord ?';
 
   @override
-  String get justReset => 'Juste réinitialiser';
+  String get justReset => 'Simplement réinitialiser';
 
   @override
   String get exportFirst => 'Exporter d\'abord';
@@ -98,364 +71,392 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get confirmResetContent =>
-      'Cela effacera TOUS les journaux et remettra les compteurs à zéro. Cette action est irréversible.';
+      'Cela supprimera définitivement le journal de la session actuelle et remettra les compteurs à zéro. Cette opération est irréversible.';
 
   @override
-  String get setLocationName => 'Définir le nom de l\'emplacement';
+  String get cancel => 'Annuler';
 
   @override
-  String get locationNameHint => 'ex: Entrée principale';
+  String get sessionResetSuccess => 'Réinitialisation de la session réussie.';
 
   @override
-  String get validationExceedEntered => 'Ne peut pas dépasser \'Entré\'';
+  String get resetEverything => 'TOUT RÉINITIALISER';
+
+  @override
+  String get setLocationName => 'Définir le nom du lieu';
+
+  @override
+  String get locationNameHint => 'ex. Entrée principale';
+
+  @override
+  String get save => 'Enregistrer';
+
+  @override
+  String get clear => 'EFFACER';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get stillInside => 'Encore à l\'intérieur';
+
+  @override
+  String get entered => 'Entré';
+
+  @override
+  String get validationExceedEntered =>
+      'Le nombre de personnes à l\'intérieur ne peut pas dépasser le total des entrées !';
 
   @override
   String get validationLessInside =>
-      'Ne peut pas être inférieur à \'Encore à l\'intérieur\'';
+      'Le total des entrées ne peut pas être inférieur au nombre de personnes à l\'intérieur !';
 
   @override
-  String get deleteEntryQuestion => 'Supprimer l\'entrée ?';
-
-  @override
-  String get delete => 'Supprimer';
-
-  @override
-  String get deleteAllEntriesQuestion => 'Supprimer toutes les entrées ?';
-
-  @override
-  String get thisCannotBeUndone => 'Cette action est irréversible.';
-
-  @override
-  String get deleteAll => 'Tout supprimer';
-
-  @override
-  String get noMatches => 'Aucun résultat';
-
-  @override
-  String get search => 'Rechercher...';
+  String get capacity => 'Capacité';
 
   @override
   String get swipeToCount => 'Balayer vers le haut/bas pour compter';
 
   @override
-  String get userGuideTitle => 'EXODUS VENUE DASHBOARD: USER GUIDE';
+  String get search => 'Rechercher';
 
   @override
-  String get guideOverviewTitle => '1. OVERVIEW';
+  String get deleteEntryQuestion => 'Supprimer cette entrée ?';
+
+  @override
+  String get delete => 'Supprimer';
+
+  @override
+  String get deleteAllEntriesQuestion => 'Supprimer TOUTES les entrées ?';
+
+  @override
+  String get thisCannotBeUndone => 'Cette opération est irréversible.';
+
+  @override
+  String get deleteAll => 'TOUT SUPPRIMER';
+
+  @override
+  String get userGuideTitle => 'Guide de l\'utilisateur Exodus';
+
+  @override
+  String get guideOverviewTitle => '1. Aperçu';
 
   @override
   String get guideOverviewContent =>
-      'Exodus is a professional attendance monitoring tool. Its purpose is to track the flow of visitors through a specific entrance or exit. Unlike a standard \'clicker,\' it manages two values simultaneously to provide a real-time view of venue safety and capacity.';
+      'Exodus est un outil professionnel pour la gestion des entrées de lieux. Il suit deux chiffres principaux :';
 
   @override
   String get guideOverviewEntered =>
-      'Entered: The cumulative total of all people who have passed through the gate. This number only goes up and represents the \'Total Flow.\'';
+      'Total Entré : Nombre cumulé de toutes les personnes qui sont entrées.';
 
   @override
   String get guideOverviewInside =>
-      'Still Inside: The current headcount remaining within the venue. This number goes up when people enter and down when they leave.';
+      'Encore à l\'intérieur : Nombre actuel de personnes restant dans le lieu.';
 
   @override
-  String get guideDashboardTitle => '2. THE MAIN DASHBOARD (HOME SCREEN)';
+  String get guideDashboardTitle => '2. Le tableau de bord';
 
   @override
   String get guideDashboardContent =>
-      'This is the primary screen where the supervisor will spend 99% of their time.';
+      'L\'écran principal fournit des informations en temps réel :';
 
   @override
   String get guideDashboardHeader =>
-      'Branded Header: Features the Exodus logo. Long-pressing this logo provides a quick shortcut to the Help screen.';
+      'En-tête : Affiche le logo du lieu. Appuyez longuement pour ouvrir ce guide.';
 
   @override
   String get guideDashboardLocation =>
-      'Location Row: Displays the name of the current gate (e.g., \'North Entrance\'). This ensures that if multiple phones are in use, the logs are correctly attributed.';
+      'Lieu : Affiché sous le logo. Appuyez longuement pour renommer.';
 
   @override
   String get guideDashboardCapacity =>
-      'Capacity Row: Displays the \'Max Capacity\' or safety limit for the area.';
+      'Capacité : Affichée à côté du lieu. Appuyez longuement pour modifier.';
 
   @override
   String get guideDashboardEnteredCard =>
-      'Entered Card (Blue): Large display of the total entries.';
+      'Carte Entré (Bleue) : Affiche le total des entrées.';
 
   @override
   String get guideDashboardInsideCard =>
-      'Still Inside Card (Green/White): Large display of the current headcount.';
+      'Carte Encore à l\'intérieur (Verte) : Affiche l\'occupation actuelle.';
 
   @override
-  String get guideSafetyTitle => 'Visual Safety Indicators';
+  String get guideSafetyTitle => '3. Capacité et sécurité';
 
   @override
   String get guideSafetyContent =>
-      'The Still Inside card uses a \'heat-map\' logic to warn the supervisor of potential overcrowding without them having to read the numbers:';
+      'L\'application surveille les limites de sécurité :';
 
   @override
   String get guideSafetyTransition =>
-      'As the headcount approaches the Max Capacity, the card will smoothly transition from a neutral white to a graduated red.';
+      'La carte \'Encore à l\'intérieur\' devient rouge à mesure que vous approchez de la capacité.';
 
   @override
   String get guideSafetyThreshold =>
-      'This warning begins when the remaining space is either 10 people or 2% of the total capacity (whichever is greater).';
+      'L\'avertissement commence à 2% ou 10 personnes avant la limite.';
 
   @override
   String get guideSafetySignal =>
-      'A deep red card is a signal to the supervisor to slow down or stop entries.';
+      'Une carte entièrement rouge indique que le lieu a atteint ou dépassé sa capacité.';
 
   @override
-  String get guideInputTitle => '3. INPUT MODES (HOW TO COUNT)';
+  String get guideInputTitle => '4. Méthodes de saisie';
 
   @override
   String get guideInputContent =>
-      'At the top of the dashboard, there are two icons to switch the input method based on the situation.';
+      'Basculez entre deux modes à l\'aide des icônes du haut :';
 
   @override
-  String get guideInputButtonTitle => 'A. Button Mode (Icon: Tapping Finger)';
+  String get guideInputButtonTitle => 'Mode Bouton (Par défaut)';
 
   @override
   String get guideInputButtonTapEntered =>
-      'Tap [+] on the blue card for an entry.';
+      'Appuyez sur [+] pour incrémenter les deux compteurs (une personne entre).';
 
   @override
   String get guideInputButtonTapInside =>
-      'Tap [-] on the green card for an exit.';
+      'Appuyez sur [-] pour décrémenter \'Encore à l\'intérieur\' (une personne sort).';
 
   @override
   String get guideInputButtonBestFor =>
-      'Best for: Steady, manageable traffic where high precision is required.';
+      'Idéal pour : Un comptage de haute précision aux portes fixes.';
 
   @override
-  String get guideInputSwipeTitle => 'B. Swipe Mode (Icon: Swiping Hand)';
+  String get guideInputSwipeTitle => 'Mode Balayage (Geste)';
 
   @override
   String get guideInputSwipeUp =>
-      'Swipe UP anywhere on the screen to record an entry.';
+      'Balayez vers le haut n\'importe où pour incrémenter les deux compteurs.';
 
   @override
   String get guideInputSwipeDown =>
-      'Swipe DOWN anywhere on the screen to record an exit.';
+      'Balayez vers le bas n\'importe où pour décrémenter \'Encore à l\'intérieur\'.';
 
   @override
   String get guideInputSwipeBestFor =>
-      'Best for: Fast-moving crowds or \'rushes\' where the supervisor needs to keep their eyes on the visitors rather than the screen.';
+      'Idéal pour : Une surveillance des entrées à rythme rapide où les yeux doivent rester sur la foule.';
 
   @override
-  String get guideCorrectionTitle => '4. CORRECTION AND NAVIGATION';
+  String get guideCorrectionTitle => '5. Corrections';
 
   @override
   String get guideCorrectionContent =>
-      'Mistakes happen, especially during busy shifts. Exodus provides two layers of correction:';
+      'Les erreurs peuvent être corrigées de deux manières :';
 
   @override
   String get guideCorrectionUndo =>
-      'Undo (Top-Left Icon): Tapping the curved arrow instantly reverts the very last action taken (count or edit).';
+      'Annuler : Appuyez sur l\'icône de flèche circulaire en haut à gauche pour revenir à l\'action précédente.';
 
   @override
   String get guideCorrectionManual =>
-      'Manual Edit (Keypad): Long-pressing either the Entered or Still Inside card opens a numeric keypad. This allows the supervisor to type in a confirmed headcount (e.g., after a manual floor check).';
+      'Modification manuelle : Appuyez longuement sur n\'importe quel chiffre du tableau de bord pour saisir une valeur spécifique à l\'aide du clavier sécurisé.';
 
   @override
-  String get guideLogTitle => '5. LOG HISTORY AND REPORTING';
+  String get guideLogTitle => '6. Journal et rapports';
 
   @override
-  String get guideLogContent =>
-      'Every action is recorded with a timestamp. To access the log, tap the Gear Icon and select View Log, or use the Long-press shortcut on the Gear icon.';
+  String get guideLogContent => 'Chaque action est horodatée et enregistrée :';
 
   @override
   String get guideLogSearch =>
-      'Search: Use the bar at the top to filter for specific events like \'RESET\' or \'MANUAL EDIT.\'';
+      'Recherche : Utilisez la loupe pour trouver des événements spécifiques (ex. \'MANUAL\').';
 
   @override
   String get guideLogDelete =>
-      'Delete: Individual entries can be removed by long-pressing them (requires confirmation).';
+      'Supprimer : Appuyez longuement sur une entrée du journal pour la retirer.';
 
   @override
   String get guideLogExport =>
-      'Exporting: You can share the logs as a CSV (for Excel) or a Formatted PDF.';
+      'Exporter : Utilisez l\'icône de partage pour générer des rapports PDF ou des tableurs CSV.';
 
   @override
   String get guideLogPreview =>
-      'Preview: The \'Preview Report\' option allows you to see the professional PDF layout before you send it via WhatsApp or Email.';
+      'Aperçu : Visualisez la mise en page du rapport avant de le partager.';
 
   @override
-  String get guideSessionTitle => '6. SESSION MANAGEMENT';
+  String get guideSessionTitle => '7. Gestion de la session';
 
   @override
-  String get guideSessionResetTitle => 'Resetting the Day';
+  String get guideSessionResetTitle => 'Réinitialiser la session';
 
   @override
   String get guideSessionResetContent =>
-      'To clear the counters for a new shift or event, select Reset Session from the Gear menu.';
+      'Efface toutes les données pour une nouvelle journée.';
 
   @override
   String get guideSessionResetExport =>
-      'The app will first ask if you want to Export the data so you don\'t lose the previous session\'s records.';
+      'L\'application vous demandera si vous souhaitez d\'abord exporter vos données.';
 
   @override
   String get guideSessionResetConfirm =>
-      'A final confirmation is required before the app wipes the counters to 0 and clears the log history.';
+      'Nécessite une double confirmation pour éviter toute perte accidentelle.';
 
   @override
-  String get guideSessionShutdownTitle => 'Shutdown';
+  String get guideSessionShutdownTitle => 'Éteindre';
 
   @override
   String get guideSessionShutdownContent =>
-      'Selecting Shutdown creates a final log entry to close the digital paper trail and exits the app cleanly.';
+      'Enregistre correctement la fin du travail et ferme l\'application.';
 
   @override
-  String get installGuideTitle => 'EXODUS VENUE: INSTALLATION GUIDE';
+  String get installGuideTitle => 'Exodus Venue : Guide d\'installation';
 
   @override
-  String get installMobileTitle => 'Installation on mobile phones';
+  String get installMobileTitle => 'Installation sur téléphone portable';
 
   @override
   String get installEdgeTitle => 'Edge Mobile';
 
   @override
   String get installEdgeStep1 =>
-      'Open the website in Edge: https://RobiTobiGoGetGo.github.io/exodus_venue/';
+      'Ouvrez le site Web dans Edge : https://RobiTobiGoGetGo.github.io/exodus_venue/';
 
   @override
   String get installEdgeStep2 =>
-      'Tap the three horizontal lines or three dots in the bottom right corner.';
+      'Appuyez sur les trois lignes horizontales ou sur les trois points en bas à droite.';
 
   @override
   String get installEdgeStep3 =>
-      'Swipe up (or sideways) on the menu that appears to see more options.';
+      'Balayez vers le haut (ou sur le côté) dans le menu qui apparaît pour voir plus d\'options.';
 
   @override
   String get installEdgeStep4 =>
-      'Look for and tap Add to phone (it might also say Install app or Add to Home screen).';
+      'Cherchez et appuyez sur Ajouter au téléphone (cela peut aussi être Installer l\'application ou Ajouter à l\'écran d\'accueil).';
 
   @override
   String get installEdgeStep5 =>
-      'Follow the prompts to confirm the name \"Exodus Venue\" and tap Add.';
+      'Suivez les instructions pour confirmer le nom \"Exodus Venue\" et appuyez sur Ajouter.';
 
   @override
   String get installFirefoxTitle => 'Firefox Mobile';
 
   @override
-  String get installAndroid => 'Android:';
+  String get installAndroid => 'Android :';
 
   @override
   String get installFirefoxStep1 =>
-      'Open the website in Firefox: https://RobiTobiGoGetGo.github.io/exodus_venue/';
+      'Ouvrez le site Web dans Firefox : https://RobiTobiGoGetGo.github.io/exodus_venue/';
 
   @override
   String get installFirefoxStep2 =>
-      'Tap the three dots (menu) next to the address bar (usually at the bottom or top).';
+      'Appuyez sur les trois points (menu) à côté de la barre d\'adresse (généralement en bas ou en haut).';
 
   @override
-  String get installFirefoxStep3 => 'Tap Install.';
+  String get installFirefoxStep3 => 'Appuyez sur Installer.';
 
   @override
-  String get installFirefoxStep4 => 'Confirm by tapping Add or Install again.';
+  String get installFirefoxStep4 =>
+      'Confirmez en appuyant sur Ajouter ou sur Installer à nouveau.';
 
   @override
-  String get installIos => 'iPhone/iOS:';
+  String get installIos => 'iPhone/iOS :';
 
   @override
   String get installFirefoxIosContent =>
-      'Firefox on iOS does not have a direct \"Install\" button due to Apple\'s restrictions. You have to use the system menu:';
+      'Firefox sur iOS n\'a pas de bouton direct \"Installer\" en raison des restrictions d\'Apple. Vous devez utiliser le menu système :';
 
   @override
-  String get installFirefoxIosStep1 => 'Open the website in Firefox.';
+  String get installFirefoxIosStep1 => 'Ouvrez le site Web dans Firefox.';
 
   @override
   String get installFirefoxIosStep2 =>
-      'Tap the Share icon (the square with an arrow pointing up) in the address bar.';
+      'Appuyez sur l\'icône Partager (le carré avec une flèche vers le haut) dans la barre d\'adresse.';
 
   @override
   String get installFirefoxIosStep3 =>
-      'Scroll down the list of options and tap Add to Home Screen.';
+      'Faites défiler la liste des options et appuyez sur Sur l\'écran d\'accueil.';
 
   @override
-  String get installFirefoxIosStep4 => 'Tap Add in the top right corner.';
+  String get installFirefoxIosStep4 => 'Appuyez sur Ajouter en haut à droite.';
 
   @override
   String get installChromeTitle => 'Chrome Mobile';
 
   @override
   String get installChromeAndroidStep1 =>
-      'Open the website in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/';
+      'Ouvrez le site Web dans Chrome : https://RobiTobiGoGetGo.github.io/exodus_venue/';
 
   @override
   String get installChromeAndroidStep2 =>
-      'Tap the three dots in the top-right corner.';
+      'Appuyez sur les trois points dans le coin supérieur droit.';
 
   @override
   String get installChromeAndroidStep3 =>
-      'Tap Add to Home screen (on some versions, it may say Install app).';
+      'Appuyez sur Ajouter à l\'écran d\'accueil (dans certaines versions, cela peut être Installer l\'application).';
 
   @override
-  String get installChromeAndroidStep4 => 'Tap Add or Install to confirm.';
+  String get installChromeAndroidStep4 =>
+      'Appuyez sur Ajouter ou Installer pour confirmer.';
 
   @override
-  String get installChromeIosStep1 => 'Open the website in Chrome.';
+  String get installChromeIosStep1 => 'Ouvrez le site Web dans Chrome.';
 
   @override
   String get installChromeIosStep2 =>
-      'Tap the Share icon (the square with an arrow pointing up) next to the address bar.';
+      'Appuyez sur l\'icône Partager (le carré avec une flèche vers le haut) à côté de la barre d\'adresse.';
 
   @override
-  String get installChromeIosStep3 => 'Scroll down and tap Add to Home Screen.';
+  String get installChromeIosStep3 =>
+      'Faites défiler vers le bas et appuyez sur Sur l\'écran d\'accueil.';
 
   @override
-  String get installChromeIosStep4 => 'Tap Add in the top right.';
+  String get installChromeIosStep4 => 'Appuyez sur Ajouter en haut à droite.';
 
   @override
-  String get installDesktopTitle => 'Desktop (Windows/Mac)';
+  String get installDesktopTitle => 'Bureau (Windows/Mac)';
 
   @override
-  String get installDesktopStep1 => 'Open the website in Chrome.';
+  String get installDesktopStep1 => 'Ouvrez le site Web dans Chrome.';
 
   @override
   String get installDesktopStep2 =>
-      'Click the three dots in the top-right corner.';
+      'Cliquez sur les trois points en haut à droite.';
 
   @override
-  String get installDesktopStep3 => 'Select Save and Share.';
+  String get installDesktopStep3 => 'Sélectionnez Enregistrer et partager.';
 
   @override
-  String get installDesktopStep4 => 'Click Install page as app...';
+  String get installDesktopStep4 =>
+      'Cliquez sur Installer la page en tant qu\'application...';
 
   @override
-  String get installDesktopStep5 => 'Click Install';
+  String get installDesktopStep5 => 'Cliquez sur Installer.';
 
   @override
-  String get installSafariIosTitle => 'For Safari on iPhone & iPad (iOS)';
+  String get installSafariIosTitle => 'Pour Safari sur iPhone et iPad (iOS)';
 
   @override
   String get installSafariIosStep1 =>
-      'Open the website in Safari: https://RobiTobiGoGetGo.github.io/exodus_venue/';
+      'Ouvrez le site Web dans Safari : https://RobiTobiGoGetGo.github.io/exodus_venue/';
 
   @override
   String get installSafariIosStep2 =>
-      'Tap the Share button at the bottom (the square with an arrow pointing up).';
+      'Appuyez sur le bouton Partager en bas (le carré avec une flèche vers le haut).';
 
   @override
   String get installSafariIosStep3 =>
-      'Scroll down the menu and tap Add to Home Screen.';
+      'Faites défiler le menu et appuyez sur Sur l\'écran d\'accueil.';
 
   @override
-  String get installSafariIosStep4 => 'Tap Add in the top-right corner.';
+  String get installSafariIosStep4 => 'Appuyez sur Ajouter en haut à droite.';
 
   @override
-  String get installSafariMacTitle => 'For Safari on Mac (macOS)';
+  String get installSafariMacTitle => 'Pour Safari sur Mac (macOS)';
 
   @override
   String get installSafariMacNote =>
-      'Note: This requires macOS Sonoma or later.';
+      'Remarque : cela nécessite macOS Sonoma ou une version ultérieure.';
 
   @override
-  String get installSafariMacStep1 => 'Open the website in Safari.';
+  String get installSafariMacStep1 => 'Ouvrez le site Web dans Safari.';
 
   @override
   String get installSafariMacStep2 =>
-      'Go to the File menu in the top menu bar.';
+      'Allez dans le menu Fichier dans la barre de menus en haut.';
 
   @override
-  String get installSafariMacStep3 => 'Select Add to Dock...';
+  String get installSafariMacStep3 => 'Sélectionnez Ajouter au Dock...';
 
   @override
-  String get installSafariMacStep4 => 'Click Add.';
+  String get installSafariMacStep4 => 'Cliquez sur Ajouter.';
 }

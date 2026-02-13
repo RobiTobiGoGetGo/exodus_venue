@@ -9,25 +9,28 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
-  String get appTitle => 'Exodus';
+  String get nothingToUndo => 'Nulla da annullare!';
 
   @override
-  String get entered => 'Entrato';
+  String get noMatches => 'Nessun risultato trovato.';
 
   @override
-  String get stillInside => 'Ancora dentro';
+  String get logNow => 'Registra ora';
 
   @override
-  String get capacity => 'Capacità';
+  String get loggedCurrentTotals => 'Totali attuali registrati.';
 
   @override
-  String get resetSession => 'Reimposta sessione';
+  String get viewLog => 'Visualizza registro';
 
   @override
   String get exportLogs => 'Esporta registri';
 
   @override
-  String get helpAndInfo => 'Aiuto e info';
+  String get helpAndInfo => 'Aiuto e informazioni';
+
+  @override
+  String get resetSession => 'Ripristina sessione';
 
   @override
   String get setLocation => 'Imposta posizione';
@@ -39,10 +42,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get closeSession => 'Chiudi sessione';
 
   @override
-  String get logNow => 'Registra ORA';
-
-  @override
-  String get viewLog => 'Visualizza registro';
+  String get sessionClosed => 'Sessione chiusa e registrata.';
 
   @override
   String get exportAsCSV => 'Esporta come CSV';
@@ -54,51 +54,33 @@ class AppLocalizationsIt extends AppLocalizations {
   String get previewReport => 'Anteprima rapporto';
 
   @override
-  String get cancel => 'Annulla';
-
-  @override
-  String get save => 'Salva';
-
-  @override
-  String get ok => 'OK';
-
-  @override
-  String get clear => 'CLR';
-
-  @override
-  String get nothingToUndo => 'Nulla da annullare';
-
-  @override
-  String get loggedCurrentTotals => 'Totali attuali registrati';
-
-  @override
-  String get sessionClosed => 'Sessione chiusa';
-
-  @override
-  String get resetEverything => 'Reimposta tutto';
-
-  @override
-  String get sessionResetSuccess => 'Sessione reimpostata con successo';
-
-  @override
-  String get resetSessionQuestion => 'Reimpostare la sessione?';
+  String get resetSessionQuestion => 'Ripristinare la sessione?';
 
   @override
   String get resetSessionContent =>
-      'Vuoi esportare il registro attuale prima di reimpostare?';
+      'Vuoi ripristinare i contatori e il registro o esportare prima i dati?';
 
   @override
-  String get justReset => 'Solo reimposta';
+  String get justReset => 'Solo ripristino';
 
   @override
   String get exportFirst => 'Esporta prima';
 
   @override
-  String get confirmFullReset => 'Conferma reimpostazione completa';
+  String get confirmFullReset => 'Conferma ripristino completo';
 
   @override
   String get confirmResetContent =>
-      'Questo cancellerà TUTTI i registri e azzererà i contatori. L\'operazione non può essere annullata.';
+      'Questa operazione cancellerà permanentemente il registro della sessione corrente e azzererà i contatori. L\'azione è irreversibile.';
+
+  @override
+  String get cancel => 'Annulla';
+
+  @override
+  String get sessionResetSuccess => 'Sessione ripristinata con successo.';
+
+  @override
+  String get resetEverything => 'RIPRISTINA TUTTO';
 
   @override
   String get setLocationName => 'Imposta nome posizione';
@@ -107,204 +89,216 @@ class AppLocalizationsIt extends AppLocalizations {
   String get locationNameHint => 'es. Ingresso principale';
 
   @override
-  String get validationExceedEntered => 'Non può superare \'Entrato\'';
+  String get save => 'Salva';
+
+  @override
+  String get clear => 'CANCELLA';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get stillInside => 'Ancora all\'interno';
+
+  @override
+  String get entered => 'Entrati';
+
+  @override
+  String get validationExceedEntered =>
+      'Il numero di persone all\'interno non può superare il totale degli ingressi!';
 
   @override
   String get validationLessInside =>
-      'Non può essere inferiore a \'Ancore dentro\'';
+      'Il totale degli ingressi non può essere inferiore al numero di persone all\'interno!';
 
   @override
-  String get deleteEntryQuestion => 'Eliminare l\'entrata?';
+  String get capacity => 'Capacità';
+
+  @override
+  String get swipeToCount => 'Scorri verso l\'alto/basso per contare';
+
+  @override
+  String get search => 'Cerca';
+
+  @override
+  String get deleteEntryQuestion => 'Eliminare questa voce?';
 
   @override
   String get delete => 'Elimina';
 
   @override
-  String get deleteAllEntriesQuestion => 'Eliminare tutte le entrate?';
+  String get deleteAllEntriesQuestion => 'Eliminare TUTTE le voci?';
 
   @override
-  String get thisCannotBeUndone => 'L\'operazione non può essere annullata.';
+  String get thisCannotBeUndone => 'Questa operazione è irreversibile.';
 
   @override
-  String get deleteAll => 'Elimina tutto';
+  String get deleteAll => 'ELIMINA TUTTO';
 
   @override
-  String get noMatches => 'Nessun risultato';
+  String get userGuideTitle => 'Guida utente Exodus';
 
   @override
-  String get search => 'Cerca registri...';
-
-  @override
-  String get swipeToCount => 'Scorri su/giù per contare';
-
-  @override
-  String get userGuideTitle => 'EXODUS VENUE DASHBOARD: GUIDA UTENTE';
-
-  @override
-  String get guideOverviewTitle => '1. PANORAMICA';
+  String get guideOverviewTitle => '1. Panoramica';
 
   @override
   String get guideOverviewContent =>
-      'Exodus è uno strumento professionale per il monitoraggio delle presenze. Il suo scopo è tracciare il flusso di visitatori attraverso un ingresso o un\'uscita specifica. A differenza di un normale \'contapersone\', gestisce due valori contemporaneamente per fornire una visione in tempo reale della sicurezza e della capacità della struttura.';
+      'Exodus è uno strumento professionale per la gestione degli ingressi nelle sedi. Tiene traccia di due numeri principali:';
 
   @override
   String get guideOverviewEntered =>
-      'Entrate: Il totale cumulativo di tutte le persone che sono passate attraverso il cancello. Questo numero aumenta solo e rappresenta il \'Flusso Totale\'.';
+      'Totale entrati: Numero cumulativo di tutte le persone che sono entrate.';
 
   @override
   String get guideOverviewInside =>
-      'Ancora Dentro: Il numero attuale di persone rimaste all\'interno della struttura. Questo numero aumenta quando le persone entrano e diminuisce quando se ne vanno.';
+      'Ancora all\'interno: Numero attuale di persone rimaste nella sede.';
 
   @override
-  String get guideDashboardTitle => '2. LA DASHBOARD PRINCIPALE (HOME SCREEN)';
+  String get guideDashboardTitle => '2. La dashboard';
 
   @override
   String get guideDashboardContent =>
-      'Questa è la schermata principale dove il supervisore trascorrerà il 99% del suo tempo.';
+      'La schermata principale fornisce informazioni in tempo reale:';
 
   @override
   String get guideDashboardHeader =>
-      'Intestazione con Marchio: Presenta il logo Exodus. Tenendo premuto a lungo questo logo, si accede a una scorciatoia rapida per la schermata di Aiuto.';
+      'Intestazione: Mostra il logo della sede. Premi a lungo per aprire questa guida.';
 
   @override
   String get guideDashboardLocation =>
-      'Riga Posizione: Mostra il nome del cancello attuale (es. \'Ingresso Nord\'). Ciò garantisce che se vengono utilizzati più telefoni, i registri siano attribuiti correttamente.';
+      'Posizione: Visualizzata sotto il logo. Premi a lungo per rinominare.';
 
   @override
   String get guideDashboardCapacity =>
-      'Riga Capacità: Mostra la \'Capacità Massima\' o il limite di sicurezza per l\'area.';
+      'Capacità: Visualizzata accanto alla posizione. Premi a lungo per modificare.';
 
   @override
   String get guideDashboardEnteredCard =>
-      'Scheda Entrate (Blu): Ampio display del totale delle entrate.';
+      'Scheda Entrati (Blu): Mostra il totale degli ingressi.';
 
   @override
   String get guideDashboardInsideCard =>
-      'Scheda Ancora Dentro (Verde/Bianco): Ampio display del numero attuale di persone.';
+      'Scheda Ancora all\'interno (Verde): Mostra l\'occupazione attuale.';
 
   @override
-  String get guideSafetyTitle => 'Indicatori Visivi di Sicurezza';
+  String get guideSafetyTitle => '3. Capacità e sicurezza';
 
   @override
-  String get guideSafetyContent =>
-      'La scheda Ancora Dentro utilizza una logica \'heat-map\' per avvisare il supervisore di un potenziale sovraffollamento senza che debba leggere i numeri:';
+  String get guideSafetyContent => 'L\'app monitora i limiti di sicurezza:';
 
   @override
   String get guideSafetyTransition =>
-      'Man mano che il numero di persone si avvicina alla Capacità Massima, la scheda passerà gradualmente da un bianco neutro a un rosso sfumato.';
+      'La scheda \'Ancora all\'interno\' diventa rossa quando ci si avvicina alla capacità massima.';
 
   @override
   String get guideSafetyThreshold =>
-      'Questo avviso inizia quando lo spazio rimanente è di 10 persone o del 2% della capacità totale (a seconda di quale sia maggiore).';
+      'L\'avviso inizia al 2% o 10 persone prima del limite.';
 
   @override
   String get guideSafetySignal =>
-      'Una scheda di colore rosso intenso è un segnale per il supervisore di rallentare o interrompere le entrate.';
+      'Una scheda completamente rossa indica che la sede ha raggiunto o superato la capacità.';
 
   @override
-  String get guideInputTitle => '3. MODALITÀ DI INPUT (COME CONTARE)';
+  String get guideInputTitle => '4. Metodi di input';
 
   @override
   String get guideInputContent =>
-      'Nella parte superiore della dashboard, sono presenti due icone per cambiare il metodo di inserimento in base alla situazione.';
+      'Passa tra due modalità usando le icone in alto:';
 
   @override
-  String get guideInputButtonTitle =>
-      'A. Modalità Pulsante (Icona: Dito che tocca)';
+  String get guideInputButtonTitle => 'Modalità Pulsante (Predefinita)';
 
   @override
   String get guideInputButtonTapEntered =>
-      'Tocca [+] sulla scheda blu per un\'entrata.';
+      'Tocca [+] per incrementare entrambi i contatori (una persona entra).';
 
   @override
   String get guideInputButtonTapInside =>
-      'Tocca [-] sulla scheda verde per un\'uscita.';
+      'Tocca [-] per decrementare \'Ancora all\'interno\' (una persona esce).';
 
   @override
   String get guideInputButtonBestFor =>
-      'Ideale per: Traffico costante e gestibile dove è richiesta un\'alta precisione.';
+      'Ideale per: Conteggio ad alta precisione a varchi fissi.';
 
   @override
-  String get guideInputSwipeTitle =>
-      'B. Modalità Scorrimento (Icona: Mano che scorre)';
+  String get guideInputSwipeTitle => 'Modalità Scorrimento (Gesti)';
 
   @override
   String get guideInputSwipeUp =>
-      'Scorri verso l\'ALTO in qualsiasi punto dello schermo per registrare un\'entrata.';
+      'Scorri verso l\'alto in qualsiasi punto per incrementare entrambi i contatori.';
 
   @override
   String get guideInputSwipeDown =>
-      'Scorri verso il BASSO in qualsiasi punto dello schermo per registrare un\'uscita.';
+      'Scorri verso il basso in qualsiasi punto per decrementare \'Ancora all\'interno\'.';
 
   @override
   String get guideInputSwipeBestFor =>
-      'Ideale per: Folle in rapido movimento o \'picchi\' dove il supervisore deve tenere gli occhi sui visitatori piuttosto che sullo schermo.';
+      'Ideale per: Monitoraggio degli ingressi frenetico dove gli occhi devono rimanere sulla folla.';
 
   @override
-  String get guideCorrectionTitle => '4. CORREZIONE E NAVIGAZIONE';
+  String get guideCorrectionTitle => '5. Correzioni';
 
   @override
   String get guideCorrectionContent =>
-      'Gli errori capitano, specialmente durante i turni intensi. Exodus fornisce due livelli di correzione:';
+      'Gli errori possono essere corretti in due modi:';
 
   @override
   String get guideCorrectionUndo =>
-      'Annulla (Icona in alto a sinistra): Toccando la freccia curva si annulla istantaneamente l\'ultima azione eseguita (conteggio o modifica).';
+      'Annulla: Tocca l\'icona della freccia circolare in alto a sinistra per annullare l\'ultima azione.';
 
   @override
   String get guideCorrectionManual =>
-      'Modifica Manuale (Tastierino): Tenendo premuto a lungo la scheda Entrate o Ancora Dentro si apre un tastierino numerico. Questo permette al supervisore di inserire un numero confermato di persone (es. dopo un controllo manuale dei locali).';
+      'Modifica manuale: Premi a lungo su qualsiasi numero della dashboard per inserire un valore specifico usando il tastierino sicuro.';
 
   @override
-  String get guideLogTitle => '5. CRONOLOGIA REGISTRI E REPORTISTICA';
+  String get guideLogTitle => '6. Registro e reportistica';
 
   @override
-  String get guideLogContent =>
-      'Ogni azione viene registrata con un timestamp. Per accedere al registro, tocca l\'icona dell\'Ingranaggio e seleziona Visualizza Registro, oppure usa la scorciatoia con la pressione prolungata sull\'icona dell\'Ingranaggio.';
+  String get guideLogContent => 'Ogni azione viene registrata con data e ora:';
 
   @override
   String get guideLogSearch =>
-      'Ricerca: Usa la barra in alto per filtrare eventi specifici come \'RESET\' o \'MODIFICA MANUALE\'.';
+      'Cerca: Usa la lente d\'ingrandimento per trovare eventi specifici (es. \'MANUAL\').';
 
   @override
   String get guideLogDelete =>
-      'Elimina: Le singole voci possono essere rimosse tenendole premute a lungo (richiede conferma).';
+      'Elimina: Premi a lungo su una voce del registro per rimuoverla.';
 
   @override
   String get guideLogExport =>
-      'Esportazione: Puoi condividere i registri come CSV (per Excel) o PDF formattato.';
+      'Esporta: Usa l\'icona di condivisione per generare report PDF o fogli di calcolo CSV.';
 
   @override
   String get guideLogPreview =>
-      'Anteprima: L\'opzione \'Anteprima Rapporto\' ti permette di vedere il layout professionale del PDF prima di inviarlo tramite WhatsApp o Email.';
+      'Anteprima: Visualizza il layout del report prima della condivisione.';
 
   @override
-  String get guideSessionTitle => '6. GESTIONE DELLA SESSIONE';
+  String get guideSessionTitle => '7. Gestione della sessione';
 
   @override
-  String get guideSessionResetTitle => 'Reimpostazione del Giorno';
+  String get guideSessionResetTitle => 'Ripristina sessione';
 
   @override
   String get guideSessionResetContent =>
-      'Per azzerare i contatori per un nuovo turno o evento, seleziona Reimposta Sessione dal menu Ingranaggio.';
+      'Cancella tutti i dati per un nuovo giorno.';
 
   @override
   String get guideSessionResetExport =>
-      'L\'app chiederà prima se desideri Esportare i dati per non perdere i record della sessione precedente.';
+      'L\'app ti chiederà se vuoi prima esportare i tuoi dati.';
 
   @override
   String get guideSessionResetConfirm =>
-      'È richiesta una conferma finale prima che l\'app cancelli i contatori portandoli a 0 e svuoti la cronologia dei registri.';
+      'Richiede una doppia conferma per evitare perdite accidentali.';
 
   @override
   String get guideSessionShutdownTitle => 'Spegni';
 
   @override
   String get guideSessionShutdownContent =>
-      'Selezionando Spegni si crea una voce di registro finale per chiudere la traccia digitale e si esce dall\'app in modo pulito.';
+      'Registra correttamente la fine del lavoro e chiude l\'applicazione.';
 
   @override
-  String get installGuideTitle => 'EXODUS VENUE: GUIDA ALL\'INSTALLAZIONE';
+  String get installGuideTitle => 'Exodus Venue: Guida all\'installazione';
 
   @override
   String get installMobileTitle => 'Installazione su telefoni cellulari';

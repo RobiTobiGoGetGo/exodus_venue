@@ -9,25 +9,28 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'Exodus';
+  String get nothingToUndo => 'Nichts rückgängig zu machen!';
 
   @override
-  String get entered => 'Eingetreten';
+  String get noMatches => 'Keine Treffer gefunden.';
 
   @override
-  String get stillInside => 'Noch Drinnen';
+  String get logNow => 'Jetzt protokollieren';
 
   @override
-  String get capacity => 'Kapazität';
+  String get loggedCurrentTotals => 'Aktuelle Summen protokolliert.';
 
   @override
-  String get resetSession => 'Sitzung zurücksetzen';
+  String get viewLog => 'Protokoll anzeigen';
 
   @override
   String get exportLogs => 'Protokolle exportieren';
 
   @override
   String get helpAndInfo => 'Hilfe & Info';
+
+  @override
+  String get resetSession => 'Sitzung zurücksetzen';
 
   @override
   String get setLocation => 'Ort festlegen';
@@ -39,10 +42,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get closeSession => 'Sitzung schließen';
 
   @override
-  String get logNow => 'JETZT protokollieren';
-
-  @override
-  String get viewLog => 'Protokoll anzeigen';
+  String get sessionClosed => 'Sitzung geschlossen und protokolliert.';
 
   @override
   String get exportAsCSV => 'Als CSV exportieren';
@@ -51,41 +51,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get exportAsPDF => 'Als PDF exportieren';
 
   @override
-  String get previewReport => 'Berichtsvorschau';
-
-  @override
-  String get cancel => 'Abbrechen';
-
-  @override
-  String get save => 'Speichern';
-
-  @override
-  String get ok => 'OK';
-
-  @override
-  String get clear => 'CLR';
-
-  @override
-  String get nothingToUndo => 'Nichts zum Rückgängigmachen';
-
-  @override
-  String get loggedCurrentTotals => 'Aktuelle Summen protokolliert';
-
-  @override
-  String get sessionClosed => 'Sitzung geschlossen';
-
-  @override
-  String get resetEverything => 'Alles zurücksetzen';
-
-  @override
-  String get sessionResetSuccess => 'Sitzung erfolgreich zurückgesetzt';
+  String get previewReport => 'Berichtvorschau';
 
   @override
   String get resetSessionQuestion => 'Sitzung zurücksetzen?';
 
   @override
   String get resetSessionContent =>
-      'Möchten Sie das aktuelle Protokoll vor dem Zurücksetzen exportieren?';
+      'Möchten Sie die Zähler und das Protokoll zurücksetzen oder zuerst exportieren?';
 
   @override
   String get justReset => 'Nur zurücksetzen';
@@ -98,216 +71,238 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get confirmResetContent =>
-      'Dies löscht ALLE Protokolle und setzt die Zähler auf Null zurück. Dies kann nicht rückgängig gemacht werden.';
+      'Dadurch wird das aktuelle Sitzungsprotokoll dauerhaft gelöscht und die Zähler auf Null zurückgesetzt. Dies kann nicht rückgängig gemacht werden.';
+
+  @override
+  String get cancel => 'Abbrechen';
+
+  @override
+  String get sessionResetSuccess => 'Sitzung erfolgreich zurückgesetzt.';
+
+  @override
+  String get resetEverything => 'ALLES ZURÜCKSETZEN';
 
   @override
   String get setLocationName => 'Ortsnamen festlegen';
 
   @override
-  String get locationNameHint => 'z.B. Haupteingang';
+  String get locationNameHint => 'z. B. Haupteingang';
+
+  @override
+  String get save => 'Speichern';
+
+  @override
+  String get clear => 'LÖSCHEN';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get stillInside => 'Noch drin';
+
+  @override
+  String get entered => 'Eingetreten';
 
   @override
   String get validationExceedEntered =>
-      'Darf \'Eingetreten\' nicht überschreiten';
+      'Anzahl \'Noch drin\' darf \'Eingetreten\' nicht überschreiten!';
 
   @override
   String get validationLessInside =>
-      'Darf nicht weniger als \'Noch Drinnen\' sein';
+      'Anzahl \'Eingetreten\' darf nicht kleiner als \'Noch drin\' sein!';
 
   @override
-  String get deleteEntryQuestion => 'Eintrag löschen?';
-
-  @override
-  String get delete => 'Löschen';
-
-  @override
-  String get deleteAllEntriesQuestion => 'Alle Einträge löschen?';
-
-  @override
-  String get thisCannotBeUndone => 'Dies kann nicht rückgängig gemacht werden.';
-
-  @override
-  String get deleteAll => 'Alle löschen';
-
-  @override
-  String get noMatches => 'Keine Treffer';
-
-  @override
-  String get search => 'Protokolle durchsuchen...';
+  String get capacity => 'Kapazität';
 
   @override
   String get swipeToCount => 'Zum Zählen nach oben/unten wischen';
 
   @override
-  String get userGuideTitle => 'EXODUS VENUE DASHBOARD: BEDIENUNGSANLEITUNG';
+  String get search => 'Suchen';
 
   @override
-  String get guideOverviewTitle => '1. ÜBERSICHT';
+  String get deleteEntryQuestion => 'Diesen Eintrag löschen?';
+
+  @override
+  String get delete => 'Löschen';
+
+  @override
+  String get deleteAllEntriesQuestion => 'ALLE Einträge löschen?';
+
+  @override
+  String get thisCannotBeUndone => 'Dies kann nicht rückgängig gemacht werden.';
+
+  @override
+  String get deleteAll => 'ALLE LÖSCHEN';
+
+  @override
+  String get userGuideTitle => 'Exodus Benutzerhandbuch';
+
+  @override
+  String get guideOverviewTitle => '1. Überblick';
 
   @override
   String get guideOverviewContent =>
-      'Exodus ist ein professionelles Tool zur Anwesenheitsüberwachung. Sein Zweck ist es, den Besucherstrom durch einen bestimmten Ein- oder Ausgang zu verfolgen. Im Gegensatz zu einem Standard-\'Klicker\' verwaltet es zwei Werte gleichzeitig, um eine Echtzeitansicht der Sicherheit und Kapazität des Veranstaltungsortes zu ermöglichen.';
+      'Exodus ist ein professionelles Werkzeug für das Einlassmanagement von Veranstaltungsorten. Es verfolgt zwei Hauptzahlen:';
 
   @override
   String get guideOverviewEntered =>
-      'Eingetreten: Die kumulierte Gesamtzahl aller Personen, die das Tor passiert haben. Diese Zahl steigt nur an und stellt den \'Gesamtfluss\' dar.';
+      'Gesamt Eingetreten: Kumulierte Anzahl aller Personen, die eingetreten sind.';
 
   @override
   String get guideOverviewInside =>
-      'Noch Drinnen: Die aktuelle Kopfzahl, die im Veranstaltungsort verbleibt. Diese Zahl steigt an, wenn Personen eintreten, und sinkt, wenn sie gehen.';
+      'Noch drin: Aktuelle Anzahl der Personen, die sich noch im Veranstaltungsort befinden.';
 
   @override
-  String get guideDashboardTitle => '2. DAS HAUPTDASHBOARD (STARTBILDSCHIRM)';
+  String get guideDashboardTitle => '2. Das Dashboard';
 
   @override
   String get guideDashboardContent =>
-      'Dies ist der Hauptbildschirm, auf dem der Supervisor 99% seiner Zeit verbringt.';
+      'Der Hauptbildschirm bietet Informationen in Echtzeit:';
 
   @override
   String get guideDashboardHeader =>
-      'Marken-Header: Enthält das Exodus-Logo. Langes Drücken auf dieses Logo bietet eine schnelle Verknüpfung zum Hilfe-Bildschirm.';
+      'Header: Zeigt das Logo des Veranstaltungsorts. Lange drücken, um dieses Handbuch zu öffnen.';
 
   @override
   String get guideDashboardLocation =>
-      'Standortzeile: Zeigt den Namen des aktuellen Tors an (z. B. \'Nordeingang\'). Dies stellt sicher, dass bei Verwendung mehrerer Telefone die Protokolle korrekt zugeordnet werden.';
+      'Ort: Wird unter dem Logo angezeigt. Lange drücken, um ihn umzubenennen.';
 
   @override
   String get guideDashboardCapacity =>
-      'Kapazitätszeile: Zeigt die \'Max. Kapazität\' oder das Sicherheitslimit für den Bereich an.';
+      'Kapazität: Wird neben dem Ort angezeigt. Lange drücken zum Bearbeiten.';
 
   @override
   String get guideDashboardEnteredCard =>
-      'Eingetreten-Karte (Blau): Große Anzeige der Gesamteintritte.';
+      'Karte Eingetreten (Blau): Zeigt die Gesamtzahl der Einlässe an.';
 
   @override
   String get guideDashboardInsideCard =>
-      'Noch Drinnen-Karte (Grün/Weiß): Große Anzeige der aktuellen Kopfzahl.';
+      'Karte Noch drin (Grün): Zeigt die aktuelle Belegung an.';
 
   @override
-  String get guideSafetyTitle => 'Visuelle Sicherheitsindikatoren';
+  String get guideSafetyTitle => '3. Kapazität & Sicherheit';
 
   @override
-  String get guideSafetyContent =>
-      'Die Noch Drinnen-Karte verwendet eine \'Heat-Map\'-Logik, um den Supervisor vor möglicher Überfüllung zu warnen, ohne dass er die Zahlen lesen muss:';
+  String get guideSafetyContent => 'Die App überwacht Sicherheitsgrenzwerte:';
 
   @override
   String get guideSafetyTransition =>
-      'Wenn sich die Kopfzahl der maximalen Kapazität nähert, geht die Karte fließend von einem neutralen Weiß in ein abgestuftes Rot über.';
+      'Die Karte \'Noch drin\' färbt sich rot, wenn Sie sich der Kapazitätsgrenze nähern.';
 
   @override
   String get guideSafetyThreshold =>
-      'Diese Warnung beginnt, wenn der verbleibende Platz entweder 10 Personen oder 2% der Gesamtkapazität beträgt (je nachdem, was größer ist).';
+      'Warnung beginnt bei 2% oder 10 Personen vor dem Limit.';
 
   @override
   String get guideSafetySignal =>
-      'Eine tiefrote Karte ist ein Signal für den Supervisor, die Eintritte zu verlangsamen oder zu stoppen.';
+      'Eine vollständig rote Karte zeigt an, dass der Veranstaltungsort ausgelastet oder überfüllt ist.';
 
   @override
-  String get guideInputTitle => '3. EINGABEMODI (WIE GEZÄHLT WIRD)';
+  String get guideInputTitle => '4. Eingabemethoden';
 
   @override
   String get guideInputContent =>
-      'Oben auf dem Dashboard befinden sich zwei Symbole, um die Eingabemethode je nach Situation zu wechseln.';
+      'Wechseln Sie zwischen zwei Modi mit den oberen Symbolen:';
 
   @override
-  String get guideInputButtonTitle =>
-      'A. Tastenmodus (Symbol: Tippender Finger)';
+  String get guideInputButtonTitle => 'Tastenmodus (Standard)';
 
   @override
   String get guideInputButtonTapEntered =>
-      'Tippen Sie auf [+] auf der blauen Karte für einen Eintritt.';
+      'Tippen Sie auf [+], um beide Zähler zu erhöhen (Person tritt ein).';
 
   @override
   String get guideInputButtonTapInside =>
-      'Tippen Sie auf [-] auf der grünen Karte für einen Ausgang.';
+      'Tippen Sie auf [-], um \'Noch drin\' zu verringern (Person verlässt den Ort).';
 
   @override
   String get guideInputButtonBestFor =>
-      'Bestens geeignet für: Gleichmäßigen, überschaubaren Verkehr, bei dem hohe Präzision erforderlich ist.';
+      'Bestens geeignet für: Hochpräzises Zählen an festen Toren.';
 
   @override
-  String get guideInputSwipeTitle => 'B. Wischmodus (Symbol: Wischende Hand)';
+  String get guideInputSwipeTitle => 'Wischmodus (Gesten)';
 
   @override
   String get guideInputSwipeUp =>
-      'Wischen Sie an einer beliebigen Stelle auf dem Bildschirm nach OBEN, um einen Eintritt zu erfassen.';
+      'Wischen Sie an einer beliebigen Stelle nach oben, um beide Zähler zu erhöhen.';
 
   @override
   String get guideInputSwipeDown =>
-      'Wischen Sie an einer beliebigen Stelle auf dem Bildschirm nach UNTEN, um einen Ausgang zu erfassen.';
+      'Wischen Sie an einer beliebigen Stelle nach unten, um \'Noch drin\' zu verringern.';
 
   @override
   String get guideInputSwipeBestFor =>
-      'Bestens geeignet für: Schnell fließende Menschenmengen oder \'Anstürme\', bei denen der Supervisor die Besucher im Auge behalten muss, anstatt auf den Bildschirm zu schauen.';
+      'Bestens geeignet für: Schnelle Einlasskontrolle, bei der die Augen auf der Menge bleiben müssen.';
 
   @override
-  String get guideCorrectionTitle => '4. KORREKTUR UND NAVIGATION';
+  String get guideCorrectionTitle => '5. Korrekturen';
 
   @override
   String get guideCorrectionContent =>
-      'Fehler passieren, besonders in geschäftigen Schichten. Exodus bietet zwei Ebenen der Korrektur:';
+      'Fehler können auf zwei Arten korrigiert werden:';
 
   @override
   String get guideCorrectionUndo =>
-      'Rückgängig (Symbol oben links): Durch Tippen auf den gebogenen Pfeil wird die allerletzte Aktion (Zählung oder Bearbeitung) sofort rückgängig gemacht.';
+      'Rückgängig: Tippen Sie auf das kreisförmige Pfeilsymbol oben links, um die letzte Aktion rückgängig zu machen.';
 
   @override
   String get guideCorrectionManual =>
-      'Manuelle Bearbeitung (Tastenfeld): Langes Drücken auf die Eingetreten- oder Noch Drinnen-Karte öffnet ein numerisches Tastenfeld. Dies ermöglicht dem Supervisor, eine bestätigte Kopfzahl einzugeben (z. B. nach einer manuellen Überprüfung vor Ort).';
+      'Manuelle Bearbeitung: Drücken Sie lange auf eine Zahl auf dem Dashboard, um einen bestimmten Wert über das sichere Tastenfeld einzugeben.';
 
   @override
-  String get guideLogTitle => '5. PROTOKOLLVERLAUF UND BERICHTERSTATTUNG';
+  String get guideLogTitle => '6. Protokoll & Berichterstattung';
 
   @override
   String get guideLogContent =>
-      'Jede Aktion wird mit einem Zeitstempel aufgezeichnet. Um auf das Protokoll zuzugreifen, tippen Sie auf das Zahnradsymbol und wählen Sie Protokoll anzeigen, oder verwenden Sie das Tastenkürzel für langes Drücken auf das Zahnradsymbol.';
+      'Jede Aktion wird mit Zeitstempel aufgezeichnet:';
 
   @override
   String get guideLogSearch =>
-      'Suche: Verwenden Sie die Leiste oben, um nach bestimmten Ereignissen wie \'RESET\' oder \'MANUAL EDIT\' zu filtern.';
+      'Suche: Verwenden Sie die Lupe, um bestimmte Ereignisse zu finden (z. B. \'MANUAL\').';
 
   @override
   String get guideLogDelete =>
-      'Löschen: Einzelne Einträge können durch langes Drücken entfernt werden (erfordert Bestätigung).';
+      'Löschen: Drücken Sie lange auf einen Protokolleintrag, um ihn zu entfernen.';
 
   @override
   String get guideLogExport =>
-      'Exportieren: Sie können die Protokolle als CSV (für Excel) oder formatiertes PDF teilen.';
+      'Exportieren: Verwenden Sie das Share-Symbol, um PDF-Berichte oder CSV-Tabellen zu erstellen.';
 
   @override
   String get guideLogPreview =>
-      'Vorschau: Die Option \'Berichtsvorschau\' ermöglicht es Ihnen, das professionelle PDF-Layout zu sehen, bevor Sie es über WhatsApp oder E-Mail versenden.';
+      'Vorschau: Zeigen Sie das Berichtslayout an, bevor Sie es teilen.';
 
   @override
-  String get guideSessionTitle => '6. SITZUNGSVERWALTUNG';
+  String get guideSessionTitle => '7. Sitzungsverwaltung';
 
   @override
-  String get guideSessionResetTitle => 'Den Tag zurücksetzen';
+  String get guideSessionResetTitle => 'Sitzung zurücksetzen';
 
   @override
   String get guideSessionResetContent =>
-      'Um die Zähler für eine neue Schicht oder ein neues Ereignis zu löschen, wählen Sie Sitzung zurücksetzen aus dem Zahnradmenü.';
+      'Löscht alle Daten für einen neuen Tag.';
 
   @override
   String get guideSessionResetExport =>
-      'Die App fragt zuerst, ob Sie die Daten exportieren möchten, damit Sie die Aufzeichnungen der vorherigen Sitzung nicht verlieren.';
+      'Die App fragt, ob Sie Ihre Daten zuerst exportieren möchten.';
 
   @override
   String get guideSessionResetConfirm =>
-      'Eine endgültige Bestätigung ist erforderlich, bevor die App die Zähler auf 0 wischt und den Protokollverlauf löscht.';
+      'Erfordert eine doppelte Bestätigung, um versehentlichen Verlust zu verhindern.';
 
   @override
   String get guideSessionShutdownTitle => 'Beenden';
 
   @override
   String get guideSessionShutdownContent =>
-      'Das Auswählen von Beenden erstellt einen letzten Protokolleintrag, um den digitalen Pfad zu schließen, und beendet die App sauber.';
+      'Protokolliert ordnungsgemäß das Ende der Arbeit und beendet die Anwendung.';
 
   @override
-  String get installGuideTitle => 'EXODUS VENUE: INSTALLATIONSANLEITUNG';
+  String get installGuideTitle => 'Exodus Venue: Installationsanleitung';
 
   @override
-  String get installMobileTitle => 'Installation auf Mobiltelefonen';
+  String get installMobileTitle => 'Installation auf dem Mobiltelefon';
 
   @override
   String get installEdgeTitle => 'Edge Mobile';
@@ -318,11 +313,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get installEdgeStep2 =>
-      'Tippen Sie auf die drei horizontalen Linien oder drei Punkte in der unteren rechten Ecke.';
+      'Tippen Sie auf die drei horizontalen Linien oder die drei Punkte unten rechts.';
 
   @override
   String get installEdgeStep3 =>
-      'Wischen Sie im angezeigten Menü nach oben (oder zur Seite), um weitere Optionen anzuzeigen.';
+      'Wischen Sie im erscheinenden Menü nach oben (oder zur Seite), um weitere Optionen zu sehen.';
 
   @override
   String get installEdgeStep4 =>
@@ -351,25 +346,25 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get installFirefoxStep4 =>
-      'Bestätigen Sie durch Tippen auf Hinzufügen oder erneut Installieren.';
+      'Bestätigen Sie durch Tippen auf Hinzufügen oder erneut auf Installieren.';
 
   @override
   String get installIos => 'iPhone/iOS:';
 
   @override
   String get installFirefoxIosContent =>
-      'Firefox auf iOS hat aufgrund von Apples Einschränkungen keine direkte \"Installieren\"-Schaltfläche. Sie müssen das Systemmenü verwenden:';
+      'Firefox auf iOS hat aufgrund von Apple-Beschränkungen keine direkte Schaltfläche \"Installieren\". Sie müssen das Systemmenü verwenden:';
 
   @override
   String get installFirefoxIosStep1 => 'Öffnen Sie die Website in Firefox.';
 
   @override
   String get installFirefoxIosStep2 =>
-      'Tippen Sie auf das Teilen-Symbol (das Quadrat mit einem nach oben zeigenden Pfeil) in der Adressleiste.';
+      'Tippen Sie auf das Teilen-Symbol (Quadrat mit einem Pfeil nach oben) in der Adressleiste.';
 
   @override
   String get installFirefoxIosStep3 =>
-      'Scrollen Sie in der Liste der Optionen nach unten und tippen Sie auf Zum Home-Bildschirm hinzufügen.';
+      'Scrollen Sie durch die Liste der Optionen und tippen Sie auf Zum Home-Bildschirm hinzufügen.';
 
   @override
   String get installFirefoxIosStep4 => 'Tippen Sie oben rechts auf Hinzufügen.';
@@ -387,7 +382,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get installChromeAndroidStep3 =>
-      'Tippen Sie auf Zum Startbildschirm hinzufügen (bei einigen Versionen kann es App installieren heißen).';
+      'Tippen Sie auf Zum Startbildschirm hinzufügen (in einigen Versionen heißt es möglicherweise App installieren).';
 
   @override
   String get installChromeAndroidStep4 =>
@@ -398,7 +393,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get installChromeIosStep2 =>
-      'Tippen Sie auf das Teilen-Symbol (das Quadrat mit einem nach oben zeigenden Pfeil) neben der Adressleiste.';
+      'Tippen Sie auf das Teilen-Symbol (Quadrat mit einem Pfeil nach oben) neben der Adressleiste.';
 
   @override
   String get installChromeIosStep3 =>
@@ -415,7 +410,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get installDesktopStep2 =>
-      'Klicken Sie auf die drei Punkte in der oberen rechten Ecke.';
+      'Klicken Sie auf die drei Punkte oben rechts.';
 
   @override
   String get installDesktopStep3 => 'Wählen Sie Speichern und teilen.';
@@ -425,10 +420,10 @@ class AppLocalizationsDe extends AppLocalizations {
       'Klicken Sie auf Seite als App installieren...';
 
   @override
-  String get installDesktopStep5 => 'Klicken Sie auf Installieren';
+  String get installDesktopStep5 => 'Klicken Sie auf Installieren.';
 
   @override
-  String get installSafariIosTitle => 'Für Safari auf iPhone & iPad (iOS)';
+  String get installSafariIosTitle => 'Für Safari auf iPhone und iPad (iOS)';
 
   @override
   String get installSafariIosStep1 =>
@@ -436,11 +431,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get installSafariIosStep2 =>
-      'Tippen Sie auf die Teilen-Schaltfläche unten (das Quadrat mit einem nach oben zeigenden Pfeil).';
+      'Tippen Sie unten auf die Schaltfläche Teilen (das Quadrat mit einem Pfeil nach oben).';
 
   @override
   String get installSafariIosStep3 =>
-      'Scrollen Sie im Menü nach unten und tippen Sie auf Zum Home-Bildschirm hinzufügen.';
+      'Scrollen Sie durch das Menü und tippen Sie auf Zum Home-Bildschirm hinzufügen.';
 
   @override
   String get installSafariIosStep4 => 'Tippen Sie oben rechts auf Hinzufügen.';

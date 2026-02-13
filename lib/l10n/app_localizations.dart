@@ -102,35 +102,35 @@ abstract class AppLocalizations {
     Locale('it')
   ];
 
-  /// No description provided for @appTitle.
+  /// No description provided for @nothingToUndo.
   ///
   /// In en, this message translates to:
-  /// **'Exodus'**
-  String get appTitle;
+  /// **'Nothing to undo!'**
+  String get nothingToUndo;
 
-  /// No description provided for @entered.
+  /// No description provided for @noMatches.
   ///
   /// In en, this message translates to:
-  /// **'Entered'**
-  String get entered;
+  /// **'No matches found.'**
+  String get noMatches;
 
-  /// No description provided for @stillInside.
+  /// No description provided for @logNow.
   ///
   /// In en, this message translates to:
-  /// **'Still Inside'**
-  String get stillInside;
+  /// **'Log Now'**
+  String get logNow;
 
-  /// No description provided for @capacity.
+  /// No description provided for @loggedCurrentTotals.
   ///
   /// In en, this message translates to:
-  /// **'Capacity'**
-  String get capacity;
+  /// **'Logged current totals.'**
+  String get loggedCurrentTotals;
 
-  /// No description provided for @resetSession.
+  /// No description provided for @viewLog.
   ///
   /// In en, this message translates to:
-  /// **'Reset Session'**
-  String get resetSession;
+  /// **'View Log'**
+  String get viewLog;
 
   /// No description provided for @exportLogs.
   ///
@@ -143,6 +143,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Help & Info'**
   String get helpAndInfo;
+
+  /// No description provided for @resetSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Session'**
+  String get resetSession;
 
   /// No description provided for @setLocation.
   ///
@@ -162,17 +168,11 @@ abstract class AppLocalizations {
   /// **'Close Session'**
   String get closeSession;
 
-  /// No description provided for @logNow.
+  /// No description provided for @sessionClosed.
   ///
   /// In en, this message translates to:
-  /// **'Log NOW'**
-  String get logNow;
-
-  /// No description provided for @viewLog.
-  ///
-  /// In en, this message translates to:
-  /// **'View Log'**
-  String get viewLog;
+  /// **'Session closed and logged.'**
+  String get sessionClosed;
 
   /// No description provided for @exportAsCSV.
   ///
@@ -192,60 +192,6 @@ abstract class AppLocalizations {
   /// **'Preview Report'**
   String get previewReport;
 
-  /// No description provided for @cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
-  /// No description provided for @save.
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get save;
-
-  /// No description provided for @ok.
-  ///
-  /// In en, this message translates to:
-  /// **'OK'**
-  String get ok;
-
-  /// No description provided for @clear.
-  ///
-  /// In en, this message translates to:
-  /// **'CLR'**
-  String get clear;
-
-  /// No description provided for @nothingToUndo.
-  ///
-  /// In en, this message translates to:
-  /// **'Nothing to undo'**
-  String get nothingToUndo;
-
-  /// No description provided for @loggedCurrentTotals.
-  ///
-  /// In en, this message translates to:
-  /// **'Logged current totals'**
-  String get loggedCurrentTotals;
-
-  /// No description provided for @sessionClosed.
-  ///
-  /// In en, this message translates to:
-  /// **'Session closed'**
-  String get sessionClosed;
-
-  /// No description provided for @resetEverything.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset Everything'**
-  String get resetEverything;
-
-  /// No description provided for @sessionResetSuccess.
-  ///
-  /// In en, this message translates to:
-  /// **'Session reset successfully'**
-  String get sessionResetSuccess;
-
   /// No description provided for @resetSessionQuestion.
   ///
   /// In en, this message translates to:
@@ -255,7 +201,7 @@ abstract class AppLocalizations {
   /// No description provided for @resetSessionContent.
   ///
   /// In en, this message translates to:
-  /// **'Would you like to export the current log before resetting?'**
+  /// **'Do you want to reset the counters and the log, or export first?'**
   String get resetSessionContent;
 
   /// No description provided for @justReset.
@@ -279,8 +225,26 @@ abstract class AppLocalizations {
   /// No description provided for @confirmResetContent.
   ///
   /// In en, this message translates to:
-  /// **'This will delete ALL logs and reset counters to zero. This cannot be undone.'**
+  /// **'This will permanently delete the current session log and reset counters to zero. This cannot be undone.'**
   String get confirmResetContent;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @sessionResetSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Session reset successful.'**
+  String get sessionResetSuccess;
+
+  /// No description provided for @resetEverything.
+  ///
+  /// In en, this message translates to:
+  /// **'RESET EVERYTHING'**
+  String get resetEverything;
 
   /// No description provided for @setLocationName.
   ///
@@ -294,22 +258,70 @@ abstract class AppLocalizations {
   /// **'e.g. Main Entrance'**
   String get locationNameHint;
 
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @clear.
+  ///
+  /// In en, this message translates to:
+  /// **'CLEAR'**
+  String get clear;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @stillInside.
+  ///
+  /// In en, this message translates to:
+  /// **'Still Inside'**
+  String get stillInside;
+
+  /// No description provided for @entered.
+  ///
+  /// In en, this message translates to:
+  /// **'Entered'**
+  String get entered;
+
   /// No description provided for @validationExceedEntered.
   ///
   /// In en, this message translates to:
-  /// **'Cannot exceed \'Entered\''**
+  /// **'Inside cannot exceed Entered!'**
   String get validationExceedEntered;
 
   /// No description provided for @validationLessInside.
   ///
   /// In en, this message translates to:
-  /// **'Cannot be less than \'Still Inside\''**
+  /// **'Entered cannot be less than Inside!'**
   String get validationLessInside;
+
+  /// No description provided for @capacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Capacity'**
+  String get capacity;
+
+  /// No description provided for @swipeToCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe up/down to count'**
+  String get swipeToCount;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
 
   /// No description provided for @deleteEntryQuestion.
   ///
   /// In en, this message translates to:
-  /// **'Delete entry?'**
+  /// **'Delete this entry?'**
   String get deleteEntryQuestion;
 
   /// No description provided for @delete.
@@ -321,7 +333,7 @@ abstract class AppLocalizations {
   /// No description provided for @deleteAllEntriesQuestion.
   ///
   /// In en, this message translates to:
-  /// **'Delete all entries?'**
+  /// **'Delete ALL entries?'**
   String get deleteAllEntriesQuestion;
 
   /// No description provided for @thisCannotBeUndone.
@@ -333,277 +345,259 @@ abstract class AppLocalizations {
   /// No description provided for @deleteAll.
   ///
   /// In en, this message translates to:
-  /// **'Delete All'**
+  /// **'DELETE ALL'**
   String get deleteAll;
-
-  /// No description provided for @noMatches.
-  ///
-  /// In en, this message translates to:
-  /// **'No matches'**
-  String get noMatches;
-
-  /// No description provided for @search.
-  ///
-  /// In en, this message translates to:
-  /// **'Search logs...'**
-  String get search;
-
-  /// No description provided for @swipeToCount.
-  ///
-  /// In en, this message translates to:
-  /// **'Swipe Up/Down to Count'**
-  String get swipeToCount;
 
   /// No description provided for @userGuideTitle.
   ///
   /// In en, this message translates to:
-  /// **'EXODUS VENUE DASHBOARD: USER GUIDE'**
+  /// **'Exodus User Guide'**
   String get userGuideTitle;
 
   /// No description provided for @guideOverviewTitle.
   ///
   /// In en, this message translates to:
-  /// **'1. OVERVIEW'**
+  /// **'1. Overview'**
   String get guideOverviewTitle;
 
   /// No description provided for @guideOverviewContent.
   ///
   /// In en, this message translates to:
-  /// **'Exodus is a professional attendance monitoring tool. Its purpose is to track the flow of visitors through a specific entrance or exit. Unlike a standard \'clicker,\' it manages two values simultaneously to provide a real-time view of venue safety and capacity.'**
+  /// **'Exodus is a professional tool for venue entry management. It tracks two main numbers:'**
   String get guideOverviewContent;
 
   /// No description provided for @guideOverviewEntered.
   ///
   /// In en, this message translates to:
-  /// **'Entered: The cumulative total of all people who have passed through the gate. This number only goes up and represents the \'Total Flow.\''**
+  /// **'Total Entered: Cumulative count of everyone who entered.'**
   String get guideOverviewEntered;
 
   /// No description provided for @guideOverviewInside.
   ///
   /// In en, this message translates to:
-  /// **'Still Inside: The current headcount remaining within the venue. This number goes up when people enter and down when they leave.'**
+  /// **'Still Inside: Current number of people remaining in the venue.'**
   String get guideOverviewInside;
 
   /// No description provided for @guideDashboardTitle.
   ///
   /// In en, this message translates to:
-  /// **'2. THE MAIN DASHBOARD (HOME SCREEN)'**
+  /// **'2. The Dashboard'**
   String get guideDashboardTitle;
 
   /// No description provided for @guideDashboardContent.
   ///
   /// In en, this message translates to:
-  /// **'This is the primary screen where the supervisor will spend 99% of their time.'**
+  /// **'The main screen provides real-time information:'**
   String get guideDashboardContent;
 
   /// No description provided for @guideDashboardHeader.
   ///
   /// In en, this message translates to:
-  /// **'Branded Header: Features the Exodus logo. Long-pressing this logo provides a quick shortcut to the Help screen.'**
+  /// **'Header: Shows the venue logo. Long-press to open this guide.'**
   String get guideDashboardHeader;
 
   /// No description provided for @guideDashboardLocation.
   ///
   /// In en, this message translates to:
-  /// **'Location Row: Displays the name of the current gate (e.g., \'North Entrance\'). This ensures that if multiple phones are in use, the logs are correctly attributed.'**
+  /// **'Location: Displayed below the logo. Long-press to rename.'**
   String get guideDashboardLocation;
 
   /// No description provided for @guideDashboardCapacity.
   ///
   /// In en, this message translates to:
-  /// **'Capacity Row: Displays the \'Max Capacity\' or safety limit for the area.'**
+  /// **'Capacity: Displayed next to location. Long-press to edit.'**
   String get guideDashboardCapacity;
 
   /// No description provided for @guideDashboardEnteredCard.
   ///
   /// In en, this message translates to:
-  /// **'Entered Card (Blue): Large display of the total entries.'**
+  /// **'Entered Card (Blue): Shows total entries.'**
   String get guideDashboardEnteredCard;
 
   /// No description provided for @guideDashboardInsideCard.
   ///
   /// In en, this message translates to:
-  /// **'Still Inside Card (Green/White): Large display of the current headcount.'**
+  /// **'Inside Card (Green): Shows current occupancy.'**
   String get guideDashboardInsideCard;
 
   /// No description provided for @guideSafetyTitle.
   ///
   /// In en, this message translates to:
-  /// **'Visual Safety Indicators'**
+  /// **'3. Capacity & Safety'**
   String get guideSafetyTitle;
 
   /// No description provided for @guideSafetyContent.
   ///
   /// In en, this message translates to:
-  /// **'The Still Inside card uses a \'heat-map\' logic to warn the supervisor of potential overcrowding without them having to read the numbers:'**
+  /// **'The app monitors safety limits:'**
   String get guideSafetyContent;
 
   /// No description provided for @guideSafetyTransition.
   ///
   /// In en, this message translates to:
-  /// **'As the headcount approaches the Max Capacity, the card will smoothly transition from a neutral white to a graduated red.'**
+  /// **'The Inside card turns red as you approach capacity.'**
   String get guideSafetyTransition;
 
   /// No description provided for @guideSafetyThreshold.
   ///
   /// In en, this message translates to:
-  /// **'This warning begins when the remaining space is either 10 people or 2% of the total capacity (whichever is greater).'**
+  /// **'Warning starts at 2% or 10 people before the limit.'**
   String get guideSafetyThreshold;
 
   /// No description provided for @guideSafetySignal.
   ///
   /// In en, this message translates to:
-  /// **'A deep red card is a signal to the supervisor to slow down or stop entries.'**
+  /// **'A fully red card indicates the venue is at or over capacity.'**
   String get guideSafetySignal;
 
   /// No description provided for @guideInputTitle.
   ///
   /// In en, this message translates to:
-  /// **'3. INPUT MODES (HOW TO COUNT)'**
+  /// **'4. Input Methods'**
   String get guideInputTitle;
 
   /// No description provided for @guideInputContent.
   ///
   /// In en, this message translates to:
-  /// **'At the top of the dashboard, there are two icons to switch the input method based on the situation.'**
+  /// **'Switch between two modes using the top icons:'**
   String get guideInputContent;
 
   /// No description provided for @guideInputButtonTitle.
   ///
   /// In en, this message translates to:
-  /// **'A. Button Mode (Icon: Tapping Finger)'**
+  /// **'Button Mode (Default)'**
   String get guideInputButtonTitle;
 
   /// No description provided for @guideInputButtonTapEntered.
   ///
   /// In en, this message translates to:
-  /// **'Tap [+] on the blue card for an entry.'**
+  /// **'Tap [+] to increment both counters (person enters).'**
   String get guideInputButtonTapEntered;
 
   /// No description provided for @guideInputButtonTapInside.
   ///
   /// In en, this message translates to:
-  /// **'Tap [-] on the green card for an exit.'**
+  /// **'Tap [-] to decrement \'Still Inside\' (person exits).'**
   String get guideInputButtonTapInside;
 
   /// No description provided for @guideInputButtonBestFor.
   ///
   /// In en, this message translates to:
-  /// **'Best for: Steady, manageable traffic where high precision is required.'**
+  /// **'Best for: High-precision counting at fixed gates.'**
   String get guideInputButtonBestFor;
 
   /// No description provided for @guideInputSwipeTitle.
   ///
   /// In en, this message translates to:
-  /// **'B. Swipe Mode (Icon: Swiping Hand)'**
+  /// **'Swipe Mode (Gesture)'**
   String get guideInputSwipeTitle;
 
   /// No description provided for @guideInputSwipeUp.
   ///
   /// In en, this message translates to:
-  /// **'Swipe UP anywhere on the screen to record an entry.'**
+  /// **'Swipe up anywhere to increment both counters.'**
   String get guideInputSwipeUp;
 
   /// No description provided for @guideInputSwipeDown.
   ///
   /// In en, this message translates to:
-  /// **'Swipe DOWN anywhere on the screen to record an exit.'**
+  /// **'Swipe down anywhere to decrement \'Still Inside\'.'**
   String get guideInputSwipeDown;
 
   /// No description provided for @guideInputSwipeBestFor.
   ///
   /// In en, this message translates to:
-  /// **'Best for: Fast-moving crowds or \'rushes\' where the supervisor needs to keep their eyes on the visitors rather than the screen.'**
+  /// **'Best for: Fast-paced entry monitoring where eyes must stay on the crowd.'**
   String get guideInputSwipeBestFor;
 
   /// No description provided for @guideCorrectionTitle.
   ///
   /// In en, this message translates to:
-  /// **'4. CORRECTION AND NAVIGATION'**
+  /// **'5. Corrections'**
   String get guideCorrectionTitle;
 
   /// No description provided for @guideCorrectionContent.
   ///
   /// In en, this message translates to:
-  /// **'Mistakes happen, especially during busy shifts. Exodus provides two layers of correction:'**
+  /// **'Mistakes can be corrected in two ways:'**
   String get guideCorrectionContent;
 
   /// No description provided for @guideCorrectionUndo.
   ///
   /// In en, this message translates to:
-  /// **'Undo (Top-Left Icon): Tapping the curved arrow instantly reverts the very last action taken (count or edit).'**
+  /// **'Undo: Tap the circular arrow icon in the top left to revert the last action.'**
   String get guideCorrectionUndo;
 
   /// No description provided for @guideCorrectionManual.
   ///
   /// In en, this message translates to:
-  /// **'Manual Edit (Keypad): Long-pressing either the Entered or Still Inside card opens a numeric keypad. This allows the supervisor to type in a confirmed headcount (e.g., after a manual floor check).'**
+  /// **'Manual Edit: Long-press any number on the dashboard to type a specific value using the secure keypad.'**
   String get guideCorrectionManual;
 
   /// No description provided for @guideLogTitle.
   ///
   /// In en, this message translates to:
-  /// **'5. LOG HISTORY AND REPORTING'**
+  /// **'6. Log & Reporting'**
   String get guideLogTitle;
 
   /// No description provided for @guideLogContent.
   ///
   /// In en, this message translates to:
-  /// **'Every action is recorded with a timestamp. To access the log, tap the Gear Icon and select View Log, or use the Long-press shortcut on the Gear icon.'**
+  /// **'Every action is time-stamped and recorded:'**
   String get guideLogContent;
 
   /// No description provided for @guideLogSearch.
   ///
   /// In en, this message translates to:
-  /// **'Search: Use the bar at the top to filter for specific events like \'RESET\' or \'MANUAL EDIT.\''**
+  /// **'Search: Use the magnifying glass to find specific events (e.g., \'MANUAL\').'**
   String get guideLogSearch;
 
   /// No description provided for @guideLogDelete.
   ///
   /// In en, this message translates to:
-  /// **'Delete: Individual entries can be removed by long-pressing them (requires confirmation).'**
+  /// **'Delete: Long-press a log entry to remove it.'**
   String get guideLogDelete;
 
   /// No description provided for @guideLogExport.
   ///
   /// In en, this message translates to:
-  /// **'Exporting: You can share the logs as a CSV (for Excel) or a Formatted PDF.'**
+  /// **'Export: Use the share icon to generate PDF reports or CSV spreadsheets.'**
   String get guideLogExport;
 
   /// No description provided for @guideLogPreview.
   ///
   /// In en, this message translates to:
-  /// **'Preview: The \'Preview Report\' option allows you to see the professional PDF layout before you send it via WhatsApp or Email.'**
+  /// **'Preview: View the report layout before sharing.'**
   String get guideLogPreview;
 
   /// No description provided for @guideSessionTitle.
   ///
   /// In en, this message translates to:
-  /// **'6. SESSION MANAGEMENT'**
+  /// **'7. Session Management'**
   String get guideSessionTitle;
 
   /// No description provided for @guideSessionResetTitle.
   ///
   /// In en, this message translates to:
-  /// **'Resetting the Day'**
+  /// **'Reset Session'**
   String get guideSessionResetTitle;
 
   /// No description provided for @guideSessionResetContent.
   ///
   /// In en, this message translates to:
-  /// **'To clear the counters for a new shift or event, select Reset Session from the Gear menu.'**
+  /// **'Clears all data for a new day.'**
   String get guideSessionResetContent;
 
   /// No description provided for @guideSessionResetExport.
   ///
   /// In en, this message translates to:
-  /// **'The app will first ask if you want to Export the data so you don\'t lose the previous session\'s records.'**
+  /// **'The app will ask if you want to export your data first.'**
   String get guideSessionResetExport;
 
   /// No description provided for @guideSessionResetConfirm.
   ///
   /// In en, this message translates to:
-  /// **'A final confirmation is required before the app wipes the counters to 0 and clears the log history.'**
+  /// **'Requires double confirmation to prevent accidental loss.'**
   String get guideSessionResetConfirm;
 
   /// No description provided for @guideSessionShutdownTitle.
@@ -615,19 +609,19 @@ abstract class AppLocalizations {
   /// No description provided for @guideSessionShutdownContent.
   ///
   /// In en, this message translates to:
-  /// **'Selecting Shutdown creates a final log entry to close the digital paper trail and exits the app cleanly.'**
+  /// **'Properly logs the end of work and exits the application.'**
   String get guideSessionShutdownContent;
 
   /// No description provided for @installGuideTitle.
   ///
   /// In en, this message translates to:
-  /// **'EXODUS VENUE: INSTALLATION GUIDE'**
+  /// **'Exodus Venue: Installation Guide'**
   String get installGuideTitle;
 
   /// No description provided for @installMobileTitle.
   ///
   /// In en, this message translates to:
-  /// **'Installation on mobile phones'**
+  /// **'Mobile Phone Installation'**
   String get installMobileTitle;
 
   /// No description provided for @installEdgeTitle.
@@ -645,25 +639,25 @@ abstract class AppLocalizations {
   /// No description provided for @installEdgeStep2.
   ///
   /// In en, this message translates to:
-  /// **'Tap the three horizontal lines or three dots in the bottom right corner.'**
+  /// **'Tap the three horizontal lines or three dots in the bottom right.'**
   String get installEdgeStep2;
 
   /// No description provided for @installEdgeStep3.
   ///
   /// In en, this message translates to:
-  /// **'Swipe up (or sideways) on the menu that appears to see more options.'**
+  /// **'Swipe up (or sideways) in the menu that appears to see more options.'**
   String get installEdgeStep3;
 
   /// No description provided for @installEdgeStep4.
   ///
   /// In en, this message translates to:
-  /// **'Look for and tap Add to phone (it might also say Install app or Add to Home screen).'**
+  /// **'Look for and tap \'Add to phone\' (it might also say \'Install app\' or \'Add to Home screen\').'**
   String get installEdgeStep4;
 
   /// No description provided for @installEdgeStep5.
   ///
   /// In en, this message translates to:
-  /// **'Follow the prompts to confirm the name \"Exodus Venue\" and tap Add.'**
+  /// **'Follow the prompts to confirm the name \'Exodus Venue\' and tap \'Add\'.'**
   String get installEdgeStep5;
 
   /// No description provided for @installFirefoxTitle.
@@ -687,19 +681,19 @@ abstract class AppLocalizations {
   /// No description provided for @installFirefoxStep2.
   ///
   /// In en, this message translates to:
-  /// **'Tap the three dots (menu) next to the address bar (usually at the bottom or top).'**
+  /// **'Tap the three dots (menu) next to the address bar (usually bottom or top).'**
   String get installFirefoxStep2;
 
   /// No description provided for @installFirefoxStep3.
   ///
   /// In en, this message translates to:
-  /// **'Tap Install.'**
+  /// **'Tap \'Install\'.'**
   String get installFirefoxStep3;
 
   /// No description provided for @installFirefoxStep4.
   ///
   /// In en, this message translates to:
-  /// **'Confirm by tapping Add or Install again.'**
+  /// **'Confirm by tapping \'Add\' or \'Install\' again.'**
   String get installFirefoxStep4;
 
   /// No description provided for @installIos.
@@ -711,7 +705,7 @@ abstract class AppLocalizations {
   /// No description provided for @installFirefoxIosContent.
   ///
   /// In en, this message translates to:
-  /// **'Firefox on iOS does not have a direct \"Install\" button due to Apple\'s restrictions. You have to use the system menu:'**
+  /// **'Firefox on iOS does not have a direct \'Install\' button due to Apple restrictions. You must use the system menu:'**
   String get installFirefoxIosContent;
 
   /// No description provided for @installFirefoxIosStep1.
@@ -723,19 +717,19 @@ abstract class AppLocalizations {
   /// No description provided for @installFirefoxIosStep2.
   ///
   /// In en, this message translates to:
-  /// **'Tap the Share icon (the square with an arrow pointing up) in the address bar.'**
+  /// **'Tap the Share icon (square with an up arrow) in the address bar.'**
   String get installFirefoxIosStep2;
 
   /// No description provided for @installFirefoxIosStep3.
   ///
   /// In en, this message translates to:
-  /// **'Scroll down the list of options and tap Add to Home Screen.'**
+  /// **'Scroll through the list of options and tap \'Add to Home Screen\'.'**
   String get installFirefoxIosStep3;
 
   /// No description provided for @installFirefoxIosStep4.
   ///
   /// In en, this message translates to:
-  /// **'Tap Add in the top right corner.'**
+  /// **'Tap \'Add\' in the top right corner.'**
   String get installFirefoxIosStep4;
 
   /// No description provided for @installChromeTitle.
@@ -753,19 +747,19 @@ abstract class AppLocalizations {
   /// No description provided for @installChromeAndroidStep2.
   ///
   /// In en, this message translates to:
-  /// **'Tap the three dots in the top-right corner.'**
+  /// **'Tap the three dots in the top right corner.'**
   String get installChromeAndroidStep2;
 
   /// No description provided for @installChromeAndroidStep3.
   ///
   /// In en, this message translates to:
-  /// **'Tap Add to Home screen (on some versions, it may say Install app).'**
+  /// **'Tap \'Add to Home screen\' (in some versions, it might say \'Install app\').'**
   String get installChromeAndroidStep3;
 
   /// No description provided for @installChromeAndroidStep4.
   ///
   /// In en, this message translates to:
-  /// **'Tap Add or Install to confirm.'**
+  /// **'Tap \'Add\' or \'Install\' to confirm.'**
   String get installChromeAndroidStep4;
 
   /// No description provided for @installChromeIosStep1.
@@ -777,19 +771,19 @@ abstract class AppLocalizations {
   /// No description provided for @installChromeIosStep2.
   ///
   /// In en, this message translates to:
-  /// **'Tap the Share icon (the square with an arrow pointing up) next to the address bar.'**
+  /// **'Tap the Share icon (square with an up arrow) next to the address bar.'**
   String get installChromeIosStep2;
 
   /// No description provided for @installChromeIosStep3.
   ///
   /// In en, this message translates to:
-  /// **'Scroll down and tap Add to Home Screen.'**
+  /// **'Scroll down and tap \'Add to Home Screen\'.'**
   String get installChromeIosStep3;
 
   /// No description provided for @installChromeIosStep4.
   ///
   /// In en, this message translates to:
-  /// **'Tap Add in the top right.'**
+  /// **'Tap \'Add\' in the top right corner.'**
   String get installChromeIosStep4;
 
   /// No description provided for @installDesktopTitle.
@@ -807,31 +801,31 @@ abstract class AppLocalizations {
   /// No description provided for @installDesktopStep2.
   ///
   /// In en, this message translates to:
-  /// **'Click the three dots in the top-right corner.'**
+  /// **'Click the three dots in the top right.'**
   String get installDesktopStep2;
 
   /// No description provided for @installDesktopStep3.
   ///
   /// In en, this message translates to:
-  /// **'Select Save and Share.'**
+  /// **'Select \'Save and Share\'.'**
   String get installDesktopStep3;
 
   /// No description provided for @installDesktopStep4.
   ///
   /// In en, this message translates to:
-  /// **'Click Install page as app...'**
+  /// **'Click \'Install page as app...\''**
   String get installDesktopStep4;
 
   /// No description provided for @installDesktopStep5.
   ///
   /// In en, this message translates to:
-  /// **'Click Install'**
+  /// **'Click \'Install\'.'**
   String get installDesktopStep5;
 
   /// No description provided for @installSafariIosTitle.
   ///
   /// In en, this message translates to:
-  /// **'For Safari on iPhone & iPad (iOS)'**
+  /// **'For Safari on iPhone and iPad (iOS)'**
   String get installSafariIosTitle;
 
   /// No description provided for @installSafariIosStep1.
@@ -843,19 +837,19 @@ abstract class AppLocalizations {
   /// No description provided for @installSafariIosStep2.
   ///
   /// In en, this message translates to:
-  /// **'Tap the Share button at the bottom (the square with an arrow pointing up).'**
+  /// **'Tap the Share button at the bottom (the square with an up arrow).'**
   String get installSafariIosStep2;
 
   /// No description provided for @installSafariIosStep3.
   ///
   /// In en, this message translates to:
-  /// **'Scroll down the menu and tap Add to Home Screen.'**
+  /// **'Scroll through the menu and tap \'Add to Home Screen\'.'**
   String get installSafariIosStep3;
 
   /// No description provided for @installSafariIosStep4.
   ///
   /// In en, this message translates to:
-  /// **'Tap Add in the top-right corner.'**
+  /// **'Tap \'Add\' in the top right corner.'**
   String get installSafariIosStep4;
 
   /// No description provided for @installSafariMacTitle.
@@ -879,19 +873,19 @@ abstract class AppLocalizations {
   /// No description provided for @installSafariMacStep2.
   ///
   /// In en, this message translates to:
-  /// **'Go to the File menu in the top menu bar.'**
+  /// **'Go to the \'File\' menu in the top menu bar.'**
   String get installSafariMacStep2;
 
   /// No description provided for @installSafariMacStep3.
   ///
   /// In en, this message translates to:
-  /// **'Select Add to Dock...'**
+  /// **'Select \'Add to Dock...\''**
   String get installSafariMacStep3;
 
   /// No description provided for @installSafariMacStep4.
   ///
   /// In en, this message translates to:
-  /// **'Click Add.'**
+  /// **'Click \'Add\'.'**
   String get installSafariMacStep4;
 }
 

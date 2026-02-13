@@ -30,6 +30,6 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - assets/assets/assets/background.png
-    - assets/assets/assets/exodus_logo_header.png
-    - assets/assets/assets/exodus_logo.png
+    - assets/background.png
+    - assets/exodus_logo_header.png
+    - assets/exodus_logo.png
