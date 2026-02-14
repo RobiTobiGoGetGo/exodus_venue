@@ -460,7 +460,7 @@ class _MainScreenState extends State<MainScreen> {
           return AlertDialog(
             title: Text('${l10n.save} $label'),
             content: Column(
-              mainAxisSize: min,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(localValue, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.blue)),
                 const Divider(),
@@ -1166,8 +1166,6 @@ class HelpScreen extends StatelessWidget {
           pw.Bullet(text: l10n.guideSessionResetContent),
           pw.Bullet(text: l10n.guideSessionResetExport),
           pw.Bullet(text: l10n.guideSessionResetConfirm),
-          pw.Header(level: 2, text: l10n.guideSessionShutdownTitle),
-          pw.Bullet(text: l10n.guideSessionShutdownContent),
           pw.SizedBox(height: 20),
           pw.Footer(
             leading: pw.Text("© 2024 GoGetGo Exodus", style: const pw.TextStyle(fontSize: 10)),
@@ -1299,7 +1297,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.2+3",
+                    "Version 1.0.4+5",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
