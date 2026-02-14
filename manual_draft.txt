@@ -1,0 +1,106 @@
+--- EXODUS USER GUIDE (ENGLISH) ---
+
+Title: Exodus User Guide
+Overview Title: 1. Overview
+Overview Content: Exodus is a professional tool for venue entry management. It tracks two main numbers:
+Overview Entered: Total Entered: Cumulative count of everyone who entered.
+Overview Inside: Still Inside: Current number of people remaining in the venue.
+
+Dashboard Title: 2. The Dashboard
+Dashboard Content: The main screen provides real-time information:
+Dashboard Header: Header: Shows the venue logo. Long-press to open this user guide.
+Dashboard Location: Location: The point of entry to the venue is displayed below the logo. Long-press to rename.
+Dashboard Capacity: Capacity: Displayed next to location. Long-press to edit.
+Dashboard Entered Card: Entered Card (Blue): Shows total entries.
+Dashboard Inside Card: Inside Card (Green): Shows the current head count in the venue.
+
+Safety Title: 3. Capacity & Safety
+Safety Content: The app monitors safety limits:
+Safety Transition: The Inside card turns red as capacity is approached.
+Safety Threshold: Warning starts at 2% or 10 people before the limit.
+Safety Signal: A fully red card indicates the venue is at or over capacity.
+
+Input Title: 4. Input Methods
+Input Content: Switch between button and swipe mode using the icons directly above the counter cards:
+Input Button Title: Button Mode (Default)
+Input Button Tap Entered: Tap [+] to increment both counters (person enters).
+Input Button Tap Inside: Tap [-] to decrement 'Still Inside' (person exits).
+Input Button Best For: Best for: High-precision counting at fixed gates.
+Input Swipe Title: Swipe Mode (Gesture)
+Input Swipe Up: Swipe up anywhere to increment both counters.
+Input Swipe Down: Swipe down anywhere to decrement 'Still Inside'.
+Input Swipe Best For: Best for: Fast-paced entry monitoring where eyes must stay on the crowd.
+
+Correction Title: 5. Corrections
+Correction Content: Mistakes can be corrected in two ways:
+Correction Undo: Undo: Tap the semi circular reverse arrow icon in the top left to revert the last action.
+Correction Manual: Manual Edit: Long-press any number on the dashboard to type a specific value using the secure keypad.
+
+Log Title: 6. Log & Reporting
+Log Content: Every log action is time-stamped, as well as the reason for the change and the current counts:
+Log Search: Search: Use the magnifying glass to find specific events (e.g., 'MANUAL').
+Log Delete: Delete: Long-press a log entry to remove it.
+Log Export: Export: Use the share icon to generate PDF reports or CSV spreadsheets.
+Log Preview: Preview: View the report layout before sharing.
+
+Session Title: 7. Session Management
+Session Reset Title: Reset Session
+Session Reset Content: Clears all data to begin all over again.
+Session Reset Export: The app will ask if the log should be exported before the data gets deleted.
+Session Reset Confirm: Requires double confirmation to prevent accidental loss.
+
+
+--- INSTALLATION GUIDE (ENGLISH) ---
+
+Title: Exodus Venue: Installation Guide
+Mobile Title: Mobile Phone Installation
+Edge Title: Edge Mobile
+Edge Step 1: Open the website in Edge: https://RobiTobiGoGetGo.github.io/exodus_venue/
+Edge Step 2: Tap the three horizontal lines or three dots in the bottom right.
+Edge Step 3: Swipe up (or sideways) in the menu that appears to see more options.
+Edge Step 4: Look for and tap 'Add to phone' (it might also say 'Install app' or 'Add to Home screen').
+Edge Step 5: Follow the prompts to confirm the name 'Exodus Venue' and tap 'Add'.
+
+Firefox Title: Firefox Mobile
+Android Section: Android:
+Firefox Step 1: Open the website in Firefox: https://RobiTobiGoGetGo.github.io/exodus_venue/
+Firefox Step 2: Tap the three dots (menu) next to the address bar (usually bottom or top).
+Firefox Step 3: Tap 'Install'.
+Firefox Step 4: Confirm by tapping 'Add' or 'Install' again.
+
+iOS Section: iPhone/iOS:
+Firefox iOS Content: Firefox on iOS does not have a direct 'Install' button due to Apple restrictions. You must use the system menu:
+Firefox iOS Step 1: Open the website in Firefox.
+Firefox iOS Step 2: Tap the Share icon (square with an up arrow) in the address bar.
+Firefox iOS Step 3: Scroll through the list of options and tap 'Add to Home Screen'.
+Firefox iOS Step 4: Tap 'Add' in the top right corner.
+
+Chrome Title: Chrome Mobile
+Chrome Android Step 1: Open the website in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/
+Chrome Android Step 2: Tap the three dots in the top right corner.
+Chrome Android Step 3: Tap 'Add to Home screen' (in some versions, it might say 'Install app').
+Chrome Android Step 4: Tap 'Add' or 'Install' to confirm.
+Chrome iOS Step 1: Open the website in Chrome.
+Chrome iOS Step 2: Tap the Share icon (square with an up arrow) next to the address bar.
+Chrome iOS Step 3: Scroll down and tap 'Add to Home Screen'.
+Chrome iOS Step 4: Tap 'Add' in the top right corner.
+
+Desktop Title: Desktop (Windows/Mac)
+Desktop Step 1: Open the website in Chrome.
+Desktop Step 2: Click the three dots in the top right.
+Desktop Step 3: Select 'Save and Share'.
+Desktop Step 4: Click 'Install page as app...'
+Desktop Step 5: Click 'Install'.
+
+Safari iOS Title: For Safari on iPhone and iPad (iOS)
+Safari iOS Step 1: Open the website in Safari: https://RobiTobiGoGetGo.github.io/exodus_venue/
+Safari iOS Step 2: Tap the Share button at the bottom (the square with an up arrow).
+Safari iOS Step 3: Scroll through the menu and tap 'Add to Home Screen'.
+Safari iOS Step 4: Tap 'Add' in the top right corner.
+
+Safari Mac Title: For Safari on Mac (macOS)
+Safari Mac Note: Note: This requires macOS Sonoma or later.
+Safari Mac Step 1: Open the website in Safari.
+Safari Mac Step 2: Go to the 'File' menu in the top menu bar.
+Safari Mac Step 3: Select 'Add to Dock...'
+Safari Mac Step 4: Click 'Add'.
