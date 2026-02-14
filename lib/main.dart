@@ -321,19 +321,6 @@ class _MainScreenState extends State<MainScreen> {
               _showNameDialog();
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.power_settings_new, color: Colors.red),
-            title: Text(!kIsWeb && io.Platform.isAndroid ? l10n.shutdown : l10n.closeSession),
-            onTap: () async {
-              if (!kIsWeb && io.Platform.isAndroid) {
-                _shutdown();
-              } else {
-                await _logEntry("CLOSE SESSION");
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.sessionClosed)));
-              }
-            },
-          ),
         ],
       ),
     );
