@@ -460,7 +460,7 @@ class _MainScreenState extends State<MainScreen> {
           return AlertDialog(
             title: Text('${l10n.save} $label'),
             content: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: min,
               children: [
                 Text(localValue, style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.blue)),
                 const Divider(),
@@ -1299,7 +1299,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.1+2",
+                    "Version 1.0.2+3",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
@@ -1308,7 +1308,7 @@ class HelpScreen extends StatelessWidget {
                   _buildHelpSection(l10n.guideInputTitle, "${l10n.guideInputContent}\n\nA. ${l10n.guideInputButtonTitle}\n- ${l10n.guideInputButtonTapEntered}\n- ${l10n.guideInputButtonTapInside}\n- ${l10n.guideInputButtonBestFor}\n\nB. ${l10n.guideInputSwipeTitle}\n- ${l10n.guideInputSwipeUp}\n- ${l10n.guideInputSwipeDown}\n- ${l10n.guideInputSwipeBestFor}"),
                   _buildHelpSection(l10n.guideCorrectionTitle, "${l10n.guideCorrectionContent}\n\n- ${l10n.guideCorrectionUndo}\n- ${l10n.guideCorrectionManual}"),
                   _buildHelpSection(l10n.guideLogTitle, "${l10n.guideLogContent}\n\n- ${l10n.guideLogSearch}\n- ${l10n.guideLogDelete}\n- ${l10n.guideLogExport}\n- ${l10n.guideLogPreview}"),
-                  _buildHelpSection(l10n.guideSessionTitle, "${l10n.guideSessionResetTitle}:\n- ${l10n.guideSessionResetContent} ${l10n.guideSessionResetExport}\n- ${l10n.guideSessionResetConfirm}\n\n${l10n.guideSessionShutdownTitle}:\n- ${l10n.guideSessionShutdownContent}"),
+                  _buildHelpSection(l10n.guideSessionTitle, "${l10n.guideSessionResetTitle}:\n- ${l10n.guideSessionResetContent} ${l10n.guideSessionResetExport}\n- ${l10n.guideSessionResetConfirm}"),
                   const SizedBox(height: 30),
                   const Center(child: Text("© 2024 GoGetGo Exodus", style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic))),
                 ],
