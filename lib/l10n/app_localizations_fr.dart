@@ -162,11 +162,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get guideDashboardHeader =>
-      'En-tête : Affiche le logo du lieu. Appuyez longuement pour ouvrir ce guide.';
+      'En-tête : Affiche le logo du lieu. Appuyez longuement pour ouvrir ce guide de l\'utilisateur.';
 
   @override
   String get guideDashboardLocation =>
-      'Lieu : Affiché sous le logo. Appuyez longuement pour renommer.';
+      'Lieu : Le point d\'entrée au lieu est affiché sous le logo. Appuyez longuement pour renommer.';
 
   @override
   String get guideDashboardCapacity =>
@@ -178,7 +178,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get guideDashboardInsideCard =>
-      'Carte Encore à l\'intérieur (Verte) : Affiche l\'occupation actuelle.';
+      'Carte Encore à l\'intérieur (Verte) : Affiche le décompte actuel des personnes dans le lieu.';
 
   @override
   String get guideSafetyTitle => '3. Capacité et sécurité';
@@ -189,7 +189,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get guideSafetyTransition =>
-      'La carte \'Encore à l\'intérieur\' devient rouge à mesure que vous approchez de la capacité.';
+      'La carte \'Encore à l\'intérieur\' devient rouge à mesure que la capacité est approchée.';
 
   @override
   String get guideSafetyThreshold =>
@@ -204,7 +204,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get guideInputContent =>
-      'Basculez entre deux modes à l\'aide des icônes du haut :';
+      'Basculez entre le mode bouton et le mode balayage à l\'aide des icônes situées directement au-dessus des cartes de compteur :';
 
   @override
   String get guideInputButtonTitle => 'Mode Bouton (Par défaut)';
@@ -245,7 +245,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get guideCorrectionUndo =>
-      'Annuler : Appuyez sur l\'icône de flèche circulaire en haut à gauche pour revenir à l\'action précédente.';
+      'Annuler : Appuyez sur l\'icône de flèche de retour semi-circulaire en haut à gauche pour annuler la dernière action.';
 
   @override
   String get guideCorrectionManual =>
@@ -255,7 +255,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get guideLogTitle => '6. Journal et rapports';
 
   @override
-  String get guideLogContent => 'Chaque action est horodatée et enregistrée :';
+  String get guideLogContent =>
+      'Chaque action de journal est horodatée, ainsi que la raison du changement et les comptes actuels :';
 
   @override
   String get guideLogSearch =>
@@ -281,22 +282,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get guideSessionResetContent =>
-      'Efface toutes les données pour une nouvelle journée.';
+      'Efface toutes les données pour recommencer depuis le début.';
 
   @override
   String get guideSessionResetExport =>
-      'L\'application vous demandera si vous souhaitez d\'abord exporter vos données.';
+      'L\'application vous demandera si le journal doit être exporté avant que les données ne soient supprimées.';
 
   @override
   String get guideSessionResetConfirm =>
       'Nécessite une double confirmation pour éviter toute perte accidentelle.';
 
   @override
-  String get guideSessionShutdownTitle => 'Éteindre';
+  String get guideSessionShutdownTitle => 'Shutdown';
 
   @override
   String get guideSessionShutdownContent =>
-      'Enregistre correctement la fin du travail et ferme l\'application.';
+      'Properly logs the end of work and exits the application.';
 
   @override
   String get installGuideTitle => 'Exodus Venue : Guide d\'installation';
@@ -378,7 +379,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get installChromeAndroidStep2 =>
-      'Appuyez sur les trois points dans le coin supérieur droit.';
+      'Appuyez sur les three points dans le coin supérieur droit.';
 
   @override
   String get installChromeAndroidStep3 =>
@@ -410,7 +411,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get installDesktopStep2 =>
-      'Cliquez sur les trois points en haut à droite.';
+      'Cliquez sur les three points en haut à droite.';
 
   @override
   String get installDesktopStep3 => 'Sélectionnez Enregistrer et partager.';

@@ -393,13 +393,13 @@ abstract class AppLocalizations {
   /// No description provided for @guideDashboardHeader.
   ///
   /// In en, this message translates to:
-  /// **'Header: Shows the venue logo. Long-press to open this guide.'**
+  /// **'Header: Shows the venue logo. Long-press to open this user guide.'**
   String get guideDashboardHeader;
 
   /// No description provided for @guideDashboardLocation.
   ///
   /// In en, this message translates to:
-  /// **'Location: Displayed below the logo. Long-press to rename.'**
+  /// **'Location: The point of entry to the venue is displayed below the logo. Long-press to rename.'**
   String get guideDashboardLocation;
 
   /// No description provided for @guideDashboardCapacity.
@@ -417,7 +417,7 @@ abstract class AppLocalizations {
   /// No description provided for @guideDashboardInsideCard.
   ///
   /// In en, this message translates to:
-  /// **'Inside Card (Green): Shows current occupancy.'**
+  /// **'Inside Card (Green): Shows the current head count in the venue.'**
   String get guideDashboardInsideCard;
 
   /// No description provided for @guideSafetyTitle.
@@ -435,7 +435,7 @@ abstract class AppLocalizations {
   /// No description provided for @guideSafetyTransition.
   ///
   /// In en, this message translates to:
-  /// **'The Inside card turns red as you approach capacity.'**
+  /// **'The Inside card turns red as capacity is approached.'**
   String get guideSafetyTransition;
 
   /// No description provided for @guideSafetyThreshold.
@@ -459,7 +459,7 @@ abstract class AppLocalizations {
   /// No description provided for @guideInputContent.
   ///
   /// In en, this message translates to:
-  /// **'Switch between two modes using the top icons:'**
+  /// **'Switch between button and swipe mode using the icons directly above the counter cards:'**
   String get guideInputContent;
 
   /// No description provided for @guideInputButtonTitle.
@@ -525,7 +525,7 @@ abstract class AppLocalizations {
   /// No description provided for @guideCorrectionUndo.
   ///
   /// In en, this message translates to:
-  /// **'Undo: Tap the circular arrow icon in the top left to revert the last action.'**
+  /// **'Undo: Tap the semi circular reverse arrow icon in the top left to revert the last action.'**
   String get guideCorrectionUndo;
 
   /// No description provided for @guideCorrectionManual.
@@ -543,7 +543,7 @@ abstract class AppLocalizations {
   /// No description provided for @guideLogContent.
   ///
   /// In en, this message translates to:
-  /// **'Every action is time-stamped and recorded:'**
+  /// **'Every log action is time-stamped, as well as the reason for the change and the current counts:'**
   String get guideLogContent;
 
   /// No description provided for @guideLogSearch.
@@ -585,13 +585,13 @@ abstract class AppLocalizations {
   /// No description provided for @guideSessionResetContent.
   ///
   /// In en, this message translates to:
-  /// **'Clears all data for a new day.'**
+  /// **'Clears all data to begin all over again.'**
   String get guideSessionResetContent;
 
   /// No description provided for @guideSessionResetExport.
   ///
   /// In en, this message translates to:
-  /// **'The app will ask if you want to export your data first.'**
+  /// **'The app will ask if the log should be exported before the data gets deleted.'**
   String get guideSessionResetExport;
 
   /// No description provided for @guideSessionResetConfirm.

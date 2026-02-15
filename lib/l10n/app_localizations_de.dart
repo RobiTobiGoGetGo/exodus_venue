@@ -162,11 +162,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideDashboardHeader =>
-      'Header: Zeigt das Logo des Veranstaltungsorts. Lange drücken, um dieses Handbuch zu öffnen.';
+      'Header: Zeigt das Logo des Veranstaltungsorts. Lange drücken, um dieses Benutzerhandbuch zu öffnen.';
 
   @override
   String get guideDashboardLocation =>
-      'Ort: Wird unter dem Logo angezeigt. Lange drücken, um ihn umzubenennen.';
+      'Ort: Der Punkt des Einlasses in den Veranstaltungsort wird unter dem Logo angezeigt. Lange drücken, um ihn umzubenennen.';
 
   @override
   String get guideDashboardCapacity =>
@@ -178,7 +178,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideDashboardInsideCard =>
-      'Karte Noch drin (Grün): Zeigt die aktuelle Belegung an.';
+      'Karte Noch drin (Grün): Zeigt die aktuelle Personenzahl im Veranstaltungsort an.';
 
   @override
   String get guideSafetyTitle => '3. Kapazität & Sicherheit';
@@ -188,7 +188,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideSafetyTransition =>
-      'Die Karte \'Noch drin\' färbt sich rot, wenn Sie sich der Kapazitätsgrenze nähern.';
+      'Die Karte \'Noch drin\' färbt sich rot, wenn die Kapazitätsgrenze erreicht wird.';
 
   @override
   String get guideSafetyThreshold =>
@@ -203,7 +203,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideInputContent =>
-      'Wechseln Sie zwischen zwei Modi mit den oberen Symbolen:';
+      'Wechseln Sie zwischen Tasten- und Wischmodus mit den Symbolen direkt über den Zählerkarten:';
 
   @override
   String get guideInputButtonTitle => 'Tastenmodus (Standard)';
@@ -221,7 +221,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Bestens geeignet für: Hochpräzises Zählen an festen Toren.';
 
   @override
-  String get guideInputSwipeTitle => 'Wischmodus (Gesten)';
+  String get guideInputSwipeTitle => 'Wischmodus (Geste)';
 
   @override
   String get guideInputSwipeUp =>
@@ -244,7 +244,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideCorrectionUndo =>
-      'Rückgängig: Tippen Sie auf das kreisförmige Pfeilsymbol oben links, um die letzte Aktion rückgängig zu machen.';
+      'Rückgängig: Tippen Sie auf das halbkreisförmige Rückwärtspfeil-Symbol oben links, um die letzte Aktion rückgängig zu machen.';
 
   @override
   String get guideCorrectionManual =>
@@ -255,7 +255,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideLogContent =>
-      'Jede Aktion wird mit Zeitstempel aufgezeichnet:';
+      'Jede Protokollaktion wird mit einem Zeitstempel versehen, ebenso wie der Grund für die Änderung und die aktuellen Zählerstände:';
 
   @override
   String get guideLogSearch =>
@@ -267,7 +267,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideLogExport =>
-      'Exportieren: Verwenden Sie das Share-Symbol, um PDF-Berichte oder CSV-Tabellen zu erstellen.';
+      'Exportieren: Verwenden Sie das Teilen-Symbol, um PDF-Berichte oder CSV-Tabellen zu erstellen.';
 
   @override
   String get guideLogPreview =>
@@ -281,22 +281,22 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get guideSessionResetContent =>
-      'Löscht alle Daten für einen neuen Tag.';
+      'Löscht alle Daten, um ganz von vorne zu beginnen.';
 
   @override
   String get guideSessionResetExport =>
-      'Die App fragt, ob Sie Ihre Daten zuerst exportieren möchten.';
+      'Die App fragt, ob das Protokoll exportiert werden soll, bevor die Daten gelöscht werden.';
 
   @override
   String get guideSessionResetConfirm =>
       'Erfordert eine doppelte Bestätigung, um versehentlichen Verlust zu verhindern.';
 
   @override
-  String get guideSessionShutdownTitle => 'Beenden';
+  String get guideSessionShutdownTitle => 'Shutdown';
 
   @override
   String get guideSessionShutdownContent =>
-      'Protokolliert ordnungsgemäß das Ende der Arbeit und beendet die Anwendung.';
+      'Properly logs the end of work and exits the application.';
 
   @override
   String get installGuideTitle => 'Exodus Venue: Installationsanleitung';

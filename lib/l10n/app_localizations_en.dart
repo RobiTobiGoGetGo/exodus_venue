@@ -160,11 +160,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guideDashboardHeader =>
-      'Header: Shows the venue logo. Long-press to open this guide.';
+      'Header: Shows the venue logo. Long-press to open this user guide.';
 
   @override
   String get guideDashboardLocation =>
-      'Location: Displayed below the logo. Long-press to rename.';
+      'Location: The point of entry to the venue is displayed below the logo. Long-press to rename.';
 
   @override
   String get guideDashboardCapacity =>
@@ -176,7 +176,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guideDashboardInsideCard =>
-      'Inside Card (Green): Shows current occupancy.';
+      'Inside Card (Green): Shows the current head count in the venue.';
 
   @override
   String get guideSafetyTitle => '3. Capacity & Safety';
@@ -186,7 +186,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guideSafetyTransition =>
-      'The Inside card turns red as you approach capacity.';
+      'The Inside card turns red as capacity is approached.';
 
   @override
   String get guideSafetyThreshold =>
@@ -201,7 +201,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guideInputContent =>
-      'Switch between two modes using the top icons:';
+      'Switch between button and swipe mode using the icons directly above the counter cards:';
 
   @override
   String get guideInputButtonTitle => 'Button Mode (Default)';
@@ -241,7 +241,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guideCorrectionUndo =>
-      'Undo: Tap the circular arrow icon in the top left to revert the last action.';
+      'Undo: Tap the semi circular reverse arrow icon in the top left to revert the last action.';
 
   @override
   String get guideCorrectionManual =>
@@ -251,7 +251,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guideLogTitle => '6. Log & Reporting';
 
   @override
-  String get guideLogContent => 'Every action is time-stamped and recorded:';
+  String get guideLogContent =>
+      'Every log action is time-stamped, as well as the reason for the change and the current counts:';
 
   @override
   String get guideLogSearch =>
@@ -275,11 +276,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guideSessionResetTitle => 'Reset Session';
 
   @override
-  String get guideSessionResetContent => 'Clears all data for a new day.';
+  String get guideSessionResetContent =>
+      'Clears all data to begin all over again.';
 
   @override
   String get guideSessionResetExport =>
-      'The app will ask if you want to export your data first.';
+      'The app will ask if the log should be exported before the data gets deleted.';
 
   @override
   String get guideSessionResetConfirm =>

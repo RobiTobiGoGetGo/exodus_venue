@@ -162,11 +162,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get guideDashboardHeader =>
-      'Intestazione: Mostra il logo della sede. Premi a lungo per aprire questa guida.';
+      'Intestazione: Mostra il logo della sede. Premere a lungo per aprire questa guida utente.';
 
   @override
   String get guideDashboardLocation =>
-      'Posizione: Visualizzata sotto il logo. Premi a lungo per rinominare.';
+      'Posizione: Il punto di ingresso alla sede è visualizzato sotto il logo. Premere a lungo per rinominare.';
 
   @override
   String get guideDashboardCapacity =>
@@ -178,7 +178,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get guideDashboardInsideCard =>
-      'Scheda Ancora all\'interno (Verde): Mostra l\'occupazione attuale.';
+      'Scheda Ancora all\'interno (Verde): Mostra il conteggio attuale delle persone nella sede.';
 
   @override
   String get guideSafetyTitle => '3. Capacità e sicurezza';
@@ -203,7 +203,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get guideInputContent =>
-      'Passa tra due modalità usando le icone in alto:';
+      'Passa dalla modalità pulsante alla modalità scorrimento utilizzando le icone direttamente sopra le schede del contatore:';
 
   @override
   String get guideInputButtonTitle => 'Modalità Pulsante (Predefinita)';
@@ -244,7 +244,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get guideCorrectionUndo =>
-      'Annulla: Tocca l\'icona della freccia circolare in alto a sinistra per annullare l\'ultima azione.';
+      'Annulla: Tocca l\'icona della freccia di ritorno semincircolare in alto a sinistra per annullare l\'ultima azione.';
 
   @override
   String get guideCorrectionManual =>
@@ -254,7 +254,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get guideLogTitle => '6. Registro e reportistica';
 
   @override
-  String get guideLogContent => 'Ogni azione viene registrata con data e ora:';
+  String get guideLogContent =>
+      'Ogni azione del registro è contrassegnata con data e ora, così come il motivo della modifica e i conteggi attuali:';
 
   @override
   String get guideLogSearch =>
@@ -280,22 +281,22 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get guideSessionResetContent =>
-      'Cancella tutti i dati per un nuovo giorno.';
+      'Cancella tutti i dati per ricominciare tutto da capo.';
 
   @override
   String get guideSessionResetExport =>
-      'L\'app ti chiederà se vuoi prima esportare i tuoi dati.';
+      'L\'app chiederà se il registro debba essere esportato prima che i dati vengano cancellati.';
 
   @override
   String get guideSessionResetConfirm =>
       'Richiede una doppia conferma per evitare perdite accidentali.';
 
   @override
-  String get guideSessionShutdownTitle => 'Spegni';
+  String get guideSessionShutdownTitle => 'Shutdown';
 
   @override
   String get guideSessionShutdownContent =>
-      'Registra correttamente la fine del lavoro e chiude l\'applicazione.';
+      'Properly logs the end of work and exits the application.';
 
   @override
   String get installGuideTitle => 'Exodus Venue: Guida all\'installazione';
@@ -352,7 +353,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get installFirefoxIosContent =>
-      'Firefox su iOS non ha un pulsante diretto \"Installa\" a causa delle restrizioni di Apple. Devi usare il menu di sistema:';
+      'Firefox su iOS non ha un pulsante diretto \"Install\" a causa delle restrizioni di Apple. Devi usare il menu di sistema:';
 
   @override
   String get installFirefoxIosStep1 => 'Apri il sito web in Firefox.';
@@ -373,7 +374,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get installChromeAndroidStep1 =>
-      'Apri il sito web in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/';
+      'Open the website in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/';
 
   @override
   String get installChromeAndroidStep2 => 'Tocca i tre punti in alto a destra.';
@@ -404,7 +405,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get installDesktopTitle => 'Desktop (Windows/Mac)';
 
   @override
-  String get installDesktopStep1 => 'Apri il sito web in Chrome.';
+  String get installDesktopStep1 => 'Open the website in Chrome.';
 
   @override
   String get installDesktopStep2 => 'Fai clic sui tre punti in alto a destra.';
