@@ -50175,7 +50175,7 @@ r=h.e
 if(r<=p)o=A.M.np(0.9)
 else{n=(r-p)/q
 o=B.B(A.M,A.ux,n>1?1:n).np(0.9)}r=B.jB(g,g,A.Yt,g,g,h.gaom(),g,g,g)
-m=B.hy(g,B.iC(B.rE(!0,new B.vf(B.b1o(g,g,new B.u4("assets/exodus_logo_header.png",g,g)),120,A.tA,g),A.bc,!0),g,g),A.aN,!1,g,g,g,g,g,g,g,new B.aBj(a),g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,!1,A.c6)
+m=B.hy(g,B.iC(B.rE(!0,new B.vf(B.b1o(g,g,new B.u4("images/exodus_logo_header.png",g,g)),120,A.tA,g),A.bc,!0),g,g),A.aN,!1,g,g,g,g,g,g,g,new B.aBj(a),g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,!1,A.c6)
 l=t.p
 r=B.a9Q(B.b([B.hy(g,B.jB(g,g,A.Yi,g,g,h.ganB(),g,g,g),A.aN,!1,g,g,g,g,g,g,g,new B.aBk(h,a),g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,g,!1,A.c6)],l),A.af,g,!0,0,m,r,g)
 m=h.x
@@ -50808,7 +50808,7 @@ return B.F($async$IV,r)},
 S(a){var s,r=this,q=null,p=B.cK(a,A.bP,t.J),o=B.b5(p.gy6(),q,q,q,q,q,q),n=t.p
 o=B.a9Q(B.b([B.jB(q,q,A.Yj,q,q,new B.agy(r,a,p),q,q,"Export Manual as PDF"),B.jB(q,q,A.Yq,q,q,new B.agz(r,a,p),q,q,"Export Installation Guide")],n),A.af,q,q,q,q,q,o)
 s=A.M.np(0.9)
-return B.lF(q,B.apZ(o,A.af,B.b1Y(B.aI5(new B.ci(A.Xg,B.hW(B.b([B.b5(p.guH(),q,q,q,A.b_r,q,q),A.b2E,A.aY0,r.rl(p.gvp(),p.gvm()+"\n\n- "+p.gvn()+"\n- "+p.gvo()),r.rl(p.gv5(),p.gv0()+"\n\n- "+p.gv2()+"\n- "+p.gv4()+"\n- "+p.gv_()+"\n- "+p.gv1()+"\n- "+p.gv3()+"\n\n"+p.gvt()+":\n"+p.gvq()+"\n- "+p.gvu()+"\n- "+p.gvs()+"\n- "+p.gvr()),r.rl(p.gvf(),p.gva()+"\n\nA. "+p.gv9()+"\n- "+p.gv7()+"\n- "+p.gv8()+"\n- "+p.gv6()+"\n\nB. "+p.gvd()+"\n- "+p.gve()+"\n- "+p.gvc()+"\n- "+p.gvb()),r.rl(p.guY(),p.guW()+"\n\n- "+p.guZ()+"\n- "+p.guX()),r.rl(p.gvl(),p.gvg()+"\n\n- "+p.gvk()+"\n- "+p.gvh()+"\n- "+p.gvi()+"\n- "+p.gvj()),r.rl(p.gvz(),p.gvy()+":\n- "+p.gvw()+" "+p.gvx()+"\n- "+p.gvv()),A.aY1,A.UM],n),A.dc,A.bM,A.cx,A.bm),q),s,q,q),q,A.uV,q)),A.ae,q,A.oc,q,q,q,q)},
+return B.lF(q,B.apZ(o,A.af,B.b1Y(B.aI5(new B.ci(A.Xg,B.hW(B.b([B.b5(p.guH(),q,q,q,A.b_r,q,q),A.b2F,A.aY0,r.rl(p.gvp(),p.gvm()+"\n\n- "+p.gvn()+"\n- "+p.gvo()),r.rl(p.gv5(),p.gv0()+"\n\n- "+p.gv2()+"\n- "+p.gv4()+"\n- "+p.gv_()+"\n- "+p.gv1()+"\n- "+p.gv3()+"\n\n"+p.gvt()+":\n"+p.gvq()+"\n- "+p.gvu()+"\n- "+p.gvs()+"\n- "+p.gvr()),r.rl(p.gvf(),p.gva()+"\n\nA. "+p.gv9()+"\n- "+p.gv7()+"\n- "+p.gv8()+"\n- "+p.gv6()+"\n\nB. "+p.gvd()+"\n- "+p.gve()+"\n- "+p.gvc()+"\n- "+p.gvb()),r.rl(p.guY(),p.guW()+"\n\n- "+p.guZ()+"\n- "+p.guX()),r.rl(p.gvl(),p.gvg()+"\n\n- "+p.gvk()+"\n- "+p.gvh()+"\n- "+p.gvi()+"\n- "+p.gvj()),r.rl(p.gvz(),p.gvy()+":\n- "+p.gvw()+" "+p.gvx()+"\n- "+p.gvv()),A.aY1,A.UM],n),A.dc,A.bM,A.cx,A.bm),q),s,q,q),q,A.uV,q)),A.ae,q,A.oc,q,q,q,q)},
 rl(a,b){var s=null
 return new B.ci(A.X9,B.hW(B.b([B.b5(a,s,s,s,A.b1r,s,s),A.uO,B.b5(b,s,s,s,A.b0S,s,s)],t.p),A.dc,A.bM,A.cx,A.bm),s)}}
 B.agt.prototype={
@@ -108055,7 +108055,7 @@ A.jh=new B.jp(3,"hidden")
 A.o6=new B.jp(4,"paused")
 A.o7=new B.zg(0,"polite")
 A.o8=new B.zg(1,"assertive")
-A.hq=new B.u4("assets/background.png",null,null)
+A.hq=new B.u4("images/background.png",null,null)
 A.tm=new B.nn(0,"log")
 A.SB=new B.nn(1,"position")
 A.SC=new B.nn(2,"duration")
@@ -108463,8 +108463,8 @@ A.aQO=new B.c2([50,A.uo,100,A.VG,200,A.uj,300,A.uq,350,A.fa,400,A.u5,500,A.uv,60
 A.LS=new B.qH(A.aQO,1,0.6196078431372549,0.6196078431372549,0.6196078431372549,A.G)
 A.pr=new B.Qb(1,"italic")
 A.b_7=new B.p(!0,A.LS,null,null,null,null,null,null,A.pr,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b2F=new B.rZ("\xa9 2024 GoGetGo Exodus",null,A.b_7,null,null,null,null,null,null)
-A.UM=new B.lB(A.aB,null,null,A.b2F,null)
+A.b2E=new B.rZ("\xa9 2024 GoGetGo Exodus",null,A.b_7,null,null,null,null,null,null)
+A.UM=new B.lB(A.aB,null,null,A.b2E,null)
 A.b8h=new B.avp(0,"material")
 A.V_=new B.zE(null)
 A.u_=new B.lB(A.aB,null,null,A.V_,null)
@@ -115414,7 +115414,7 @@ A.b1t=new B.p(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,nul
 A.aZv=new B.p(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,A.E,null,null,null,"blackRedwoodCity labelSmall",null,null,null,null)
 A.b2D=new B.eh(A.b0k,A.b_f,A.b0l,A.b0N,A.aZV,A.b_2,A.b_A,A.b0I,A.b_N,A.b1a,A.aZn,A.aZG,A.b17,A.b1t,A.aZv)
 A.b1Z=new B.p(!0,A.LS,null,null,null,null,14,null,A.pr,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b2E=new B.rZ("Version 1.0.4+5",null,A.b1Z,null,null,null,null,null,null)
+A.b2F=new B.rZ("Version 1.0.6+7",null,A.b1Z,null,null,null,null,null,null)
 A.b8g=new B.auo(0,"system")
 A.aTr=new B.k(0.056,0.024)
 A.aTG=new B.k(0.108,0.3085)
