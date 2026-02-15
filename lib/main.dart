@@ -92,6 +92,7 @@ class _MainScreenState extends State<MainScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
   bool _isAlarmLooping = false;
   bool _alarmSilenced = false;
+  bool _audioUnlocked = false;
 
   @override
   void initState() {
@@ -125,6 +126,17 @@ class _MainScreenState extends State<MainScreen> {
     await _prefs.setString('location_name', _locationName);
   }
 
+  // Forces the browser to allow audio after a user interaction
+  Future<void> _unlockAudio() async {
+    if (_audioUnlocked || !kIsWeb) return;
+    try {
+      await _audioPlayer.setVolume(0.0);
+      await _audioPlayer.play(AssetSource('images/beep.mp3'));
+      await _audioPlayer.stop();
+      _audioUnlocked = true;
+    } catch (_) {}
+  }
+
   void _playAlarm() async {
     int threshold = (_capacity * 0.02).round();
     if (threshold < 10) threshold = 10;
@@ -137,18 +149,7 @@ class _MainScreenState extends State<MainScreen> {
           await _audioPlayer.setReleaseMode(ReleaseMode.loop);
           await _audioPlayer.setVolume(1.0);
           await _audioPlayer.play(AssetSource('images/beep.mp3'));
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Alarm Triggered (Loop)"), duration: Duration(seconds: 1)),
-            );
-          }
-        } catch (e) {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Audio Error: $e")),
-            );
-          }
-        }
+        } catch (_) {}
       }
     } else if (_inside > startAt) {
       _alarmSilenced = false; 
@@ -156,6 +157,7 @@ class _MainScreenState extends State<MainScreen> {
         _stopAlarm(resetSilence: false);
       }
       double volume = (_inside - startAt) / threshold;
+      if (volume > 1.0) volume = 1.0;
       try {
         await _audioPlayer.setReleaseMode(ReleaseMode.release);
         await _audioPlayer.setVolume(volume);
@@ -179,6 +181,7 @@ class _MainScreenState extends State<MainScreen> {
 
   void _setCountingMode(String mode) {
     HapticFeedback.selectionClick();
+    _unlockAudio();
     setState(() {
       _countingMode = mode;
     });
@@ -189,7 +192,7 @@ class _MainScreenState extends State<MainScreen> {
     if (insDelta < 0 && _inside <= 0) return;
 
     HapticFeedback.lightImpact();
-    // User interaction here satisfies browser policy
+    _unlockAudio();
     setState(() {
       _history.add({'entered': _entered, 'inside': _inside});
       if (_history.length > 50) _history.removeAt(0);
