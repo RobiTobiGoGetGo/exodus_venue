@@ -133,9 +133,22 @@ class _MainScreenState extends State<MainScreen> {
     if (_inside >= _capacity) {
       if (!_isAlarmLooping && !_alarmSilenced) {
         setState(() => _isAlarmLooping = true);
-        await _audioPlayer.setReleaseMode(ReleaseMode.loop);
-        await _audioPlayer.setVolume(1.0);
-        await _audioPlayer.play(AssetSource('images/beep.mp3'));
+        try {
+          await _audioPlayer.setReleaseMode(ReleaseMode.loop);
+          await _audioPlayer.setVolume(1.0);
+          await _audioPlayer.play(AssetSource('images/beep.mp3'));
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Alarm Triggered (Loop)"), duration: Duration(seconds: 1)),
+            );
+          }
+        } catch (e) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Audio Error: $e")),
+            );
+          }
+        }
       }
     } else if (_inside > startAt) {
       _alarmSilenced = false; 
@@ -176,6 +189,7 @@ class _MainScreenState extends State<MainScreen> {
     if (insDelta < 0 && _inside <= 0) return;
 
     HapticFeedback.lightImpact();
+    // User interaction here satisfies browser policy
     setState(() {
       _history.add({'entered': _entered, 'inside': _inside});
       if (_history.length > 50) _history.removeAt(0);
@@ -584,6 +598,7 @@ class _MainScreenState extends State<MainScreen> {
     } else {
       double weight = (_inside - startAt) / threshold;
       if (weight > 1.0) weight = 1.0;
+      // Graduation to a much brighter red
       insideColor = Color.lerp(Colors.white, Colors.red, weight)!.withValues(alpha: 0.9);
     }
 
@@ -1335,7 +1350,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.10+11",
+                    "Version 1.0.11+12",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
