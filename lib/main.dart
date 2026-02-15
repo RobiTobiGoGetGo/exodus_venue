@@ -532,15 +532,6 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  void _shutdown() async {
-    HapticFeedback.vibrate();
-    await _logEntry("SHUTDOWN");
-    SystemNavigator.pop();
-    if (!kIsWeb) {
-      io.exit(0);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     if (!_isInitialized) {
@@ -564,7 +555,7 @@ class _MainScreenState extends State<MainScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/background.png"),
+          image: AssetImage("images/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -585,7 +576,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Center(
                 child: SafeArea(
                   child: Image.asset(
-                    "assets/exodus_logo_header.png",
+                    "images/exodus_logo_header.png",
                     height: 120,
                     fit: BoxFit.contain,
                   ),
@@ -987,7 +978,7 @@ class _LogScreenState extends State<LogScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/background.png"),
+          image: AssetImage("images/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -1251,7 +1242,7 @@ class HelpScreen extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/background.png"),
+          image: AssetImage("images/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -1297,7 +1288,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.4+5",
+                    "Version 1.0.6+7",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
