@@ -83,13 +83,15 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _entered = 0;
   int _inside = 0;
-  int _capacity = 100;
+  int _capacity = 250;
   String _locationName = "Main Entrance";
   final List<Map<String, int>> _history = [];
   String _countingMode = 'button';
   late SharedPreferences _prefs;
   bool _isInitialized = false;
   final AudioPlayer _audioPlayer = AudioPlayer();
+  bool _isAlarmLooping = false;
+  bool _alarmSilenced = false;
 
   @override
   void initState() {
@@ -108,7 +110,7 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _entered = _prefs.getInt('last_entered') ?? 0;
       _inside = _prefs.getInt('last_inside') ?? 0;
-      _capacity = _prefs.getInt('capacity') ?? 100;
+      _capacity = _prefs.getInt('capacity') ?? 250;
       _locationName = _prefs.getString('location_name') ?? "Main Entrance";
       _countingMode = _prefs.getString('counting_mode') ?? 'button';
       _isInitialized = true;
@@ -123,10 +125,43 @@ class _MainScreenState extends State<MainScreen> {
     await _prefs.setString('location_name', _locationName);
   }
 
-  void _playSound() async {
-    // try {
-    //   await _audioPlayer.play(AssetSource('click.mp3'), mode: PlayerMode.lowLatency);
-    // } catch (_) {}
+  void _playAlarm() async {
+    int threshold = (_capacity * 0.02).round();
+    if (threshold < 10) threshold = 10;
+    int startAt = _capacity - threshold;
+
+    if (_inside >= _capacity) {
+      if (!_isAlarmLooping && !_alarmSilenced) {
+        setState(() => _isAlarmLooping = true);
+        await _audioPlayer.setReleaseMode(ReleaseMode.loop);
+        await _audioPlayer.setVolume(1.0);
+        await _audioPlayer.play(AssetSource('images/beep.mp3'));
+      }
+    } else if (_inside > startAt) {
+      _alarmSilenced = false; 
+      if (_isAlarmLooping) {
+        _stopAlarm(resetSilence: false);
+      }
+      double volume = (_inside - startAt) / threshold;
+      try {
+        await _audioPlayer.setReleaseMode(ReleaseMode.release);
+        await _audioPlayer.setVolume(volume);
+        await _audioPlayer.play(AssetSource('images/beep.mp3'));
+      } catch (_) {}
+    } else {
+      _alarmSilenced = false;
+      if (_isAlarmLooping) {
+        _stopAlarm(resetSilence: false);
+      }
+    }
+  }
+
+  void _stopAlarm({bool resetSilence = true}) {
+    _audioPlayer.stop();
+    setState(() {
+      _isAlarmLooping = false;
+      if (resetSilence) _alarmSilenced = true;
+    });
   }
 
   void _setCountingMode(String mode) {
@@ -141,7 +176,6 @@ class _MainScreenState extends State<MainScreen> {
     if (insDelta < 0 && _inside <= 0) return;
 
     HapticFeedback.lightImpact();
-    _playSound();
     setState(() {
       _history.add({'entered': _entered, 'inside': _inside});
       if (_history.length > 50) _history.removeAt(0);
@@ -149,6 +183,7 @@ class _MainScreenState extends State<MainScreen> {
       _entered += entDelta;
       _inside += insDelta;
     });
+    _playAlarm();
     _saveState();
   }
 
@@ -549,7 +584,7 @@ class _MainScreenState extends State<MainScreen> {
     } else {
       double weight = (_inside - startAt) / threshold;
       if (weight > 1.0) weight = 1.0;
-      insideColor = Color.lerp(Colors.white, Colors.red.shade300, weight)!.withValues(alpha: 0.9);
+      insideColor = Color.lerp(Colors.white, Colors.red, weight)!.withValues(alpha: 0.9);
     }
 
     return Container(
@@ -637,6 +672,7 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       GestureDetector(
+                        onTap: _isAlarmLooping ? _stopAlarm : null,
                         onLongPress: () {
                           HapticFeedback.mediumImpact();
                           _showEditDialog(l10n.capacity, _capacity, (val) {
@@ -644,9 +680,20 @@ class _MainScreenState extends State<MainScreen> {
                             _saveState();
                           });
                         },
-                        child: Text(
-                          "${l10n.capacity}: $_capacity",
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (_isAlarmLooping)
+                              const Icon(Icons.notifications_active, color: Colors.red, size: 20),
+                            Text(
+                              "${l10n.capacity}: $_capacity",
+                              style: TextStyle(
+                                fontSize: 16, 
+                                fontWeight: FontWeight.bold, 
+                                color: _isAlarmLooping ? Colors.red : Colors.black87
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -1288,7 +1335,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.6+7",
+                    "Version 1.0.10+11",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
