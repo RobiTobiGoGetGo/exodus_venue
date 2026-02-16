@@ -126,7 +126,6 @@ class _MainScreenState extends State<MainScreen> {
     await _prefs.setString('location_name', _locationName);
   }
 
-  // Forces the browser to allow audio after a user interaction
   Future<void> _unlockAudio() async {
     if (_audioUnlocked || !kIsWeb) return;
     try {
@@ -421,7 +420,6 @@ class _MainScreenState extends State<MainScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.resetSessionQuestion),
-        content: Text(l10n.resetSessionContent),
         actions: [
           TextButton(
             onPressed: () {
@@ -448,7 +446,6 @@ class _MainScreenState extends State<MainScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.confirmFullReset),
-        content: Text(l10n.confirmResetContent),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
           TextButton(
@@ -461,7 +458,6 @@ class _MainScreenState extends State<MainScreen> {
               });
               _prefs.setStringList('entries', []); // Empty the log
               _saveState();
-              _logEntry("RESET"); // New log entry for the new session
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.sessionResetSuccess)));
             },
@@ -601,7 +597,6 @@ class _MainScreenState extends State<MainScreen> {
     } else {
       double weight = (_inside - startAt) / threshold;
       if (weight > 1.0) weight = 1.0;
-      // Graduation to a much brighter red
       insideColor = Color.lerp(Colors.white, Colors.red, weight)!.withValues(alpha: 0.9);
     }
 
@@ -652,93 +647,107 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: GestureDetector(
           behavior: HitTestBehavior.opaque,
+          onTap: _unlockAudio,
           onVerticalDragEnd: _countingMode == 'gestures' ? (details) {
+            _unlockAudio();
             if (details.primaryVelocity! < 0) _changeCount(1, 1);
             if (details.primaryVelocity! > 0) _changeCount(0, -1);
           } : null,
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-              child: Column(
+              child: Stack(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      IconButton(
-                        icon: Icon(Icons.touch_app, color: _countingMode == 'button' ? Colors.blue : Colors.black, size: 32),
-                        onPressed: () => _setCountingMode('button'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.touch_app, color: _countingMode == 'button' ? Colors.blue : Colors.black, size: 32),
+                            onPressed: () => _setCountingMode('button'),
+                          ),
+                          const SizedBox(width: 40),
+                          IconButton(
+                            icon: Icon(Icons.swipe, color: _countingMode == 'gestures' ? Colors.blue : Colors.black, size: 32),
+                            onPressed: () => _setCountingMode('gestures'),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 40),
-                      IconButton(
-                        icon: Icon(Icons.swipe, color: _countingMode == 'gestures' ? Colors.blue : Colors.black, size: 32),
-                        onPressed: () => _setCountingMode('gestures'),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onLongPress: () {
-                          HapticFeedback.mediumImpact();
-                          _showNameDialog();
-                        },
-                        child: Text(
-                          _locationName,
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: _isAlarmLooping ? _stopAlarm : null,
-                        onLongPress: () {
-                          HapticFeedback.mediumImpact();
-                          _showEditDialog(l10n.capacity, _capacity, (val) {
-                            setState(() => _capacity = val);
-                            _saveState();
-                          });
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (_isAlarmLooping)
-                              const Icon(Icons.notifications_active, color: Colors.red, size: 20),
-                            Text(
-                              "${l10n.capacity}: $_capacity",
-                              style: TextStyle(
-                                fontSize: 16, 
-                                fontWeight: FontWeight.bold, 
-                                color: _isAlarmLooping ? Colors.red : Colors.black87
-                              ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          GestureDetector(
+                            onLongPress: () {
+                              HapticFeedback.mediumImpact();
+                              _showNameDialog();
+                            },
+                            child: Text(
+                              _locationName,
+                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                             ),
+                          ),
+                          GestureDetector(
+                            onTap: _isAlarmLooping ? _stopAlarm : null,
+                            onLongPress: () {
+                              HapticFeedback.mediumImpact();
+                              _showEditDialog(l10n.capacity, _capacity, (val) {
+                                setState(() => _capacity = val);
+                                _saveState();
+                              });
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (_isAlarmLooping)
+                                  const Icon(Icons.notifications_active, color: Colors.red, size: 20),
+                                Text(
+                                  "${l10n.capacity}: $_capacity",
+                                  style: TextStyle(
+                                    fontSize: 16, 
+                                    fontWeight: FontWeight.bold, 
+                                    color: _isAlarmLooping ? Colors.red : Colors.black87
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(flex: 1),
+                      Expanded(flex: 6, child: _buildCounterCard(l10n.entered, _entered, const Color(0xFF2196F3), 1, 1, Colors.white.withValues(alpha: 0.9))),
+                      const SizedBox(height: 8),
+                      Expanded(flex: 6, child: _buildCounterCard(l10n.stillInside, _inside, const Color(0xFF4CAF50), 0, -1, insideColor)),
+                      if (_countingMode == 'gestures')
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text(l10n.swipeToCount, style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.black54)),
+                        ),
+                      const Spacer(flex: 1),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildLanguageFlag('🇬🇧', 'en'),
+                            const SizedBox(width: 20),
+                            _buildLanguageFlag('🇩🇪', 'de'),
+                            const SizedBox(width: 20),
+                            _buildLanguageFlag('🇫🇷', 'fr'),
+                            const SizedBox(width: 20),
+                            _buildLanguageFlag('🇮🇹', 'it'),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  const Spacer(flex: 1),
-                  Expanded(flex: 6, child: _buildCounterCard(l10n.entered, _entered, const Color(0xFF2196F3), 1, 1, Colors.white.withValues(alpha: 0.9))),
-                  const SizedBox(height: 8),
-                  Expanded(flex: 6, child: _buildCounterCard(l10n.stillInside, _inside, const Color(0xFF4CAF50), 0, -1, insideColor)),
-                  if (_countingMode == 'gestures')
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text(l10n.swipeToCount, style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.black54)),
-                    ),
-                  const Spacer(flex: 1),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildLanguageFlag('🇬🇧', 'en'),
-                        const SizedBox(width: 20),
-                        _buildLanguageFlag('🇩🇪', 'de'),
-                        const SizedBox(width: 20),
-                        _buildLanguageFlag('🇫🇷', 'fr'),
-                        const SizedBox(width: 20),
-                        _buildLanguageFlag('🇮🇹', 'it'),
-                      ],
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Text(
+                      "v1.0.13+14",
+                      style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
                 ],
@@ -1353,7 +1362,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.12+13",
+                    "Version 1.0.13+14",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
