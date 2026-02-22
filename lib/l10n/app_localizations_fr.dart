@@ -316,6 +316,25 @@ class AppLocalizationsFr extends AppLocalizations {
       'Enregistre correctement la fin du travail et quitte l\'application.';
 
   @override
+  String get guideErrorLogTitle => '8. Journaux d\'erreurs';
+
+  @override
+  String get guideErrorLogContent =>
+      'Les erreurs système (comme les problèmes audio) sont suivies ici pour le dépannage :';
+
+  @override
+  String get guideErrorLogView =>
+      'Afficher : Ouvrez le journal des erreurs depuis le menu principal pour voir les détails.';
+
+  @override
+  String get guideErrorLogExport =>
+      'Exporter : Utilisez l\'icône de partage dans le journal des erreurs pour envoyer des détails techniques au support.';
+
+  @override
+  String get guideErrorLogDelete =>
+      'Supprimer : Les entrées peuvent être supprimées individuellement ou toutes en même temps.';
+
+  @override
   String get installGuideTitle => 'Exodus Venue : Guide d\'installation';
 
   @override
@@ -458,7 +477,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get installSafariIosStep4 => 'Appuyez sur Ajouter en haut à droite.';
 
   @override
-  String get installSafariMacTitle => 'Pour Safari sur Mac (macOS)';
+  String get installSafariMacTitle => 'Pour Safari on Mac (macOS)';
 
   @override
   String get installSafariMacNote =>

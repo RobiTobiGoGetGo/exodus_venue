@@ -314,6 +314,25 @@ class AppLocalizationsDe extends AppLocalizations {
       'Protokolliert das Ende der Arbeit ordnungsgemäß und beendet die Anwendung.';
 
   @override
+  String get guideErrorLogTitle => '8. Fehlerprotokoll';
+
+  @override
+  String get guideErrorLogContent =>
+      'Systemfehler (z. B. Audioprobleme) werden hier zur Fehlerbehebung erfasst:';
+
+  @override
+  String get guideErrorLogView =>
+      'Anzeigen: Öffnen Sie das Fehlerprotokoll im Hauptmenü, um Details anzuzeigen.';
+
+  @override
+  String get guideErrorLogExport =>
+      'Exportieren: Verwenden Sie das Teilen-Symbol im Fehlerprotokoll, um technische Details an den Support zu senden.';
+
+  @override
+  String get guideErrorLogDelete =>
+      'Löschen: Einträge können einzeln oder alle auf einmal entfernt werden.';
+
+  @override
   String get installGuideTitle => 'Exodus Venue: Installationsanleitung';
 
   @override

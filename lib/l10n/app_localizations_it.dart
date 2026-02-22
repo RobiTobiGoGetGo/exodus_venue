@@ -314,6 +314,25 @@ class AppLocalizationsIt extends AppLocalizations {
       'Registra correttamente la fine del lavoro e chiude l\'applicazione.';
 
   @override
+  String get guideErrorLogTitle => '8. Registro errori';
+
+  @override
+  String get guideErrorLogContent =>
+      'Gli errori di sistema (come i problemi audio) vengono tracciati qui per la risoluzione dei problemi:';
+
+  @override
+  String get guideErrorLogView =>
+      'Visualizza: Apri il Registro Errori dal menu principale per vedere i dettagli.';
+
+  @override
+  String get guideErrorLogExport =>
+      'Esporta: Usa l\'icona di condivisione nel Registro Errori per inviare dettagli tecnici all\'assistenza.';
+
+  @override
+  String get guideErrorLogDelete =>
+      'Elimina: Le voci possono essere rimosse singolarmente o tutte insieme.';
+
+  @override
   String get installGuideTitle => 'Exodus Venue: Guida all\'installazione';
 
   @override
@@ -407,7 +426,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get installChromeIosStep2 =>
-      'Tocca l\'icona Condivi (il quadrato con una freccia rivolta verso l\'alto) accanto alla barra degli indirizzi.';
+      'Tocca l\'icona Condividi (il quadrato con una freccia rivolta verso l\'alto) accanto alla barra degli indirizzi.';
 
   @override
   String get installChromeIosStep3 =>
@@ -453,7 +472,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get installSafariIosStep4 => 'Tocca Aggiungi in alto a destra.';
 
   @override
-  String get installSafariMacTitle => 'Per Safari su Mac (macOS)';
+  String get installSafariMacTitle => 'For Safari su Mac (macOS)';
 
   @override
   String get installSafariMacNote =>

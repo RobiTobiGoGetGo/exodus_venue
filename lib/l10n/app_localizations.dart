@@ -642,6 +642,36 @@ abstract class AppLocalizations {
   /// **'Properly logs the end of work and exits the application.'**
   String get guideSessionShutdownContent;
 
+  /// No description provided for @guideErrorLogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'8. Error Logs'**
+  String get guideErrorLogTitle;
+
+  /// No description provided for @guideErrorLogContent.
+  ///
+  /// In en, this message translates to:
+  /// **'System errors (like audio issues) are tracked here for troubleshooting:'**
+  String get guideErrorLogContent;
+
+  /// No description provided for @guideErrorLogView.
+  ///
+  /// In en, this message translates to:
+  /// **'View: Open the Error Log from the main menu to see details.'**
+  String get guideErrorLogView;
+
+  /// No description provided for @guideErrorLogExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export: Use the share icon in the Error Log to send technical details to support.'**
+  String get guideErrorLogExport;
+
+  /// No description provided for @guideErrorLogDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete: Entries can be removed individually or all at once.'**
+  String get guideErrorLogDelete;
+
   /// No description provided for @installGuideTitle.
   ///
   /// In en, this message translates to:

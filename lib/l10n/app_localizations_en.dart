@@ -310,6 +310,25 @@ class AppLocalizationsEn extends AppLocalizations {
       'Properly logs the end of work and exits the application.';
 
   @override
+  String get guideErrorLogTitle => '8. Error Logs';
+
+  @override
+  String get guideErrorLogContent =>
+      'System errors (like audio issues) are tracked here for troubleshooting:';
+
+  @override
+  String get guideErrorLogView =>
+      'View: Open the Error Log from the main menu to see details.';
+
+  @override
+  String get guideErrorLogExport =>
+      'Export: Use the share icon in the Error Log to send technical details to support.';
+
+  @override
+  String get guideErrorLogDelete =>
+      'Delete: Entries can be removed individually or all at once.';
+
+  @override
   String get installGuideTitle => 'Exodus Venue: Installation Guide';
 
   @override
