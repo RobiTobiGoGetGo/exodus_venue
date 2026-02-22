@@ -470,9 +470,55 @@ class _MainScreenState extends State<MainScreen> {
               _exportErrors();
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.remove_red_eye, color: Colors.red),
+            title: Text(l10n.previewErrorLog),
+            onTap: () async {
+              Navigator.pop(context);
+              await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: _locationName, docBuilder: () => _generateErrorDocument())));
+              if (mounted) _showExportMenu();
+            },
+          ),
         ],
       ),
     );
+  }
+
+  Future<pw.Document> _generateErrorDocument() async {
+    final errors = _prefs.getStringList('error_logs') ?? [];
+    final pdf = pw.Document();
+    pdf.addPage(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        build: (context) => [
+          pw.Header(level: 0, child: pw.Text("EXODUS: ERROR LOG")),
+          pw.Container(
+            padding: const pw.EdgeInsets.all(10),
+            decoration: const pw.BoxDecoration(color: PdfColors.grey100),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text("SUMMARY", style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 14)),
+                pw.SizedBox(height: 5),
+                pw.Text("Location: $_locationName"),
+                pw.Text("Report Date: ${DateFormat('dd.MM.yyyy HH:mm').format(DateTime.now())}"),
+              ],
+            ),
+          ),
+          pw.SizedBox(height: 20),
+          pw.TableHelper.fromTextArray(
+            headers: ["Date/Time", "Error Message"],
+            headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+            data: errors.map((e) {
+              final p = e.split(" | ");
+              if (p.length < 2) return ["", ""];
+              return [p[0], p[1]];
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+    return pdf;
   }
 
   void _handleResetFlow() {
@@ -808,7 +854,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.22+23",
+                      "v1.0.23+24",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1492,7 +1538,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.22+23",
+                    "Version 1.0.23+24",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),

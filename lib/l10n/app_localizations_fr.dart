@@ -33,6 +33,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get exportErrors => 'Exporter le journal des erreurs';
 
   @override
+  String get previewErrorLog => 'Aperçu du journal des erreurs';
+
+  @override
   String get helpAndInfo => 'Aide & Infos';
 
   @override
@@ -194,7 +197,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Carte Encore à l\'intérieur (Verte) : Affiche le décompte actuel des personnes dans le lieu.';
 
   @override
-  String get guideSafetyTitle => '3. Capacity et sécurité';
+  String get guideSafetyTitle => '3. Capacité et sécurité';
 
   @override
   String get guideSafetyContent =>

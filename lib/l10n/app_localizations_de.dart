@@ -33,6 +33,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get exportErrors => 'Fehlerprotokoll exportieren';
 
   @override
+  String get previewErrorLog => 'Fehlerprotokoll-Vorschau';
+
+  @override
   String get helpAndInfo => 'Hilfe & Info';
 
   @override
@@ -435,7 +438,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get installDesktopStep5 => 'Klicken Sie auf Installieren.';
 
   @override
-  String get installSafariIosTitle => 'For Safari auf iPhone und iPad (iOS)';
+  String get installSafariIosTitle => 'Für Safari auf iPhone und iPad (iOS)';
 
   @override
   String get installSafariIosStep1 =>
@@ -453,7 +456,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get installSafariIosStep4 => 'Tippen Sie oben rechts auf Hinzufügen.';
 
   @override
-  String get installSafariMacTitle => 'For Safari auf Mac (macOS)';
+  String get installSafariMacTitle => 'Für Safari auf Mac (macOS)';
 
   @override
   String get installSafariMacNote =>

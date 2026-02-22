@@ -150,6 +150,12 @@ abstract class AppLocalizations {
   /// **'Export Error Log'**
   String get exportErrors;
 
+  /// No description provided for @previewErrorLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview Error Log'**
+  String get previewErrorLog;
+
   /// No description provided for @helpAndInfo.
   ///
   /// In en, this message translates to:

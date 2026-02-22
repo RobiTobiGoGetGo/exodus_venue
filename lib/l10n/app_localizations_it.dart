@@ -33,6 +33,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get exportErrors => 'Esporta registro errori';
 
   @override
+  String get previewErrorLog => 'Anteprima registro errori';
+
+  @override
   String get helpAndInfo => 'Aiuto e informazioni';
 
   @override

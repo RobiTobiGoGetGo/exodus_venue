@@ -8,6 +8,7 @@
   "viewErrorLog": "View Error Log",
   "exportLogs": "Export Logs",
   "exportErrors": "Export Error Log",
+  "previewErrorLog": "Preview Error Log",
   "helpAndInfo": "Help & Info",
   "resetSession": "Reset Session",
   "setLocation": "Set Location",

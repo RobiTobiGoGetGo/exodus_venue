@@ -8,6 +8,7 @@
   "viewErrorLog": "Visualizza registro errori",
   "exportLogs": "Esporta registri",
   "exportErrors": "Esporta registro errori",
+  "previewErrorLog": "Anteprima registro errori",
   "helpAndInfo": "Aiuto e informazioni",
   "resetSession": "Ripristina sessione",
   "setLocation": "Imposta posizione",
