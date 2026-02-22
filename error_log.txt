@@ -1,0 +1,70 @@
+PS C:\Users\robch\AndroidStudioProjects\exodus_flutter> cp -r build/web/* .
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\assets" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\..._flutter\assets:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\assets\fonts" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...er\assets\fonts:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\assets\images" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...r\assets\images:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\assets\packages" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...assets\packages:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\assets\packages\cupertino_icons" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...cupertino_icons:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\assets\packages\cupertino_icons\assets" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...no_icons\assets:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\assets\shaders" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...\assets\shaders:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\canvaskit" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...utter\canvaskit:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\canvaskit\chromium" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...vaskit\chromium:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
+
+cp : Ein Element mit dem angegebenen Namen "C:\Users\robch\AndroidStudioProjects\exodus_flutter\icons" ist bereits vorhanden.
+In Zeile:1 Zeichen:1
++ cp -r build/web/* .
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\robch\...s_flutter\icons:String) [Copy-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.CopyItemCommand
