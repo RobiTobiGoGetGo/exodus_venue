@@ -2,7 +2,7 @@ name: exodus_flutter
 description: A new Flutter project.
 publish_to: 'none'
 
-version: 1.0.18+19
+version: 1.0.19+20
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -30,7 +30,7 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - assets/images/background.png
-    - assets/images/exodus_logo_header.png
-    - assets/images/exodus_logo.png
-    - assets/images/beep.mp3
+    - images/background.png
+    - images/exodus_logo_header.png
+    - images/exodus_logo.png
+    - images/beep.mp3
