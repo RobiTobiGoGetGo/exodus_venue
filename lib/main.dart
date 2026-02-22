@@ -146,7 +146,8 @@ class _MainScreenState extends State<MainScreen> {
     if (_audioUnlocked || !kIsWeb) return;
     try {
       await _audioPlayer.setVolume(0.0);
-      await _audioPlayer.play(AssetSource('images/beep.mp3'));
+      // Updated path to match new pubspec.yaml consolidation
+      await _audioPlayer.play(AssetSource('assets/images/beep.mp3'));
       await _audioPlayer.stop();
       _audioUnlocked = true;
     } catch (e) {
@@ -165,7 +166,7 @@ class _MainScreenState extends State<MainScreen> {
         try {
           await _audioPlayer.setReleaseMode(ReleaseMode.loop);
           await _audioPlayer.setVolume(1.0);
-          await _audioPlayer.play(AssetSource('images/beep.mp3'));
+          await _audioPlayer.play(AssetSource('assets/images/beep.mp3'));
         } catch (e) {
           _showError(e);
         }
@@ -180,7 +181,7 @@ class _MainScreenState extends State<MainScreen> {
       try {
         await _audioPlayer.setReleaseMode(ReleaseMode.release);
         await _audioPlayer.setVolume(volume);
-        await _audioPlayer.play(AssetSource('images/beep.mp3'));
+        await _audioPlayer.play(AssetSource('assets/images/beep.mp3'));
       } catch (e) {
         _showError(e);
       }
@@ -656,7 +657,7 @@ class _MainScreenState extends State<MainScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/background.png"),
+          image: AssetImage("assets/images/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -677,7 +678,7 @@ class _MainScreenState extends State<MainScreen> {
               child: Center(
                 child: SafeArea(
                   child: Image.asset(
-                    "images/exodus_logo_header.png",
+                    "assets/images/exodus_logo_header.png",
                     height: 120,
                     fit: BoxFit.contain,
                   ),
@@ -799,7 +800,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.17+18",
+                      "v1.0.18+19",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1105,7 +1106,7 @@ class _LogScreenState extends State<LogScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/background.png"),
+          image: AssetImage("assets/images/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -1369,7 +1370,7 @@ class HelpScreen extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("images/background.png"),
+          image: AssetImage("assets/images/background.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -1415,7 +1416,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.17+18",
+                    "Version 1.0.18+19",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),

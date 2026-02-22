@@ -49329,7 +49329,7 @@ k=n.Q
 s=7
 return B.v(k.r4(0),$async$mM)
 case 7:s=8
-return B.v(k.uj(0,new B.u7("images/beep.mp3")),$async$mM)
+return B.v(k.uj(0,new B.u7("assets/images/beep.mp3")),$async$mM)
 case 8:s=9
 return B.v(k.de(0),$async$mM)
 case 9:n.ax=!0
@@ -49366,7 +49366,7 @@ return B.v(h.vB(A.qR),$async$kF)
 case 11:s=12
 return B.v(h.r4(1),$async$kF)
 case 12:s=13
-return B.v(h.uj(0,new B.u7("images/beep.mp3")),$async$kF)
+return B.v(h.uj(0,new B.u7("assets/images/beep.mp3")),$async$kF)
 case 13:q=1
 s=10
 break
@@ -49396,7 +49396,7 @@ return B.v(h.vB(A.iG),$async$kF)
 case 24:s=25
 return B.v(h.r4(m),$async$kF)
 case 25:s=26
-return B.v(h.uj(0,new B.u7("images/beep.mp3")),$async$kF)
+return B.v(h.uj(0,new B.u7("assets/images/beep.mp3")),$async$kF)
 case 26:q=1
 s=23
 break
@@ -49641,7 +49641,7 @@ r=e.e
 if(r<=p)o=A.N.no(0.9)
 else{n=(r-p)/q
 o=B.G(A.N,A.e3,n>1?1:n).no(0.9)}r=B.jF(d,d,A.Yr,d,d,e.ganT(),d,d,d)
-m=B.h2(d,B.iF(B.rM(!0,new B.ve(B.b1L(d,d,new B.u6("images/exodus_logo_header.png",d,d)),120,A.tw,d),A.bb,!0),d,d),A.aK,!1,d,d,d,d,d,d,d,new B.aBB(a),d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,!1,A.bT)
+m=B.h2(d,B.iF(B.rM(!0,new B.ve(B.b1L(d,d,new B.u6("assets/images/exodus_logo_header.png",d,d)),120,A.tw,d),A.bb,!0),d,d),A.aK,!1,d,d,d,d,d,d,d,new B.aBB(a),d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,!1,A.bT)
 l=t.p
 r=B.a9C(B.b([B.h2(d,B.jF(d,d,A.Ye,d,d,e.gan1(),d,d,d),A.aK,!1,d,d,d,d,d,d,d,new B.aBC(e,a),d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,!1,A.bT)],l),A.ag,d,!0,0,m,r,d)
 m=e.x
@@ -49660,7 +49660,7 @@ m=B.b([m,A.aXG,B.wn(B.b([i,B.h2(d,B.wn(h,A.bk,A.bC,A.df),A.aK,!1,d,d,d,d,d,d,d,n
 if(e.x==="gestures")m.push(new B.cl(A.X6,B.b4(s.gA4(),d,d,d,A.b0K,d,d),d))
 m.push(A.QM)
 m.push(new B.cl(A.X1,B.wn(B.b([e.Ag("\ud83c\uddec\ud83c\udde7","en"),A.rl,e.Ag("\ud83c\udde9\ud83c\uddea","de"),A.rl,e.Ag("\ud83c\uddeb\ud83c\uddf7","fr"),A.rl,e.Ag("\ud83c\uddee\ud83c\uddf9","it")],l),A.bk,A.eK,A.cy),d))
-return B.lJ(d,B.aqa(new B.Dx(r,A.aXC,d),A.ag,B.h2(A.bm,B.rM(!0,new B.cl(A.oH,B.mG(A.ei,B.b([B.i0(m,A.bk,A.bC,A.cy,A.bo),B.aoa(0,B.b4("v1.0.17+18",d,d,d,A.b0T,d,d),d,d,d,0,d,d)],l),A.ai,A.e9,d),d),A.bb,!0),A.aK,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gao_(),d,d,d,j,d,d,!1,A.bT)),A.af,d,A.o8,d,d,d,d)},
+return B.lJ(d,B.aqa(new B.Dx(r,A.aXC,d),A.ag,B.h2(A.bm,B.rM(!0,new B.cl(A.oH,B.mG(A.ei,B.b([B.i0(m,A.bk,A.bC,A.cy,A.bo),B.aoa(0,B.b4("v1.0.18+19",d,d,d,A.b0T,d,d),d,d,d,0,d,d)],l),A.ai,A.e9,d),d),A.bb,!0),A.aK,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gao_(),d,d,d,j,d,d,!1,A.bT)),A.af,d,A.o8,d,d,d,d)},
 Ag(a,b){var s=null
 return B.h2(s,B.b4(a,s,s,s,A.aZ3,s,s),A.aK,!1,s,s,s,s,s,s,s,new B.aAT(this,b),s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!1,A.bT)},
 R6(a,b,c,d,e,f){var s,r=null,q=t.p,p=B.b([B.b4(a.toUpperCase(),r,r,r,A.Rg,r,r),B.AW(B.iF(B.aXj(new B.PR(A.tw,B.b4(""+b,r,r,r,A.b1h,r,r),new B.dO(b,t.f3)),A.jO,B.b7c(),new B.aAQ()),r,r),1)],q)
@@ -107304,7 +107304,7 @@ A.jc=new B.jr(3,"hidden")
 A.o1=new B.jr(4,"paused")
 A.o2=new B.za(0,"polite")
 A.o3=new B.za(1,"assertive")
-A.hi=new B.u6("images/background.png",null,null)
+A.hi=new B.u6("assets/images/background.png",null,null)
 A.te=new B.ns(0,"log")
 A.tf=new B.ns(1,"position")
 A.o4=new B.ns(2,"duration")
@@ -114643,7 +114643,7 @@ A.aZb=new B.q(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,nul
 A.b2d=new B.ej(A.b_U,A.aZV,A.b_V,A.b0u,A.aZy,A.aZF,A.b_g,A.b0h,A.b_u,A.b13,A.aZ0,A.aZm,A.b1_,A.b1i,A.aZb)
 A.b2e=new B.mH("Export Error Log",null,null,null,null,null,null,null,null)
 A.b1B=new B.q(!0,A.LP,null,null,null,null,14,null,A.pj,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b2h=new B.mH("Version 1.0.17+18",null,A.b1B,null,null,null,null,null,null)
+A.b2h=new B.mH("Version 1.0.18+19",null,A.b1B,null,null,null,null,null,null)
 A.b7R=new B.aur(0,"system")
 A.aT9=new B.j(0.056,0.024)
 A.aTo=new B.j(0.108,0.3085)
