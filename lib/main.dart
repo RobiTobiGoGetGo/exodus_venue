@@ -137,6 +137,7 @@ class _MainScreenState extends State<MainScreen> {
     if (_audioUnlocked || !kIsWeb) return;
     try {
       await _audioPlayer.setVolume(0.0);
+      // Explicitly prefixing with assets/ for web reliability
       await _audioPlayer.play(AssetSource('images/beep.mp3'));
       await _audioPlayer.stop();
       _audioUnlocked = true;
@@ -145,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  void _playAlarm() async {
+  Future<void> _playAlarm() async {
     int threshold = (_capacity * 0.02).round();
     if (threshold < 10) threshold = 10;
     int startAt = _capacity - threshold;
@@ -164,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (_inside > startAt) {
       _alarmSilenced = false; 
       if (_isAlarmLooping) {
-        _stopAlarm(resetSilence: false);
+        await _stopAlarm(resetSilence: false);
       }
       double volume = (_inside - startAt) / threshold;
       if (volume > 1.0) volume = 1.0;
@@ -178,33 +179,33 @@ class _MainScreenState extends State<MainScreen> {
     } else {
       _alarmSilenced = false;
       if (_isAlarmLooping) {
-        _stopAlarm(resetSilence: false);
+        await _stopAlarm(resetSilence: false);
       }
     }
   }
 
-  void _stopAlarm({bool resetSilence = true}) {
-    _audioPlayer.stop();
+  Future<void> _stopAlarm({bool resetSilence = true}) async {
+    await _audioPlayer.stop();
     setState(() {
       _isAlarmLooping = false;
       if (resetSilence) _alarmSilenced = true;
     });
   }
 
-  void _setCountingMode(String mode) {
+  Future<void> _setCountingMode(String mode) async {
     HapticFeedback.selectionClick();
-    _unlockAudio();
+    await _unlockAudio();
     setState(() {
       _countingMode = mode;
     });
     _prefs.setString('counting_mode', _countingMode);
   }
 
-  void _changeCount(int entDelta, int insDelta) {
+  Future<void> _changeCount(int entDelta, int insDelta) async {
     if (insDelta < 0 && _inside <= 0) return;
 
     HapticFeedback.lightImpact();
-    _unlockAudio();
+    await _unlockAudio();
     setState(() {
       _history.add({'entered': _entered, 'inside': _inside});
       if (_history.length > 50) _history.removeAt(0);
@@ -212,8 +213,8 @@ class _MainScreenState extends State<MainScreen> {
       _entered += entDelta;
       _inside += insDelta;
     });
-    _playAlarm();
-    _saveState();
+    await _playAlarm();
+    await _saveState();
   }
 
   void _undo() {
@@ -661,10 +662,10 @@ class _MainScreenState extends State<MainScreen> {
         body: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: _unlockAudio,
-          onVerticalDragEnd: _countingMode == 'gestures' ? (details) {
-            _unlockAudio();
-            if (details.primaryVelocity! < 0) _changeCount(1, 1);
-            if (details.primaryVelocity! > 0) _changeCount(0, -1);
+          onVerticalDragEnd: _countingMode == 'gestures' ? (details) async {
+            await _unlockAudio();
+            if (details.primaryVelocity! < 0) await _changeCount(1, 1);
+            if (details.primaryVelocity! > 0) await _changeCount(0, -1);
           } : null,
           child: SafeArea(
             child: Padding(
@@ -759,7 +760,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.15+16",
+                      "v1.0.16+17",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1375,7 +1376,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.15+16",
+                    "Version 1.0.16+17",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
