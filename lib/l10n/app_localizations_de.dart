@@ -27,6 +27,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get exportLogs => 'Protokolle exportieren';
 
   @override
+  String get exportErrors => 'Fehlerprotokoll exportieren';
+
+  @override
   String get helpAndInfo => 'Hilfe & Info';
 
   @override
@@ -292,11 +295,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Erfordert eine doppelte Bestätigung, um versehentlichen Verlust zu verhindern.';
 
   @override
-  String get guideSessionShutdownTitle => 'Shutdown';
+  String get guideSessionShutdownTitle => 'Beenden';
 
   @override
   String get guideSessionShutdownContent =>
-      'Properly logs the end of work and exits the application.';
+      'Protokolliert das Ende der Arbeit ordnungsgemäß und beendet die Anwendung.';
 
   @override
   String get installGuideTitle => 'Exodus Venue: Installationsanleitung';

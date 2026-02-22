@@ -27,6 +27,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get exportLogs => 'Exporter les journaux';
 
   @override
+  String get exportErrors => 'Exporter le journal des erreurs';
+
+  @override
   String get helpAndInfo => 'Aide & Infos';
 
   @override
@@ -293,11 +296,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'Nécessite une double confirmation pour éviter toute perte accidentelle.';
 
   @override
-  String get guideSessionShutdownTitle => 'Shutdown';
+  String get guideSessionShutdownTitle => 'Éteindre';
 
   @override
   String get guideSessionShutdownContent =>
-      'Properly logs the end of work and exits the application.';
+      'Enregistre correctement la fin du travail et quitte l\'application.';
 
   @override
   String get installGuideTitle => 'Exodus Venue : Guide d\'installation';
@@ -357,7 +360,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Firefox sur iOS n\'a pas de bouton direct \"Installer\" en raison des restrictions d\'Apple. Vous devez utiliser le menu système :';
 
   @override
-  String get installFirefoxIosStep1 => 'Ouvrez le site Web dans Firefox.';
+  String get installFirefoxIosStep1 => 'Ouvrez le site Web in Firefox.';
 
   @override
   String get installFirefoxIosStep2 =>

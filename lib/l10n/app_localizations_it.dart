@@ -27,6 +27,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get exportLogs => 'Esporta registri';
 
   @override
+  String get exportErrors => 'Esporta registro errori';
+
+  @override
   String get helpAndInfo => 'Aiuto e informazioni';
 
   @override
@@ -292,11 +295,11 @@ class AppLocalizationsIt extends AppLocalizations {
       'Richiede una doppia conferma per evitare perdite accidentali.';
 
   @override
-  String get guideSessionShutdownTitle => 'Shutdown';
+  String get guideSessionShutdownTitle => 'Spegni';
 
   @override
   String get guideSessionShutdownContent =>
-      'Properly logs the end of work and exits the application.';
+      'Registra correttamente la fine del lavoro e chiude l\'applicazione.';
 
   @override
   String get installGuideTitle => 'Exodus Venue: Guida all\'installazione';
@@ -374,7 +377,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get installChromeAndroidStep1 =>
-      'Open the website in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/';
+      'Apri il sito web in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/';
 
   @override
   String get installChromeAndroidStep2 => 'Tocca i tre punti in alto a destra.';

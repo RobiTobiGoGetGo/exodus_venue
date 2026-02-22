@@ -6,6 +6,7 @@
   "loggedCurrentTotals": "Logged current totals.",
   "viewLog": "View Log",
   "exportLogs": "Export Logs",
+  "exportErrors": "Export Error Log",
   "helpAndInfo": "Help & Info",
   "resetSession": "Reset Session",
   "setLocation": "Set Location",

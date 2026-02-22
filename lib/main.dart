@@ -145,7 +145,6 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> _unlockAudio() async {
     if (_audioUnlocked || !kIsWeb) return;
     try {
-      // Using UrlSource to bypass AssetSource path resolution issues on web
       await _audioPlayer.setSource(UrlSource('assets/images/beep.mp3'));
       await _audioPlayer.setVolume(0.0);
       _audioUnlocked = true;
@@ -396,7 +395,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.bug_report, color: Colors.red),
-            title: const Text("Export Error Log"),
+            title: Text(l10n.exportErrors),
             onTap: () {
               Navigator.pop(context);
               _exportErrors();
@@ -801,7 +800,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.20+21",
+                      "v1.0.21+22",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1417,7 +1416,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.20+21",
+                    "Version 1.0.21+22",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),

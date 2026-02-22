@@ -27,6 +27,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportLogs => 'Export Logs';
 
   @override
+  String get exportErrors => 'Export Error Log';
+
+  @override
   String get helpAndInfo => 'Help & Info';
 
   @override

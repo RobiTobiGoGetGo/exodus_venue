@@ -138,6 +138,12 @@ abstract class AppLocalizations {
   /// **'Export Logs'**
   String get exportLogs;
 
+  /// No description provided for @exportErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Export Error Log'**
+  String get exportErrors;
+
   /// No description provided for @helpAndInfo.
   ///
   /// In en, this message translates to:
