@@ -50262,7 +50262,7 @@ gF3(){return"Ouvrez le site Web dans Safari : https://RobiTobiGoGetGo.github.io/
 gF4(){return"Appuyez sur le bouton Partager en bas (le carr\xe9 avec une fl\xe8che vers le haut)."},
 gF5(){return"Faites d\xe9filer le menu et appuyez sur Sur l'\xe9cran d'accueil."},
 gF6(){return"Appuyez sur Ajouter en haut \xe0 droite."},
-gFd(){return"Pour Safari sur Mac (macOS)"},
+gFd(){return"Pour Safari on Mac (macOS)"},
 gF8(){return"Remarque : cela n\xe9cessite macOS Sonoma ou une version ult\xe9rieure."},
 gF9(){return"Ouvrez le site Web dans Safari."},
 gFa(){return"Allez dans le menu Fichier dans la barre de menus en haut."},
@@ -50378,7 +50378,7 @@ gEz(){return"Tocca i tre punti in alto a destra."},
 gEA(){return"Tocca Aggiungi alla schermata Home (in alcune versioni, potrebbe dire Installa app)."},
 gEB(){return"Tocca Aggiungi o Installa per confermare."},
 gEC(){return"Apri il sito web in Chrome."},
-gED(){return"Tocca l'icona Condivi (il quadrato con una freccia rivolta verso l'alto) accanto alla barra degli indirizzi."},
+gED(){return"Tocca l'icona Condividi (il quadrato con una freccia rivolta verso l'alto) accanto alla barra degli indirizzi."},
 gEE(){return"Scorri verso il basso e tocca Aggiungi alla schermata Home."},
 gEF(){return"Tocca Aggiungi in alto a destra."},
 gEM(){return"Desktop (Windows/Mac)"},
@@ -50392,7 +50392,7 @@ gF3(){return"Apri il sito web in Safari: https://RobiTobiGoGetGo.github.io/exodu
 gF4(){return"Tocca il pulsante Condividi in basso (il quadrato con una freccia rivolta verso l'alto)."},
 gF5(){return"Scorri il menu e tocca Aggiungi alla schermata Home."},
 gF6(){return"Tocca Aggiungi in alto a destra."},
-gFd(){return"Per Safari su Mac (macOS)"},
+gFd(){return"For Safari su Mac (macOS)"},
 gF8(){return"Nota: questo richiede macOS Sonoma o versioni successive."},
 gF9(){return"Apri il sito web in Safari."},
 gFa(){return"Vai al menu File nella barra dei menu in alto."},
@@ -50820,7 +50820,7 @@ m=B.b([m,A.aYb,B.wx(B.b([i,B.hB(d,B.wx(h,A.bl,A.bH,A.dj),A.aN,!1,d,d,d,d,d,d,d,n
 if(e.x==="gestures")m.push(new B.cj(A.Xj,B.aL(s.gAl(),d,d,d,A.b16,d,d),d))
 m.push(A.R1)
 m.push(new B.cj(A.Xe,B.wx(B.b([e.Az("\ud83c\uddec\ud83c\udde7","en"),A.rz,e.Az("\ud83c\udde9\ud83c\uddea","de"),A.rz,e.Az("\ud83c\uddeb\ud83c\uddf7","fr"),A.rz,e.Az("\ud83c\uddee\ud83c\uddf9","it")],l),A.bl,A.eN,A.cz),d))
-return B.lK(d,B.aqc(new B.DH(r,A.aY7,d),A.af,B.hB(A.bu,B.rN(!0,new B.cj(A.jW,B.mJ(A.ej,B.b([B.i_(m,A.bl,A.bH,A.cz,A.bp),B.aob(0,B.aL("v1.0.23+24",d,d,d,A.b1e,d,d),d,d,d,0,d,d)],l),A.ah,A.e9,d),d),A.be,!0),A.aN,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gapf(),d,d,d,j,d,d,!1,A.c8)),A.ae,d,A.oi,d,d,d,d)},
+return B.lK(d,B.aqc(new B.DH(r,A.aY7,d),A.af,B.hB(A.bu,B.rN(!0,new B.cj(A.jW,B.mJ(A.ej,B.b([B.i_(m,A.bl,A.bH,A.cz,A.bp),B.aob(0,B.aL("v1.0.24+25",d,d,d,A.b1e,d,d),d,d,d,0,d,d)],l),A.ah,A.e9,d),d),A.be,!0),A.aN,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gapf(),d,d,d,j,d,d,!1,A.c8)),A.ae,d,A.oi,d,d,d,d)},
 Az(a,b){var s=null
 return B.hB(s,B.aL(a,s,s,s,A.aZB,s,s),A.aN,!1,s,s,s,s,s,s,s,new B.aBc(this,b),s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!1,A.c8)},
 Sg(a,b,c,d,e,f){var s,r=null,q=t.p,p=B.b([B.aL(a.toUpperCase(),r,r,r,A.Rv,r,r),B.B7(B.iH(B.aXL(new B.Q5(A.tK,B.aL(""+b,r,r,r,A.b_i,r,r),new B.dP(b,t.f3)),A.X2,B.b7x(),new B.aB9()),r,r),1)],q)
@@ -116201,7 +116201,7 @@ A.b1H=new B.p(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,nul
 A.aZI=new B.p(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,A.E,null,null,null,"blackRedwoodCity labelSmall",null,null,null,null)
 A.b2Q=new B.el(A.b0x,A.b_s,A.b0y,A.b1_,A.b_7,A.b_f,A.b_N,A.b0V,A.b_Z,A.b1o,A.aZA,A.aZT,A.b1l,A.b1H,A.aZI)
 A.b2c=new B.p(!0,A.M2,null,null,null,null,14,null,A.px,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b2T=new B.oU("Version 1.0.23+24",null,A.b2c,null,null,null,null,null,null)
+A.b2T=new B.oU("Version 1.0.24+25",null,A.b2c,null,null,null,null,null,null)
 A.b8t=new B.auF(0,"system")
 A.aTC=new B.j(0.056,0.024)
 A.aTR=new B.j(0.108,0.3085)
