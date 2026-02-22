@@ -126,8 +126,17 @@ class _MainScreenState extends State<MainScreen> {
     await _prefs.setString('location_name', _locationName);
   }
 
+  Future<void> _logErrorToFile(dynamic e) async {
+    final prefs = await SharedPreferences.getInstance();
+    final List<String> errors = prefs.getStringList('error_logs') ?? [];
+    final timestamp = DateFormat('dd.MM.yyyy HH:mm:ss').format(DateTime.now());
+    errors.add("$timestamp | Audio Error: $e");
+    await prefs.setStringList('error_logs', errors);
+  }
+
   void _showError(dynamic e) {
     if (!mounted) return;
+    _logErrorToFile(e);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("Audio Error: $e"), backgroundColor: Colors.red),
     );
@@ -137,7 +146,6 @@ class _MainScreenState extends State<MainScreen> {
     if (_audioUnlocked || !kIsWeb) return;
     try {
       await _audioPlayer.setVolume(0.0);
-      // Explicitly prefixing with assets/ for web reliability
       await _audioPlayer.play(AssetSource('images/beep.mp3'));
       await _audioPlayer.stop();
       _audioUnlocked = true;
@@ -330,6 +338,28 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  Future<void> _exportErrors() async {
+    final errors = _prefs.getStringList('error_logs') ?? [];
+    if (errors.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("No error logs found.")));
+      return;
+    }
+    try {
+      final logContent = errors.join("\n");
+      if (kIsWeb) {
+        final bytes = Uint8List.fromList(logContent.codeUnits);
+        await Share.shareXFiles([XFile.fromData(bytes, name: 'exodus_errors_${DateTime.now().millisecondsSinceEpoch}.txt', mimeType: 'text/plain')], text: 'Exodus Error Logs');
+      } else {
+        final directory = await getTemporaryDirectory();
+        final file = io.File('${directory.path}/exodus_errors_${DateTime.now().millisecondsSinceEpoch}.txt');
+        await file.writeAsString(logContent);
+        await Share.shareXFiles([XFile(file.path)], text: 'Exodus Error Logs');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error export failed: $e")));
+    }
+  }
+
   void _showMenu() {
     final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
@@ -360,6 +390,14 @@ class _MainScreenState extends State<MainScreen> {
             onTap: () {
               Navigator.pop(context);
               _showExportMenu();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.bug_report, color: Colors.red),
+            title: const Text("Export Error Log"),
+            onTap: () {
+              Navigator.pop(context);
+              _exportErrors();
             },
           ),
           ListTile(
@@ -471,6 +509,7 @@ class _MainScreenState extends State<MainScreen> {
                 _history.clear();
               });
               _prefs.setStringList('entries', []); // Empty the log
+              _prefs.setStringList('error_logs', []); // Empty error log
               _saveState();
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.sessionResetSuccess)));
@@ -760,7 +799,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.16+17",
+                      "v1.0.17+18",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1376,7 +1415,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.16+17",
+                    "Version 1.0.17+18",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
