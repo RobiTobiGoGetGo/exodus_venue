@@ -51154,7 +51154,7 @@ m=B.b([m,A.aYb,B.wC(B.b([i,B.hC(d,B.wC(h,A.bl,A.bG,A.dj),A.aN,!1,d,d,d,d,d,d,d,n
 if(e.x==="gestures")m.push(new B.ck(A.Xi,B.b6(s.gAj(),d,d,d,A.b15,d,d),d))
 m.push(A.QZ)
 m.push(new B.ck(A.Xd,B.wC(B.b([e.Aw("\ud83c\uddec\ud83c\udde7","en"),A.rx,e.Aw("\ud83c\udde9\ud83c\uddea","de"),A.rx,e.Aw("\ud83c\uddeb\ud83c\uddf7","fr"),A.rx,e.Aw("\ud83c\uddee\ud83c\uddf9","it")],l),A.bl,A.eN,A.cz),d))
-return B.lK(d,B.aqC(new B.DQ(r,A.aY7,d),A.af,B.hC(A.bt,B.rQ(!0,new B.ck(A.oS,B.mI(A.ej,B.b([B.i0(m,A.bl,A.bG,A.cz,A.bo),B.aoz(0,B.b6("v1.0.17+18",d,d,d,A.b1d,d,d),d,d,d,0,d,d)],l),A.ah,A.e9,d),d),A.be,!0),A.aN,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gapr(),d,d,d,j,d,d,!1,A.c6)),A.ae,d,A.oh,d,d,d,d)},
+return B.lK(d,B.aqC(new B.DQ(r,A.aY7,d),A.af,B.hC(A.bt,B.rQ(!0,new B.ck(A.oS,B.mI(A.ej,B.b([B.i0(m,A.bl,A.bG,A.cz,A.bo),B.aoz(0,B.b6("v1.0.19+20",d,d,d,A.b1d,d,d),d,d,d,0,d,d)],l),A.ah,A.e9,d),d),A.be,!0),A.aN,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gapr(),d,d,d,j,d,d,!1,A.c6)),A.ae,d,A.oh,d,d,d,d)},
 Aw(a,b){var s=null
 return B.hC(s,B.b6(a,s,s,s,A.aZB,s,s),A.aN,!1,s,s,s,s,s,s,s,new B.aBu(this,b),s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!1,A.c6)},
 Sh(a,b,c,d,e,f){var s,r=null,q=t.p,p=B.b([B.b6(a.toUpperCase(),r,r,r,A.Rs,r,r),B.Bf(B.iG(B.aYd(new B.Qi(A.tI,B.b6(""+b,r,r,r,A.b_i,r,r),new B.dN(b,t.f3)),A.X1,B.b84(),new B.aBr()),r,r),1)],q)
@@ -116617,7 +116617,7 @@ A.aZI=new B.q(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,nul
 A.b2Q=new B.el(A.b0w,A.b_s,A.b0x,A.b0Z,A.b_7,A.b_f,A.b_N,A.b0U,A.b_Z,A.b1n,A.aZA,A.aZT,A.b1k,A.b1G,A.aZI)
 A.b2R=new B.mK("Export Error Log",null,null,null,null,null,null,null,null)
 A.b2b=new B.q(!0,A.M_,null,null,null,null,14,null,A.pw,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b2U=new B.mK("Version 1.0.17+18",null,A.b2b,null,null,null,null,null,null)
+A.b2U=new B.mK("Version 1.0.19+20",null,A.b2b,null,null,null,null,null,null)
 A.b8v=new B.av3(0,"system")
 A.aTC=new B.j(0.056,0.024)
 A.aTR=new B.j(0.108,0.3085)
