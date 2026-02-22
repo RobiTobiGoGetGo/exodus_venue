@@ -51088,7 +51088,7 @@ m=B.b([m,A.aY9,B.wB(B.b([i,B.hC(d,B.wB(h,A.bl,A.bG,A.dj),A.aN,!1,d,d,d,d,d,d,d,n
 if(e.x==="gestures")m.push(new B.ck(A.Xi,B.b6(s.gAf(),d,d,d,A.b12,d,d),d))
 m.push(A.QZ)
 m.push(new B.ck(A.Xd,B.wB(B.b([e.As("\ud83c\uddec\ud83c\udde7","en"),A.rx,e.As("\ud83c\udde9\ud83c\uddea","de"),A.rx,e.As("\ud83c\uddeb\ud83c\uddf7","fr"),A.rx,e.As("\ud83c\uddee\ud83c\uddf9","it")],l),A.bl,A.eM,A.cy),d))
-return B.lJ(d,B.aqB(new B.DO(r,A.aY5,d),A.af,B.hC(A.bt,B.rP(!0,new B.ck(A.oS,B.mI(A.ei,B.b([B.i0(m,A.bl,A.bG,A.cy,A.bo),B.aoy(0,B.b6("v1.0.14+15",d,d,d,A.b1a,d,d),d,d,d,0,d,d)],l),A.am,A.e8,d),d),A.be,!0),A.aN,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gapl(),d,d,d,j,d,d,!1,A.c6)),A.ae,d,A.oh,d,d,d,d)},
+return B.lJ(d,B.aqB(new B.DO(r,A.aY5,d),A.af,B.hC(A.bt,B.rP(!0,new B.ck(A.oS,B.mI(A.ei,B.b([B.i0(m,A.bl,A.bG,A.cy,A.bo),B.aoy(0,B.b6("v1.0.15+16",d,d,d,A.b1a,d,d),d,d,d,0,d,d)],l),A.am,A.e8,d),d),A.be,!0),A.aN,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,e.gapl(),d,d,d,j,d,d,!1,A.c6)),A.ae,d,A.oh,d,d,d,d)},
 As(a,b){var s=null
 return B.hC(s,B.b6(a,s,s,s,A.aZy,s,s),A.aN,!1,s,s,s,s,s,s,s,new B.aBu(this,b),s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,!1,A.c6)},
 Se(a,b,c,d,e,f){var s,r=null,q=t.p,p=B.b([B.b6(a.toUpperCase(),r,r,r,A.Rs,r,r),B.Bd(B.iE(B.aYc(new B.Qi(A.tI,B.b6(""+b,r,r,r,A.b_f,r,r),new B.dN(b,t.f3)),A.X1,B.b83(),new B.aBr()),r,r),1)],q)
@@ -116528,7 +116528,7 @@ A.b1D=new B.q(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,nul
 A.aZF=new B.q(!0,A.R,null,".AppleSystemUIFont",null,null,null,null,null,null,null,null,null,null,null,null,null,A.E,null,null,null,"blackRedwoodCity labelSmall",null,null,null,null)
 A.b2N=new B.el(A.b0t,A.b_p,A.b0u,A.b0W,A.b_4,A.b_c,A.b_K,A.b0R,A.b_W,A.b1k,A.aZx,A.aZQ,A.b1h,A.b1D,A.aZF)
 A.b28=new B.q(!0,A.M_,null,null,null,null,14,null,A.pw,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b2P=new B.t9("Version 1.0.14+15",null,A.b28,null,null,null,null,null,null)
+A.b2P=new B.t9("Version 1.0.15+16",null,A.b28,null,null,null,null,null,null)
 A.b8q=new B.av2(0,"system")
 A.aTA=new B.j(0.056,0.024)
 A.aTP=new B.j(0.108,0.3085)
