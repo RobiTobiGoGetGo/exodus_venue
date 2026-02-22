@@ -145,9 +145,9 @@ class _MainScreenState extends State<MainScreen> {
   Future<void> _unlockAudio() async {
     if (_audioUnlocked || !kIsWeb) return;
     try {
+      // Using UrlSource to bypass AssetSource path resolution issues on web
+      await _audioPlayer.setSource(UrlSource('assets/images/beep.mp3'));
       await _audioPlayer.setVolume(0.0);
-      await _audioPlayer.play(AssetSource('images/beep.mp3'));
-      await _audioPlayer.stop();
       _audioUnlocked = true;
     } catch (e) {
       _showError(e);
@@ -159,13 +159,15 @@ class _MainScreenState extends State<MainScreen> {
     if (threshold < 10) threshold = 10;
     int startAt = _capacity - threshold;
 
+    final Source source = UrlSource('assets/images/beep.mp3');
+
     if (_inside >= _capacity) {
       if (!_isAlarmLooping && !_alarmSilenced) {
         setState(() => _isAlarmLooping = true);
         try {
           await _audioPlayer.setReleaseMode(ReleaseMode.loop);
           await _audioPlayer.setVolume(1.0);
-          await _audioPlayer.play(AssetSource('images/beep.mp3'));
+          await _audioPlayer.play(source);
         } catch (e) {
           _showError(e);
         }
@@ -180,7 +182,7 @@ class _MainScreenState extends State<MainScreen> {
       try {
         await _audioPlayer.setReleaseMode(ReleaseMode.release);
         await _audioPlayer.setVolume(volume);
-        await _audioPlayer.play(AssetSource('images/beep.mp3'));
+        await _audioPlayer.play(source);
       } catch (e) {
         _showError(e);
       }
@@ -799,7 +801,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.19+20",
+                      "v1.0.20+21",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1415,7 +1417,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.19+20",
+                    "Version 1.0.20+21",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
