@@ -397,7 +397,6 @@ class _MainScreenState extends State<MainScreen> {
             leading: const Icon(Icons.share, color: Color(0xFF1976D2)),
             title: Text(l10n.exportLogs),
             onTap: () {
-              Navigator.pop(context);
               _showExportMenu();
             },
           ),
@@ -854,7 +853,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.24+25",
+                      "v1.0.25+26",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1407,6 +1406,11 @@ class HelpScreen extends StatelessWidget {
           pw.Bullet(text: l10n.guideSessionResetContent),
           pw.Bullet(text: l10n.guideSessionResetExport),
           pw.Bullet(text: l10n.guideSessionResetConfirm),
+          pw.Header(level: 1, text: l10n.guideErrorLogTitle),
+          pw.Paragraph(text: l10n.guideErrorLogContent),
+          pw.Bullet(text: l10n.guideErrorLogView),
+          pw.Bullet(text: l10n.guideErrorLogExport),
+          pw.Bullet(text: l10n.guideErrorLogDelete),
           pw.SizedBox(height: 20),
           pw.Footer(
             leading: pw.Text("© 2024 GoGetGo Exodus", style: const pw.TextStyle(fontSize: 10)),
@@ -1538,7 +1542,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.24+25",
+                    "Version 1.0.25+26",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
@@ -1548,6 +1552,7 @@ class HelpScreen extends StatelessWidget {
                   _buildHelpSection(l10n.guideCorrectionTitle, "${l10n.guideCorrectionContent}\n\n- ${l10n.guideCorrectionUndo}\n- ${l10n.guideCorrectionManual}"),
                   _buildHelpSection(l10n.guideLogTitle, "${l10n.guideLogContent}\n\n- ${l10n.guideLogSearch}\n- ${l10n.guideLogDelete}\n- ${l10n.guideLogExport}\n- ${l10n.guideLogPreview}"),
                   _buildHelpSection(l10n.guideSessionTitle, "${l10n.guideSessionResetTitle}:\n- ${l10n.guideSessionResetContent} ${l10n.guideSessionResetExport}\n- ${l10n.guideSessionResetConfirm}"),
+                  _buildHelpSection(l10n.guideErrorLogTitle, "${l10n.guideErrorLogContent}\n\n- ${l10n.guideErrorLogView}\n- ${l10n.guideErrorLogExport}\n- ${l10n.guideErrorLogDelete}"),
                   const SizedBox(height: 30),
                   const Center(child: Text("© 2024 GoGetGo Exodus", style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic))),
                 ],
