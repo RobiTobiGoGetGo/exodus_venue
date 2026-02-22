@@ -132,6 +132,12 @@ abstract class AppLocalizations {
   /// **'View Log'**
   String get viewLog;
 
+  /// No description provided for @viewErrorLog.
+  ///
+  /// In en, this message translates to:
+  /// **'View Error Log'**
+  String get viewErrorLog;
+
   /// No description provided for @exportLogs.
   ///
   /// In en, this message translates to:
@@ -330,6 +336,12 @@ abstract class AppLocalizations {
   /// **'Delete this entry?'**
   String get deleteEntryQuestion;
 
+  /// No description provided for @deleteErrorQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this error entry?'**
+  String get deleteErrorQuestion;
+
   /// No description provided for @delete.
   ///
   /// In en, this message translates to:
@@ -341,6 +353,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete ALL entries?'**
   String get deleteAllEntriesQuestion;
+
+  /// No description provided for @deleteAllErrorsQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete ALL error entries?'**
+  String get deleteAllErrorsQuestion;
 
   /// No description provided for @thisCannotBeUndone.
   ///

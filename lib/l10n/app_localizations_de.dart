@@ -24,6 +24,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get viewLog => 'Protokoll anzeigen';
 
   @override
+  String get viewErrorLog => 'Fehlerprotokoll anzeigen';
+
+  @override
   String get exportLogs => 'Protokolle exportieren';
 
   @override
@@ -127,10 +130,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get deleteEntryQuestion => 'Diesen Eintrag löschen?';
 
   @override
+  String get deleteErrorQuestion => 'Diesen Fehlereintrag löschen?';
+
+  @override
   String get delete => 'Löschen';
 
   @override
   String get deleteAllEntriesQuestion => 'ALLE Einträge löschen?';
+
+  @override
+  String get deleteAllErrorsQuestion => 'ALLE Fehlereinträge löschen?';
 
   @override
   String get thisCannotBeUndone => 'Dies kann nicht rückgängig gemacht werden.';
@@ -426,7 +435,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get installDesktopStep5 => 'Klicken Sie auf Installieren.';
 
   @override
-  String get installSafariIosTitle => 'Für Safari auf iPhone und iPad (iOS)';
+  String get installSafariIosTitle => 'For Safari auf iPhone und iPad (iOS)';
 
   @override
   String get installSafariIosStep1 =>
@@ -444,7 +453,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get installSafariIosStep4 => 'Tippen Sie oben rechts auf Hinzufügen.';
 
   @override
-  String get installSafariMacTitle => 'Für Safari auf Mac (macOS)';
+  String get installSafariMacTitle => 'For Safari auf Mac (macOS)';
 
   @override
   String get installSafariMacNote =>

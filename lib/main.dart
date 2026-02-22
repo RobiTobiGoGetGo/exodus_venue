@@ -382,7 +382,15 @@ class _MainScreenState extends State<MainScreen> {
             title: Text(l10n.viewLog),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LogScreen(locationName: _locationName)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LogScreen(locationName: _locationName, logType: 'session')));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.bug_report, color: Colors.red),
+            title: Text(l10n.viewErrorLog),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LogScreen(locationName: _locationName, logType: 'error')));
             },
           ),
           ListTile(
@@ -391,14 +399,6 @@ class _MainScreenState extends State<MainScreen> {
             onTap: () {
               Navigator.pop(context);
               _showExportMenu();
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.bug_report, color: Colors.red),
-            title: Text(l10n.exportErrors),
-            onTap: () {
-              Navigator.pop(context);
-              _exportErrors();
             },
           ),
           ListTile(
@@ -460,6 +460,14 @@ class _MainScreenState extends State<MainScreen> {
               Navigator.pop(context);
               await Navigator.push(context, MaterialPageRoute(builder: (context) => PreviewScreen(locationName: _locationName, docBuilder: _generateDocument)));
               if (mounted) _showExportMenu();
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.bug_report, color: Colors.red),
+            title: Text(l10n.exportErrors),
+            onTap: () {
+              Navigator.pop(context);
+              _exportErrors();
             },
           ),
         ],
@@ -689,7 +697,7 @@ class _MainScreenState extends State<MainScreen> {
               GestureDetector(
                 onLongPress: () {
                   HapticFeedback.mediumImpact();
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LogScreen(locationName: _locationName)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LogScreen(locationName: _locationName, logType: 'session')));
                 },
                 child: IconButton(
                   icon: const Icon(Icons.settings, color: Colors.black, size: 28),
@@ -800,7 +808,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.21+22",
+                      "v1.0.22+23",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -903,7 +911,8 @@ class _MainScreenState extends State<MainScreen> {
 
 class LogScreen extends StatefulWidget {
   final String locationName;
-  const LogScreen({super.key, required this.locationName});
+  final String logType; // 'session' or 'error'
+  const LogScreen({super.key, required this.locationName, required this.logType});
 
   @override
   State<LogScreen> createState() => _LogScreenState();
@@ -931,8 +940,9 @@ class _LogScreenState extends State<LogScreen> {
 
   Future<void> _loadLogs() async {
     final prefs = await SharedPreferences.getInstance();
+    final key = widget.logType == 'session' ? 'entries' : 'error_logs';
     setState(() {
-      _entries = prefs.getStringList('entries') ?? [];
+      _entries = prefs.getStringList(key) ?? [];
       _sortLogs();
       _filteredEntries = List.from(_entries);
     });
@@ -961,22 +971,24 @@ class _LogScreenState extends State<LogScreen> {
 
   Future<void> _deleteEntry(int index) async {
     final prefs = await SharedPreferences.getInstance();
+    final key = widget.logType == 'session' ? 'entries' : 'error_logs';
     final actualEntry = _filteredEntries[index];
     _searchFocusNode.unfocus();
     setState(() {
       _entries.remove(actualEntry);
       _filteredEntries.removeAt(index);
     });
-    await prefs.setStringList('entries', _entries);
+    await prefs.setStringList(key, _entries);
   }
 
   Future<void> _deleteAll() async {
     final prefs = await SharedPreferences.getInstance();
+    final key = widget.logType == 'session' ? 'entries' : 'error_logs';
     setState(() {
       _entries.clear();
       _filteredEntries.clear();
     });
-    await prefs.setStringList('entries', []);
+    await prefs.setStringList(key, []);
   }
 
   Future<void> _exportCSV() async {
@@ -987,17 +999,22 @@ class _LogScreenState extends State<LogScreen> {
     }
     try {
       final csvContent = StringBuffer();
-      csvContent.writeln("Timestamp,Date_Time,Tag,Entered,Inside");
+      if (widget.logType == 'session') {
+        csvContent.writeln("Timestamp,Date_Time,Tag,Entered,Inside");
+      } else {
+        csvContent.writeln("Date_Time,Error_Message");
+      }
       for (var entry in _entries) {
         csvContent.writeln(entry.replaceAll(" | ", ","));
       }
 
+      final fileName = widget.logType == 'session' ? 'exodus_logs' : 'exodus_errors';
       if (kIsWeb) {
         final bytes = Uint8List.fromList(csvContent.toString().codeUnits);
-        await Share.shareXFiles([XFile.fromData(bytes, name: 'exodus_logs_${DateTime.now().millisecondsSinceEpoch}.csv', mimeType: 'text/csv')], text: 'Exodus Logs - ${widget.locationName}');
+        await Share.shareXFiles([XFile.fromData(bytes, name: '${fileName}_${DateTime.now().millisecondsSinceEpoch}.csv', mimeType: 'text/csv')], text: 'Exodus Logs - ${widget.locationName}');
       } else {
         final directory = await getTemporaryDirectory();
-        final file = io.File('${directory.path}/exodus_logs_${DateTime.now().millisecondsSinceEpoch}.csv');
+        final file = io.File('${directory.path}/${fileName}_${DateTime.now().millisecondsSinceEpoch}.csv');
         await file.writeAsString(csvContent.toString());
         await Share.shareXFiles([XFile(file.path)], text: 'Exodus Logs - ${widget.locationName}');
       }
@@ -1008,13 +1025,16 @@ class _LogScreenState extends State<LogScreen> {
 
   Future<pw.Document> _generateDocument() async {
     final prefs = await SharedPreferences.getInstance();
-    final entries = prefs.getStringList('entries') ?? [];
+    final key = widget.logType == 'session' ? 'entries' : 'error_logs';
+    final entries = prefs.getStringList(key) ?? [];
     final pdf = pw.Document();
+    final title = widget.logType == 'session' ? "EXODUS: VENUE REPORT" : "EXODUS: ERROR LOG";
+    
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (context) => [
-          pw.Header(level: 0, child: pw.Text("EXODUS: VENUE REPORT")),
+          pw.Header(level: 0, child: pw.Text(title)),
           pw.Container(
             padding: const pw.EdgeInsets.all(10),
             decoration: const pw.BoxDecoration(color: PdfColors.grey100),
@@ -1029,15 +1049,26 @@ class _LogScreenState extends State<LogScreen> {
             ),
           ),
           pw.SizedBox(height: 20),
-          pw.TableHelper.fromTextArray(
-            headers: ["Date/Time", "Event", "Entered", "Inside"],
-            headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-            data: entries.map((e) {
-              final p = e.split(" | ");
-              if (p.length < 5) return ["", "", "", ""];
-              return [p[1], p[2], p[3], p[4]];
-            }).toList(),
-          ),
+          if (widget.logType == 'session')
+            pw.TableHelper.fromTextArray(
+              headers: ["Date/Time", "Event", "Entered", "Inside"],
+              headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+              data: entries.map((e) {
+                final p = e.split(" | ");
+                if (p.length < 5) return ["", "", "", ""];
+                return [p[1], p[2], p[3], p[4]];
+              }).toList(),
+            )
+          else
+            pw.TableHelper.fromTextArray(
+              headers: ["Date/Time", "Error Message"],
+              headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+              data: entries.map((e) {
+                final p = e.split(" | ");
+                if (p.length < 2) return ["", ""];
+                return [p[0], p[1]];
+              }).toList(),
+            ),
         ],
       ),
     );
@@ -1049,12 +1080,13 @@ class _LogScreenState extends State<LogScreen> {
     try {
       final pdf = await _generateDocument();
       final pdfBytes = await pdf.save();
+      final fileName = widget.logType == 'session' ? 'exodus_report' : 'exodus_errors';
 
       if (kIsWeb) {
-        await Share.shareXFiles([XFile.fromData(pdfBytes, name: 'Exodus_Report_${DateTime.now().millisecondsSinceEpoch}.pdf', mimeType: 'application/pdf')], text: 'Exodus Venue Report');
+        await Share.shareXFiles([XFile.fromData(pdfBytes, name: '${fileName}_${DateTime.now().millisecondsSinceEpoch}.pdf', mimeType: 'application/pdf')], text: 'Exodus Venue Report');
       } else {
         final directory = await getTemporaryDirectory();
-        final file = io.File('${directory.path}/exodus_report_${DateTime.now().millisecondsSinceEpoch}.pdf');
+        final file = io.File('${directory.path}/${fileName}_${DateTime.now().millisecondsSinceEpoch}.pdf');
         await file.writeAsBytes(pdfBytes);
         await Share.shareXFiles([XFile(file.path)], text: 'Exodus Venue Report');
       }
@@ -1103,6 +1135,8 @@ class _LogScreenState extends State<LogScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final title = widget.logType == 'session' ? l10n.viewLog : l10n.viewErrorLog;
+    
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -1113,7 +1147,7 @@ class _LogScreenState extends State<LogScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text(l10n.viewLog),
+          title: Text(title),
           backgroundColor: Colors.transparent,
           actions: [
             IconButton(
@@ -1129,7 +1163,7 @@ class _LogScreenState extends State<LogScreen> {
             ),
             IconButton(
               icon: const Icon(Icons.delete_forever, color: Colors.red),
-              onPressed: () => _confirmDeleteAll(),
+              onPressed: () => widget.logType == 'session' ? _confirmDeleteAll() : _confirmDeleteAllErrors(),
             ),
           ],
           bottom: PreferredSize(
@@ -1157,23 +1191,36 @@ class _LogScreenState extends State<LogScreen> {
           itemCount: _filteredEntries.length,
           itemBuilder: (context, index) {
             final parts = _filteredEntries[index].split(" | ");
-            if (parts.length < 5) return const SizedBox.shrink();
-            return Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              color: Colors.white.withValues(alpha: 0.9),
-              child: ListTile(
-                title: Text(parts[2], style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1976D2))),
-                subtitle: Text(parts[1], style: const TextStyle(fontSize: 12)),
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text("E: ${parts[3]}", style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
-                    Text("I: ${parts[4]}", style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
-                  ],
+            if (widget.logType == 'session') {
+              if (parts.length < 5) return const SizedBox.shrink();
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                color: Colors.white.withValues(alpha: 0.9),
+                child: ListTile(
+                  title: Text(parts[2], style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1976D2))),
+                  subtitle: Text(parts[1], style: const TextStyle(fontSize: 12)),
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text("E: ${parts[3]}", style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
+                      Text("I: ${parts[4]}", style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                  onLongPress: () => _confirmDelete(index),
                 ),
-                onLongPress: () => _confirmDelete(index),
-              ),
-            );
+              );
+            } else {
+              if (parts.length < 2) return const SizedBox.shrink();
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                color: Colors.white.withValues(alpha: 0.9),
+                child: ListTile(
+                  title: Text(parts[1], style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+                  subtitle: Text(parts[0], style: const TextStyle(fontSize: 12)),
+                  onLongPress: () => _confirmDeleteError(index),
+                ),
+              );
+            }
           },
         ),
       ),
@@ -1194,12 +1241,41 @@ class _LogScreenState extends State<LogScreen> {
     );
   }
 
+  void _confirmDeleteError(int index) {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.deleteErrorQuestion),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          TextButton(onPressed: () { _deleteEntry(index); Navigator.pop(context); }, child: Text(l10n.delete)),
+        ],
+      ),
+    );
+  }
+
   void _confirmDeleteAll() {
     final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.deleteAllEntriesQuestion),
+        content: Text(l10n.thisCannotBeUndone),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          TextButton(onPressed: () { _deleteAll(); Navigator.pop(context); }, child: Text(l10n.deleteAll, style: const TextStyle(color: Colors.red))),
+        ],
+      ),
+    );
+  }
+
+  void _confirmDeleteAllErrors() {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.deleteAllErrorsQuestion),
         content: Text(l10n.thisCannotBeUndone),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
@@ -1416,7 +1492,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.21+22",
+                    "Version 1.0.22+23",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),

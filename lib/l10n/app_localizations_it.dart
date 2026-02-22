@@ -24,6 +24,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get viewLog => 'Visualizza registro';
 
   @override
+  String get viewErrorLog => 'Visualizza registro errori';
+
+  @override
   String get exportLogs => 'Esporta registri';
 
   @override
@@ -127,10 +130,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get deleteEntryQuestion => 'Eliminare questa voce?';
 
   @override
+  String get deleteErrorQuestion => 'Eliminare questa voce di errore?';
+
+  @override
   String get delete => 'Elimina';
 
   @override
   String get deleteAllEntriesQuestion => 'Eliminare TUTTE le voci?';
+
+  @override
+  String get deleteAllErrorsQuestion => 'Eliminare TUTTE le voci di errore?';
 
   @override
   String get thisCannotBeUndone => 'Questa operazione è irreversibile.';
@@ -377,7 +386,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get installChromeAndroidStep1 =>
-      'Apri il sito web in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/';
+      'Open the website in Chrome: https://RobiTobiGoGetGo.github.io/exodus_venue/';
 
   @override
   String get installChromeAndroidStep2 => 'Tocca i tre punti in alto a destra.';
@@ -395,7 +404,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get installChromeIosStep2 =>
-      'Tocca l\'icona Condividi (il quadrato con una freccia rivolta verso l\'alto) accanto alla barra degli indirizzi.';
+      'Tocca l\'icona Condivi (il quadrato con una freccia rivolta verso l\'alto) accanto alla barra degli indirizzi.';
 
   @override
   String get installChromeIosStep3 =>

@@ -24,6 +24,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get viewLog => 'Voir le journal';
 
   @override
+  String get viewErrorLog => 'Voir le journal des erreurs';
+
+  @override
   String get exportLogs => 'Exporter les journaux';
 
   @override
@@ -127,10 +130,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get deleteEntryQuestion => 'Supprimer cette entrée ?';
 
   @override
+  String get deleteErrorQuestion => 'Supprimer cette entrée d\'erreur ?';
+
+  @override
   String get delete => 'Supprimer';
 
   @override
   String get deleteAllEntriesQuestion => 'Supprimer TOUTES les entrées ?';
+
+  @override
+  String get deleteAllErrorsQuestion =>
+      'Supprimer TOUTES les entrées d\'erreur ?';
 
   @override
   String get thisCannotBeUndone => 'Cette opération est irréversible.';
@@ -184,7 +194,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Carte Encore à l\'intérieur (Verte) : Affiche le décompte actuel des personnes dans le lieu.';
 
   @override
-  String get guideSafetyTitle => '3. Capacité et sécurité';
+  String get guideSafetyTitle => '3. Capacity et sécurité';
 
   @override
   String get guideSafetyContent =>
@@ -360,7 +370,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Firefox sur iOS n\'a pas de bouton direct \"Installer\" en raison des restrictions d\'Apple. Vous devez utiliser le menu système :';
 
   @override
-  String get installFirefoxIosStep1 => 'Ouvrez le site Web in Firefox.';
+  String get installFirefoxIosStep1 => 'Ouvrez le site Web dans Firefox.';
 
   @override
   String get installFirefoxIosStep2 =>

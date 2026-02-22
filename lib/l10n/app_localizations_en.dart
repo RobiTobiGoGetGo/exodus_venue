@@ -24,6 +24,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get viewLog => 'View Log';
 
   @override
+  String get viewErrorLog => 'View Error Log';
+
+  @override
   String get exportLogs => 'Export Logs';
 
   @override
@@ -125,10 +128,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deleteEntryQuestion => 'Delete this entry?';
 
   @override
+  String get deleteErrorQuestion => 'Delete this error entry?';
+
+  @override
   String get delete => 'Delete';
 
   @override
   String get deleteAllEntriesQuestion => 'Delete ALL entries?';
+
+  @override
+  String get deleteAllErrorsQuestion => 'Delete ALL error entries?';
 
   @override
   String get thisCannotBeUndone => 'This cannot be undone.';
