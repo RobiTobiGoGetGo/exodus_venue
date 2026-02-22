@@ -126,6 +126,13 @@ class _MainScreenState extends State<MainScreen> {
     await _prefs.setString('location_name', _locationName);
   }
 
+  void _showError(dynamic e) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Audio Error: $e"), backgroundColor: Colors.red),
+    );
+  }
+
   Future<void> _unlockAudio() async {
     if (_audioUnlocked || !kIsWeb) return;
     try {
@@ -133,7 +140,9 @@ class _MainScreenState extends State<MainScreen> {
       await _audioPlayer.play(AssetSource('images/beep.mp3'));
       await _audioPlayer.stop();
       _audioUnlocked = true;
-    } catch (_) {}
+    } catch (e) {
+      _showError(e);
+    }
   }
 
   void _playAlarm() async {
@@ -148,7 +157,9 @@ class _MainScreenState extends State<MainScreen> {
           await _audioPlayer.setReleaseMode(ReleaseMode.loop);
           await _audioPlayer.setVolume(1.0);
           await _audioPlayer.play(AssetSource('images/beep.mp3'));
-        } catch (_) {}
+        } catch (e) {
+          _showError(e);
+        }
       }
     } else if (_inside > startAt) {
       _alarmSilenced = false; 
@@ -161,7 +172,9 @@ class _MainScreenState extends State<MainScreen> {
         await _audioPlayer.setReleaseMode(ReleaseMode.release);
         await _audioPlayer.setVolume(volume);
         await _audioPlayer.play(AssetSource('images/beep.mp3'));
-      } catch (_) {}
+      } catch (e) {
+        _showError(e);
+      }
     } else {
       _alarmSilenced = false;
       if (_isAlarmLooping) {
