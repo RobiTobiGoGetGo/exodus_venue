@@ -153,42 +153,27 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  Future<void> _playAlarm() async {
-    int threshold = (_capacity * 0.02).round();
-    if (threshold < 10) threshold = 10;
-    int startAt = _capacity - threshold;
-
-    final Source source = UrlSource('assets/images/beep.mp3');
-
-    if (_inside >= _capacity) {
-      if (!_isAlarmLooping && !_alarmSilenced) {
-        setState(() => _isAlarmLooping = true);
-        try {
-          await _audioPlayer.setReleaseMode(ReleaseMode.loop);
-          await _audioPlayer.setVolume(1.0);
-          await _audioPlayer.play(source);
-        } catch (e) {
-          _showError(e);
-        }
-      }
-    } else if (_inside > startAt) {
-      _alarmSilenced = false; 
-      if (_isAlarmLooping) {
-        await _stopAlarm(resetSilence: false);
-      }
-      double volume = (_inside - startAt) / threshold;
-      if (volume > 1.0) volume = 1.0;
-      try {
-        await _audioPlayer.setReleaseMode(ReleaseMode.release);
-        await _audioPlayer.setVolume(volume);
-        await _audioPlayer.play(source);
-      } catch (e) {
-        _showError(e);
-      }
-    } else {
+  Future<void> _playAlarm({bool isIncrement = true}) async {
+    if (_inside <= _capacity) {
       _alarmSilenced = false;
       if (_isAlarmLooping) {
         await _stopAlarm(resetSilence: false);
+      }
+      return;
+    }
+
+    if (!isIncrement) return;
+
+    final Source source = UrlSource('assets/images/beep.mp3');
+
+    if (!_isAlarmLooping && !_alarmSilenced) {
+      setState(() => _isAlarmLooping = true);
+      try {
+        await _audioPlayer.setReleaseMode(ReleaseMode.loop);
+        await _audioPlayer.setVolume(1.0);
+        await _audioPlayer.play(source);
+      } catch (e) {
+        _showError(e);
       }
     }
   }
@@ -222,7 +207,7 @@ class _MainScreenState extends State<MainScreen> {
       _entered += entDelta;
       _inside += insDelta;
     });
-    await _playAlarm();
+    await _playAlarm(isIncrement: insDelta > 0);
     await _saveState();
   }
 
@@ -853,7 +838,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.25+26",
+                      "v1.0.26+27",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1542,7 +1527,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.25+26",
+                    "Version 1.0.26+27",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),
