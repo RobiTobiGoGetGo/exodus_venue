@@ -838,7 +838,7 @@ class _MainScreenState extends State<MainScreen> {
                     bottom: 0,
                     right: 0,
                     child: Text(
-                      "v1.0.26+27",
+                      "v1.0.27+28",
                       style: const TextStyle(fontSize: 10, color: Colors.black38),
                     ),
                   ),
@@ -1527,7 +1527,7 @@ class HelpScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF1976D2)),
                   ),
                   const Text(
-                    "Version 1.0.26+27",
+                    "Version 1.0.27+28",
                     style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.grey),
                   ),
                   const SizedBox(height: 20),

@@ -1,38 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('Counter Logic Tests', () {
-    test('Initial values should be zero', () {
-      int entered = 0;
-      int inside = 0;
-      expect(entered, 0);
-      expect(inside, 0);
-    });
-
-    test('Increment logic should increase both values', () {
-      int entered = 0;
-      int inside = 0;
-      
-      // Simulating entry
-      entered += 1;
-      inside += 1;
-      
-      expect(entered, 1);
-      expect(inside, 1);
-    });
-
-    test('Decrement logic should only decrease inside count', () {
-      int entered = 10;
-      int inside = 10;
-      
-      // Simulating exit
-      inside -= 1;
-      
-      expect(entered, 10);
-      expect(inside, 9);
-    });
-
-    test('Beeper condition: should only trigger if inside > capacity', () {
+  group('Counter Logic and Beeper Tests', () {
+    test('Beeper should only sound on increment above capacity', () {
       int capacity = 100;
       
       bool shouldBeep(int currentInside, bool isIncrement) {
@@ -41,9 +11,36 @@ void main() {
         return true;
       }
 
-      expect(shouldBeep(100, true), false);
-      expect(shouldBeep(101, true), true);
-      expect(shouldBeep(101, false), false); // No beep on countdown even if over capacity
+      // Cases where it SHOULD NOT beep
+      expect(shouldBeep(100, true), false, reason: 'At capacity, no beep');
+      expect(shouldBeep(99, true), false, reason: 'Below capacity, no beep');
+      expect(shouldBeep(101, false), false, reason: 'Decremented count, no beep');
+
+      // Case where it SHOULD beep
+      expect(shouldBeep(101, true), true, reason: 'Incremented above capacity, beep triggers');
+    });
+
+    test('Counters should remain synchronized on entry', () {
+      int entered = 0;
+      int inside = 0;
+      
+      // Simulate entry
+      entered += 1;
+      inside += 1;
+      
+      expect(entered, 1);
+      expect(inside, 1);
+    });
+
+    test('Only inside counter should change on exit', () {
+      int entered = 10;
+      int inside = 10;
+      
+      // Simulate exit
+      inside -= 1;
+      
+      expect(entered, 10);
+      expect(inside, 9);
     });
   });
 }
